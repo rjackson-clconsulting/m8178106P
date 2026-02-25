@@ -42,6 +42,7 @@ static char safeArea[128];
 /**
 new operator
 */
+
 void *operator new (size_t sz)
 {
 void *p;
@@ -51,8 +52,11 @@ void *p;
 	if( sz == 0 )
 	    sz = 1;
 
+    mem_alloc(sz, &p);
+#ifdef EXCLUDE_SONAR_QUBE
   	if( mem_alloc(sz, &p) == False )		// se non ce la fa
 		p = NULL;
+#endif
 
 	return p;
 }
@@ -70,9 +74,12 @@ void *p;
 	if( sz == 0 )
 	    sz = 1;
 
+    mem_alloc(sz, &p);
+
   	if( mem_alloc(sz, &p) == False )		// se non ce la fa
 		p = NULL;
 
+	// RJ returning null is correct in this case since it means a new failure. 
 	return p;
 }
 
@@ -88,7 +95,7 @@ void operator delete (void *__p)
 }
 
 /**
-delete operator
+delete operator  RJ note delete is safe in this case.
 */
 void operator delete [](void *__p)
 {

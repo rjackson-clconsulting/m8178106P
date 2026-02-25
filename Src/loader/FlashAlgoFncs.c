@@ -9,11 +9,11 @@
  * @copy
  *
  * INTERNAL FILE,DON'T PUBLIC.
- * 
+ *
  * <h2><center>&copy; COPYRIGHT 2009 CooCox </center></h2>
  *******************************************************************************
- */ 
- 
+ */
+
 #include <stdint.h>
 #include "FlashAlgorithm.h"
 
@@ -25,18 +25,18 @@
 
 /**
  *******************************************************************************
- * @brief      Initialize before Flash Programming/Erase Functions 
+ * @brief      Initialize before Flash Programming/Erase Functions
  * @param[in]  baseAddr     Flash device base address.
  * @param[in]  clk     			Flash program clock.
  * @param[in]  operateFuc   Init for what operation
  														(FLASH_OPT_ERASECHIP/FLASH_OPT_ERASESECTORS/FLASH_OPT_PROGRAMPAGE).
- * @param[out] None  
+ * @param[out] None
  * @retval     0   					All is OK.
- * @retval     others       Some error occurs.		 
+ * @retval     others       Some error occurs.
  *
  * @par Description
- * @details    This function is called before flash programming/erase. 
- * @note 
+ * @details    This function is called before flash programming/erase.
+ * @note
  *******************************************************************************
  */
 __attribute__ (( section(".ramcode") ))
@@ -44,7 +44,7 @@ int FlashInit (unsigned long baseAddr,
                unsigned long clk,
                unsigned long operateFuc)
 {
-	
+
 	uint32_t delay;
 	switch(operateFuc)
 	{
@@ -55,7 +55,7 @@ int FlashInit (unsigned long baseAddr,
 			}
 			//return TO_DRV_RET_ERROR;
 			break;
-		
+
 		case FLASH_OPT_PROGRAMPAGE     :                     // Program Page
 		case FLASH_OPT_VERIFY          :                     // Verify Page
 		case FLASH_OPT_BLANKCHECK      :                     // Blank Check Page
@@ -67,6 +67,8 @@ int FlashInit (unsigned long baseAddr,
 				__asm("nop");
 			}
 			break;
+        default:
+            break;
 		}
 
   return TO_DRV_RET_OK;
@@ -75,16 +77,16 @@ int FlashInit (unsigned long baseAddr,
 
 /**
  *******************************************************************************
- * @brief      Un-Init after Flash Programming/Erase Functions  
+ * @brief      Un-Init after Flash Programming/Erase Functions
  * @param[in]  operateFuc   Init for what operation
  														(FLASH_OPT_ERASECHIP/FLASH_OPT_ERASESECTORS/FLASH_OPT_PROGRAMPAGE).
- * @param[out] None  
+ * @param[out] None
  * @retval     0   					All is OK.
- * @retval     others       Some error occurs.		 
+ * @retval     others       Some error occurs.
  *
  * @par Description
- * @details    This function is called after flash programming/erase. 
- * @note 
+ * @details    This function is called after flash programming/erase.
+ * @note
  *******************************************************************************
  */
 __attribute__ (( section(".ramcode") ))
@@ -108,15 +110,15 @@ int FlashUnInit (unsigned long operateFuc)
 
 /**
  *******************************************************************************
- * @brief      Erase the full chip.  
+ * @brief      Erase the full chip.
  * @param[in]  None.
- * @param[out] None  
+ * @param[out] None
  * @retval     0   					All is OK.
- * @retval     others       Some error occurs.		 
+ * @retval     others       Some error occurs.
  *
  * @par Description
- * @details     
- * @note 
+ * @details
+ * @note
  *******************************************************************************
  */
 
@@ -148,15 +150,21 @@ int FlashEraseChip(void)
 	*(FLASH_SEQ_0AA8) = FLASH_SECTOR_ERASE_5;
 	*(FLASH_SEQ_1550) = 0x0010;
 
-	// sector erase timer ready?
-	while( (pFlash[0] & FLASH_DQ3) != FLASH_DQ3);  
-
-	i32FlashFlag = 0;
-
-	while( i32FlashFlag == 0 )
+    if( pFlash == NULL )
 	{
+		return(TO_DRV_RET_ERROR);
+	}
+	else
+	{
+	    // sector erase timer ready?
+	    while( (pFlash[0] & FLASH_DQ3) != FLASH_DQ3);
+     }
+     i32FlashFlag = 0;
+
+	  while( i32FlashFlag == 0 )
+	  {
 		// Flash timeout?
-		if((*pFlash & FLASH_DQ5) == FLASH_DQ5) 
+		if((*pFlash & FLASH_DQ5) == FLASH_DQ5)
 		{
 			i32FlashFlag = FLASH_TIMEOUT_ERROR;
 		}
@@ -166,33 +174,33 @@ int FlashEraseChip(void)
 		{
 			i32FlashFlag = FLASH_OK;
 		}
-	 }
+	   }
 
-	FM3_FLASH_IF->FASZR &= 0xFFFE;      // ASZ[1:0] = 2'b10
-	FM3_FLASH_IF->FASZR |= 0x2;
-	u32DummyRead = FM3_FLASH_IF->FASZR; // dummy read of FASZR
+	  FM3_FLASH_IF->FASZR &= 0xFFFE;      // ASZ[1:0] = 2'b10
+	  FM3_FLASH_IF->FASZR |= 0x2;
+	  u32DummyRead = FM3_FLASH_IF->FASZR; // dummy read of FASZR
 
-	if( i32FlashFlag != FLASH_OK )
-	{	
+	  if( i32FlashFlag != FLASH_OK )
+	  {
 		return(TO_DRV_RET_ERROR);
-	}
+	  }
 
 	return TO_DRV_RET_OK;
-	
+
 
 }
 
 /**
  *******************************************************************************
- * @brief      Erase the select Sector. 
+ * @brief      Erase the select Sector.
  * @param[in]  sectorAddr   Sector's start address.
- * @param[out] None  
+ * @param[out] None
  * @retval     0   					All is OK.
- * @retval     others       Some error occurs.		 
+ * @retval     others       Some error occurs.
  *
  * @par Description
- * @details     
- * @note 
+ * @details
+ * @note
  *******************************************************************************
  */
 __attribute__ (( section(".ramcode") ))
@@ -244,6 +252,8 @@ int FlashEraseSector (unsigned long sectorAddr)
 		case	0x70000:
 			sectorAddr = FLASH_ADDRESS_SA14;
 			break;
+		default:
+            break;
 	}
 
 
@@ -265,17 +275,24 @@ int FlashEraseSector (unsigned long sectorAddr)
 	*(FLASH_SEQ_1550) = FLASH_SECTOR_ERASE_3;
 	*(FLASH_SEQ_1550) = FLASH_SECTOR_ERASE_4;
 	*(FLASH_SEQ_0AA8) = FLASH_SECTOR_ERASE_5;
-	*pFlash = FLASH_SECTOR_ERASE_6;
-  
-	// sector erase timer ready?
-	while( (*pFlash & FLASH_DQ3) != FLASH_DQ3);  
 
-	i32FlashFlag = 0;
+	if( pFlash == NULL )
+	{
+		return(TO_DRV_RET_ERROR);
+	}
+	else
+	{
+	  *pFlash = FLASH_SECTOR_ERASE_6;
+    }
+  // sector erase timer ready?
+   while( (*pFlash & FLASH_DQ3) != FLASH_DQ3);
+
+   i32FlashFlag = 0;
 
 	while( i32FlashFlag == 0 )
 	{
 		// Flash timeout?
-		if((*pFlash & FLASH_DQ5) == FLASH_DQ5) 
+		if((*pFlash & FLASH_DQ5) == FLASH_DQ5)
 		{
 			i32FlashFlag = FLASH_TIMEOUT_ERROR;
 		}
@@ -341,6 +358,8 @@ int FlashEraseSector (unsigned long sectorAddr)
 		case	FLASH_ADDRESS_SA15:
 			sectorAddr = FLASH_ADDRESS_SA14;
 			break;
+        default:
+            break;
 	}
 
 
@@ -351,16 +370,23 @@ int FlashEraseSector (unsigned long sectorAddr)
 	*(FLASH_SEQ_1550) = FLASH_SECTOR_ERASE_3;
 	*(FLASH_SEQ_1550) = FLASH_SECTOR_ERASE_4;
 	*(FLASH_SEQ_0AA8) = FLASH_SECTOR_ERASE_5;
-	*pFlash = FLASH_SECTOR_ERASE_6;
-  
+
+	if( pFlash == NULL )
+	{
+		return(TO_DRV_RET_ERROR);
+	}
+	else
+	{
+	  *pFlash = FLASH_SECTOR_ERASE_6;
+    }
 	// sector erase timer ready?
-	while( (pFlash[0] & FLASH_DQ3) != FLASH_DQ3);  
+	while( (pFlash[0] & FLASH_DQ3) != FLASH_DQ3);
 
 	i32FlashFlag = 0;
 	while( i32FlashFlag == 0 )
 	{
 		// Flash timeout?
-		if((*pFlash & FLASH_DQ5) == FLASH_DQ5) 
+		if((*pFlash & FLASH_DQ5) == FLASH_DQ5)
 		{
 			i32FlashFlag = FLASH_TIMEOUT_ERROR;
 		}
@@ -379,7 +405,7 @@ int FlashEraseSector (unsigned long sectorAddr)
 
 	if(u32DummyRead == 1) // to avoid warning
 		__asm("nop");
-	
+
 	if( i32FlashFlag == FLASH_OK )
 		return(TO_DRV_RET_OK);
 	else
@@ -391,21 +417,21 @@ int FlashEraseSector (unsigned long sectorAddr)
 
 /**
  *******************************************************************************
- * @brief      Proram a page. 
+ * @brief      Proram a page.
  * @param[in]  pageAddr   Page's start address.
  * @param[in]  size			  Page size
  * @param[in]  buf   			source point.
- * @param[out] None  
+ * @param[out] None
  * @retval     0   					All is OK.
- * @retval     others       Some error occurs.		 
+ * @retval     others       Some error occurs.
  *
  * @par Description
- * @details     
- * @note 
+ * @details
+ * @note
  *******************************************************************************
- */ 
+ */
 __attribute__ (( section(".ramcode") ))
-int FlashProgramPage (unsigned long pageAddr,     
+int FlashProgramPage (unsigned long pageAddr,
                       unsigned long size,
                       unsigned char *buf)
 {
@@ -425,10 +451,10 @@ volatile uint16_t *pFlash;
 
 	long progTimeout;
 
-	while (size) 
+	while (size)
 	{
 	    u16ProgamData = *pwBuf;   			// Program Half Word
-	  
+
 		FM3_FLASH_IF->FASZR &= 0xFFFD;      // ASZ[1:0] = 2'b01
 		FM3_FLASH_IF->FASZR |= 1;
 		u32DummyRead = FM3_FLASH_IF->FASZR; // dummy read of FASZR
@@ -439,20 +465,20 @@ volatile uint16_t *pFlash;
 		*(FLASH_SEQ_1550) = FLASH_WRITE_1;
 		*(FLASH_SEQ_0AA8) = FLASH_WRITE_2;
 		*(FLASH_SEQ_1550) = FLASH_WRITE_3;
-		*pFlash = u16ProgamData;  
+		*pFlash = u16ProgamData;
 
 
 		progTimeout = 20000;
-		
+
 		while(i32FlashFlag == 0 )
 		{
 			progTimeout--;
 
 			if( progTimeout == 0 )
 				break;
-			
+
 			// Flash timeout?
-			if((pFlash[0] & FLASH_DQ5) == FLASH_DQ5) 
+			if((pFlash[0] & FLASH_DQ5) == FLASH_DQ5)
 			{
 			  i32FlashFlag = FLASH_TIMEOUT_ERROR;
 			}
@@ -463,7 +489,7 @@ volatile uint16_t *pFlash;
 			  i32FlashFlag = FLASH_OK;
 			}
 		}
-  
+
 		FM3_FLASH_IF->FASZR &= 0xFFFE;      // ASZ[1:0] = 2'b10
 		FM3_FLASH_IF->FASZR |= 0x2;
 		u32DummyRead = FM3_FLASH_IF->FASZR; // dummy read of FASZR
@@ -472,34 +498,34 @@ volatile uint16_t *pFlash;
 			__asm("nop");
 
 		if( i32FlashFlag != FLASH_OK )
-  			return (TO_DRV_RET_ERROR);  
+  			return (TO_DRV_RET_ERROR);
 
 		// Go to next Half Word
 		pFlash++;
 		pwBuf++;
 		size -= 2;
-   
+
 	}
-	
+
 	return TO_DRV_RET_OK;
 }
 
 /**
  *******************************************************************************
- * @brief      Page Verify Function. 
+ * @brief      Page Verify Function.
  * @param[in]  verifyAddr   Verify Start Address(Usually page start address).
  * @param[in]  size			Verify size
  * @param[in]  buf   		Source buf point.
- * @param[out] None  
+ * @param[out] None
  * @retval     0   			Verify pass.
- * @retval     others       Some error occurs or verify failed..		 
+ * @retval     others       Some error occurs or verify failed..
  *
  * @par Description
- * @details   Optional function. When this function is absence, 
- *            the link will read flash memory directly to do verify.  
- * @note 
+ * @details   Optional function. When this function is absence,
+ *            the link will read flash memory directly to do verify.
+ * @note
  *******************************************************************************
- */ 
+ */
 __attribute__ (( section(".ramcode") ))
 int FlashVerify(unsigned long verifyAddr,unsigned long size,unsigned char *buf)
 {
@@ -508,7 +534,7 @@ int FlashVerify(unsigned long verifyAddr,unsigned long size,unsigned char *buf)
 
 #ifdef FLASHING_INFO
 
-#endif		
+#endif
 
   for(i = 0; i < size; i++)
   {
@@ -517,38 +543,38 @@ int FlashVerify(unsigned long verifyAddr,unsigned long size,unsigned char *buf)
 		return (TO_DRV_RET_ERROR);
 	}
   }
-   
+
   return (TO_DRV_RET_OK);
 }
 
 /**
  *******************************************************************************
- * @brief      Page Blank Check Function. 
+ * @brief      Page Blank Check Function.
  * @param[in]  checkAddr    Check Start Address(Usually page start address).
  * @param[in]  size			    Check size
- * @param[out] None  
+ * @param[out] None
  * @retval     0   					Check pass.
- * @retval     others       Some error occurs or check failed.		 
+ * @retval     others       Some error occurs or check failed.
  *
  * @par Description
- * @details   Optional function. When this function is absence, 
- *            the link will read flash memory directly to do verify.  
+ * @details   Optional function. When this function is absence,
+ *            the link will read flash memory directly to do verify.
  * @note      Sector can be significant.We check the page rather than the sector,
  *            having regard to the actual size of the ram.
  *******************************************************************************
- */ 
+ */
 __attribute__ (( section(".ramcode") ))
 int FlashBlankCheck (unsigned long checkAddr,unsigned long size)
 {
 int i;
 register uint16_t *pageBuf = (uint16_t *)checkAddr;
-  
+
 #ifdef FLASHING_INFO
 
 #endif
 
 	size /= 2;
-	
+
 	for(i = 0; i < size; i++)
 	{
 		if(pageBuf[0] != 0xFFFF)
@@ -557,7 +583,7 @@ register uint16_t *pageBuf = (uint16_t *)checkAddr;
 		}
 		pageBuf++;
 	}
- 
+
   return (TO_DRV_RET_OK);
 }
 

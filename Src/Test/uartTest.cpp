@@ -5,6 +5,8 @@
 @date		16/02/2017
 @version	01.00
 @source     M75-CPU Controller
+@ Note: tnoergaard 10/17/2025, addressing SonarQube high risk issues. Not included in project so
+@so disregared.
 */
 
 #include "uartTest.h"

@@ -34,7 +34,7 @@ struct ALA
     UBYTE ala_ena[ALA_MAX];          /* Enabled                                  */
     UWORD fatal_num;                 /* Number fatal error                       */
     UWORD cal_num_pro;               /* Number error cal protective              */
-    //UWORD tim_cic;                   /* Timer cicalino                           */
+    //UWORD tim_cic;                  RECOMMENT IF NEEDED RJ  Timer cicalino
     UBYTE air;                       /* Allarme aria                             */
     UBYTE air_test;                  /* Allarme test aria                        */
 	word  old_flw;					 /*	Flusso sangue precedente    			 */

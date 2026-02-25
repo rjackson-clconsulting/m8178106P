@@ -5,10 +5,14 @@
 @date		05/01/2018
 @version	01.01
 @source     VetSmart Protective
+@ NOTE: tnoergaard 10/18/2025 sonar cube changes
 */
 
 #include "app_info.h"
 
+#ifndef SONAR_QUBE_EXCLUDE
+#include <stdint.h>
+#endif
 /**
  * SPS CONTROLLER FIRMWARE'S ID
  */
@@ -20,6 +24,7 @@ Board's hardware revision.	Ma ha senso questa???????????????????????????????????
 */
 #define BOARD_HW_VERSION			"01.00.00" // Max length 20
 #define BOARD_HW_VERSION_LENGTH		9
+
 
 
 /**
@@ -68,6 +73,7 @@ struct application_info_data_t const g_appInfo =
 
 	(uint32_t)ESECTION_ADD_NUM,
 	{									/*< Application's memory sections start addresses*/
+#ifdef SONAR_QUBE_EXCLUDE
 		(uint32_t)&_text,						//ESECTION_ADD_TEXT_START
 		(uint32_t)&_ramcode_start,				//ESECTION_ADD_RAMCODE_START
 		(uint32_t)&__ram_start__,				//ESECTION_ADD_RAM_START
@@ -78,13 +84,29 @@ struct application_info_data_t const g_appInfo =
 		(uint32_t)&_bss_start,					//ESECTION_ADD_BSS_START
 		(uint32_t)&__heap_base__,				//ESECTION_ADD_HEAP_START
 		(uint32_t)&_xram_start,					//ESECTION_ADD_XRAM_START
+
+#else
+		(uintptr_t)&_text,						//ESECTION_ADD_TEXT_START
+		(uintptr_t)&_ramcode_start,				//ESECTION_ADD_RAMCODE_START
+		(uintptr_t)&__ram_start__,				//ESECTION_ADD_RAM_START
+		(uintptr_t)&__main_stack_base__,			//ESECTION_ADD_MAIN_STACK_START
+		(uintptr_t)&__process_stack_base__,		//ESECTION_ADD_PROCESS_STACK_START
+		(uintptr_t)&__main_thread_stack_base__,	//ESECTION_ADD_THREAD_STACK_START
+		(uintptr_t)&_data,						//ESECTION_ADD_DATA_START
+		(uintptr_t)&_bss_start,					//ESECTION_ADD_BSS_START
+		(uintptr_t)&__heap_base__,				//ESECTION_ADD_HEAP_START
+		(uintptr_t)&_xram_start,					//ESECTION_ADD_XRAM_START
+#endif
+
 		(uint32_t)0,
 		(uint32_t)0,
 		(uint32_t)0,
 		(uint32_t)0,
 		(uint32_t)0
 	},
-	{									/*< Application's memory sections end addresses*/
+	{
+										/*< Application's memory sections end addresses*/
+#ifdef SONAR_QUBE_EXCLUDE
 		(uint32_t)&_etext,						//ESECTION_ADD_TEXT_END
 		(uint32_t)&_ramcode_end,				//ESECTION_ADD_RAMCODE_END
 		(uint32_t)&__ram_end__,					//ESECTION_ADD_RAM_END
@@ -95,6 +117,19 @@ struct application_info_data_t const g_appInfo =
 		(uint32_t)&_bss_end,						//ESECTION_ADD_BSS_END
 		(uint32_t)&__heap_end__,					//ESECTION_ADD_HEAP_END
 		(uint32_t)&_xram_used,					//ESECTION_ADD_XRAM_END
+#else
+		(uintptr_t)&_etext,						//ESECTION_ADD_TEXT_END
+		(uintptr_t)&_ramcode_end,				//ESECTION_ADD_RAMCODE_END
+		(uintptr_t)&__ram_end__,					//ESECTION_ADD_RAM_END
+		(uintptr_t)&__main_stack_end__,			//ESECTION_ADD_MAIN_STACK_END
+		(uintptr_t)&__process_stack_end__,		//ESECTION_ADD_PROCESS_STACK_END
+		(uintptr_t)&__main_thread_stack_end__, 	//ESECTION_ADD_THREAD_STACK_END
+		(uintptr_t)&_edata,						//ESECTION_ADD_DATA_END
+		(uintptr_t)&_bss_end,						//ESECTION_ADD_BSS_END
+		(uintptr_t)&__heap_end__,					//ESECTION_ADD_HEAP_END
+		(uintptr_t)&_xram_used,					//ESECTION_ADD_XRAM_END
+#endif
+
 		(uint32_t)0,
 		(uint32_t)0,
 		(uint32_t)0,

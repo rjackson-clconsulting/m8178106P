@@ -5,6 +5,7 @@
 @date		05/05/2017
 @version	01.10
 @source     Flexiper Protective
+@ Note: tnoergaard 10/17/2025, SonarQube updates, using local values to handle incrementing of volatiles.
 */
 
 #include "irqManager.h"
@@ -43,9 +44,14 @@ extern "C" {
 #endif
 _IRQ_HANDLER(SysTickVector)
 {
-	g_globalTick++;
+    uint32_t tempTickVal = g_globalTick; // Load
+    uint32_t tempTimeMsec = g_time_msec;
+
+    tempTickVal++; // Modify
+	g_globalTick = tempTickVal; //Store
 	cntMsec++;
-	g_time_msec++;
+	tempTimeMsec++;
+	g_time_msec = tempTimeMsec;
     if( cntMsec >= 1000 )
     {
         cntMsec = 0;

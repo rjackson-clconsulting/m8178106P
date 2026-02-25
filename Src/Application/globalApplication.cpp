@@ -67,10 +67,10 @@ byte rdurata_tratt=0;
 
 
 // TEST_FAILURE
-
+/*
 uint8_t fail_dat=0x00;
 extern bool eep_writeMem(void *__data_buf, int __count, int __start_addr);
-
+*/
 // TEST_FAILURE
 
 
@@ -738,7 +738,7 @@ bool calOk;
 					break;
 
 // TEST_FAILURE
-
+/*
 				case	20: //PROTECTIVE FATAL ERROR
                         ala.sta=10;
 					break;
@@ -748,7 +748,7 @@ bool calOk;
                         fail_dat=55;
                         eep_writeMem(&fail_dat, sizeof(fail_dat), 0x7BC0);
 					break;
-
+*/
 // TEST_FAILURE
 
 

@@ -7,6 +7,8 @@
 @date		16/05/2017
 @version	01.00
 @source     M75-CPU Protective
+@ Note: tnoergaard 10/16/2025, added volatile to most globals to resolve SonarQube issues and
+@ error handling
 */
 
 #include "global.h"
@@ -56,7 +58,8 @@ enum STATIProt{
         PR_EXEC_SPEC_CMD,
         PR_EXEC_ILLEGAL_CMD,
         PR_WAIT_TX_END,
-        PR_TX_ERR
+        PR_TX_ERR,
+        PR_INIT
 	};
 
 
@@ -364,8 +367,8 @@ typedef struct FullSystemStatus FullSystemStatus;
 extern "C" {
 #endif
 
-void proto_init(UARTHandle hUartDevB) 	;
-void protoEntry(void)					;
+bool proto_init(UARTHandle hUartDevB) 	;
+bool protoEntry(void)					;
 bool protoRxAndDecode(void);
 bool protoExecSpecCmd(void)				;
 bool protoExecIllegalCmd(void)			;
@@ -461,7 +464,7 @@ void romstrcpy(char *pfDst, const char *pfSrc, int size) ;
 // Definizione delle variabili
 //--------------------------------------------------------//
 
-extern SystemStatus SysStatus;                 /* stato di funzionamento */
+//extern SystemStatus SysStatus;                 /* stato di funzionamento */
 extern UARTHandle hUartDevA;
 
 

@@ -210,11 +210,18 @@ uint32_t topMem, blockSize;
 
 	}
 
-	memLeft -= size + 4;						// la memoria cala...
-	*pMemBlock = (void *) (pmem+1);				// inizio reale del blocco (4 uint8_ts dopo)
+	memLeft -= size + 4;
+	if ( pmem )
+	{
+      *pMemBlock = (void *) (pmem+1);				// inizio reale del blocco (4 uint8_ts dopo)
+    }
+    else
+    {
+      return False;								// tutto ok!!
+    }
 	cntAlloc++;
 
-	return( True );								// tutto ok!!
+	return True;								// tutto ok!!
 }
 
 /**
@@ -310,16 +317,21 @@ void *p;
 
 void *calloc(size_t _nmemb, size_t size)
 {
-void *p;
+    void *p = NULL;
+    bool returnVal = false;
 
 	size *= _nmemb;
 
-	if( mem_alloc(size, &p) == False )
-		return(NULL);
-
-	memset(p, 0, size);
-
-	return(p);
+    returnVal = mem_alloc(size, &p);
+	if ((p != NULL) && (returnVal == true))
+	{
+	  memset(p, 0, sizeof(p) * _nmemb);
+	  return (p);
+	}
+	else
+    {
+	  return NULL;
+    }
 }
 
 void *_calloc_r(struct _reent *pr, size_t _nmemb, size_t size)

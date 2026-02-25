@@ -1732,7 +1732,8 @@ typedef struct stc_mfs03_uart_scr_field
   __IO  uint8_t TBIE       : 1;
   __IO  uint8_t TIE        : 1;
   __IO  uint8_t RIE        : 1;
-        uint8_t RESERVED1  : 2;
+        uint8_t RESERVED5  : 1;
+        uint8_t RESERVED6  : 1;
   __IO  uint8_t UPCL       : 1;
 } stc_mfs03_uart_scr_field_t;
 

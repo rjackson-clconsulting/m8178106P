@@ -213,8 +213,8 @@ uint8_t encoderInit(void)
     else{
         //Error to manage - MFT not initialized
         u8RetVal = MFT_INIT_FAIL;
-        pumpsPS_UF->~mftUnit();
-        }
+        pumpsPS_UF->~mftUnit(); // RJ this is correct in this case since the MFT was not initialized. 
+    }
 
 
     return u8RetVal;

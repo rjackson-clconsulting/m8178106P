@@ -5,6 +5,7 @@
 @author		Fernando Morani (from Nicola)
 @date		05/03/2018
 @version	01.00.02
+@ NOTE: tnoergaard 10/17/2025 sonar qube updates
 Notes on version 01.00.01
     Add NVIC_SystemReset(); when jumping to Loader or Application
 Notes on version 01.00.01
@@ -13,26 +14,30 @@ Notes on version 01.00.01
 
 #include "COMPROTO_LOADER.h"
 
+#ifndef SONAR_QUBE_EXCLUDE
+#include <stdint.h>
+#endif
+
 void (*g_fpJumpToLoader)(void);
 
 /***
     DEBUG STATIC VAR
 **/
 #ifdef LOADER_ENGINE_INT
-uint32_t debugVar_CharRxFromController; /*Debug var*/
-uint32_t debugVar_UnExpectedBranch; /*Debug var*/
-uint32_t debugVar_CharTxToController; /*Debug Var*/
+uint32_t debugVar_CharRxFromController = 0; /*Debug var*/
+uint32_t debugVar_UnExpectedBranch = 0; /*Debug var*/
+uint32_t debugVar_CharTxToController = 0; /*Debug Var*/
 #endif
 
 /**
  * Response packet's data
  */
-uint8_t	g_responsePacketData[200];
+uint8_t	g_responsePacketData[200] = {0};
 
 /**
  * Received data packet's data
  */
-uint8_t	g_receivedData[1200];
+uint8_t	g_receivedData[1200] = {0};
 /**
  * Application firmware's status. So the UI understand that we are in loader
  */
@@ -41,16 +46,21 @@ CRRT_working_status_t g_appFirmwareStatus;
 /**
  * Ram copy of the loader flash end address
  */
+
+#ifdef SONAR_QUBE_EXCLUDE
 uint32_t g_loaderFlashEndAdd;
+#else
+uintptr_t g_loaderFlashEndAdd = 0;
+#endif
 
 /**
 Ram Location to be used for STAY_IN_LOADER key
 **/
-uint32_t *g_JumpingCodeMemLocation;
+uint32_t *g_JumpingCodeMemLocation = NULL;
 
 
 /**Waiting Timer*/
-decTimer_t pollerWaiter;
+decTimer_t pollerWaiter = {0,0};
 
 extern comProto_t g_protoLoader;
 extern uint32_t _etext;
@@ -100,7 +110,7 @@ void loader_proto_init(	const comProto_t *__pProto,
 						uint16_t __rxProtoDataBufLength,
 						uint8_t __masterId, uint8_t __slaveId)
 {
-	uint16_t i;
+	uint16_t i = 0;
 	comproto_init(	(comProto_t*)__pProto,
 					__pUart,
 					__rxProtoDataBufLength,
@@ -117,7 +127,11 @@ void loader_proto_init(	const comProto_t *__pProto,
 		*((uint8_t*)(&g_appFirmwareStatus)) = 0;
 
 	g_appFirmwareStatus.phase = EPHASE_loader;
+#ifdef SONAR_QUBE_EXCLUDE
 	g_loaderFlashEndAdd = (uint32_t)&_etext;
+#else
+	g_loaderFlashEndAdd = (uintptr_t)&_etext;
+#endif
 }
 
 void loader_proto_static_init(	const comProto_t *__pProto,
@@ -126,7 +140,7 @@ void loader_proto_static_init(	const comProto_t *__pProto,
 								uint16_t __rxProtoDataBufLength,
 								uint8_t __masterId, uint8_t __slaveId)
 {
-	uint16_t i;
+	uint16_t i = 0;
 
 	preset(pollerWaiter, 2);
 
@@ -147,7 +161,13 @@ void loader_proto_static_init(	const comProto_t *__pProto,
 			*((uint8_t*)(&g_appFirmwareStatus)) = 0;
 
 	g_appFirmwareStatus.phase = EPHASE_loader;
+
+#ifdef SONAR_QUBE_EXCLUDE
 	g_loaderFlashEndAdd = (uint32_t)&_etext;
+#else
+	g_loaderFlashEndAdd = (uintptr_t)&_etext;
+#endif
+
 
 	g_fpJumpToLoader = (void (*)()) LOADER_JUMP_ADDRESS;
 	g_JumpingCodeMemLocation = (uint32_t *)SRAM_1_STRING_ADDR;
@@ -555,7 +575,7 @@ static void loader_proto_blockErase(const comProto_t *__pProto)
 
 static void loader_proto_reWriteLoader(const comProto_t *__pProto)
 {
-	uint32_t pw;
+	uint32_t pw = 0;
 	g_responsePacketData[0] = TO_DRV_RET_ERROR;
 	if(__pProto->rxCmdInfo.dataLen == CMD_LOADER_REWR_LOADER_RX_PAR_SLAVE) // Wrong number of parameters
 	{
@@ -584,7 +604,7 @@ static void loader_proto_reWriteLoader(const comProto_t *__pProto)
 
 static void loader_proto_jmpToApp(const comProto_t *__pProto)
 {
-	uint32_t pw;
+	uint32_t pw = 0;
 	void (*fpJump)(void);
 	//#define ORA_NON_VOGLIO_TEST
     #ifdef ORA_NON_VOGLIO_TEST
@@ -623,7 +643,7 @@ static void loader_proto_jmpToApp(const comProto_t *__pProto)
 
 static void loader_proto_jmpToLoader(const comProto_t *__pProto)
 {
-	uint32_t pw;
+	uint32_t pw = 0;
 	void (*fpJump)(void);
 
 
@@ -688,7 +708,7 @@ static void loader_proto_blinkaLed()
 
 static int copyReceivedData(const ringBuffer_t *__pRingBuf, uint8_t *__pData, uint32_t __size)
 {
-	int i;
+	int i = 0;
 	for(i= 0; i < __size; i++)
 	{
 		if(!ringBuffer_isEmpty((ringBuffer_t*)__pRingBuf))
@@ -702,7 +722,8 @@ static int copyReceivedData(const ringBuffer_t *__pRingBuf, uint8_t *__pData, ui
 Query the protocol*/
 void loader_proto_query(const comProto_t *__pProto)
 {
-	incTimer_t scanTick;
+	incTimer_t scanTick = {0};
+
 	uint8_t u8TempChar = 0;
 	boolean_t bVerify = FALSE;
 

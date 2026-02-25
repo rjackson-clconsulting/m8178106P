@@ -108,7 +108,7 @@ ADChan *pAdc = NULL; //&adcSet[0];
     FM3ADC0->SFNS  = 0x00; // Set Fifo Stage Count Interrupt
     FM3ADC0->ADCR  = 0x00; // Disable ADC interrupts
 
-
+    return (u8RetVal);
 
 }
 
@@ -525,6 +525,8 @@ ADChan *pc;
                 statoScan = 2;
             }
             break;
+        default:
+            break;
     }
 
 }
@@ -550,8 +552,8 @@ static int numConv;							// numero canale in scansione
 		if( pc->used && pc->ctrl.chan >= minChan && pc->ctrl.chan <= maxChan )
 		{
 								// data collection
-			switch( pc->ctrl.chan )
-			{
+			//switch( pc->ctrl.chan )
+			//{
 
 					numConv++;							// un sample in + per il canale
 
@@ -581,8 +583,9 @@ static int numConv;							// numero canale in scansione
 			        	return(numChan);				// non deve cambiare mux
 			        }
 					break;
-			}
-			break;
+				//break;
+			//}
+			//break;
 		}
 		else
 		{
@@ -603,15 +606,15 @@ static int numConv;							// numero canale in scansione
 										// se il canale è valido...
 		if( pc->used && pc->ctrl.chan >= minChan && pc->ctrl.chan <= maxChan )
 		{
-			switch( pc->ctrl.chan )
-			{
+			//switch( pc->ctrl.chan )
+			//{
 
 //					ADM0 = 0x30 | pc->ctrl.chan;		// enable ADC + 4buffer + select mode + input channel X
 //					_ADCE = 1;							// start conversione
 					return(numChan);					// fine dell'opera
 					//break;
 
-			}
+			//}
 
 			break;
 		}
@@ -631,15 +634,15 @@ static int numConv;							// numero canale in scansione
 											// se il canale è valido...
 			if( pc->used && pc->ctrl.chan >= minChan && pc->ctrl.chan <= maxChan )
 			{
-				switch( pc->ctrl.chan )
-				{
+				//switch( pc->ctrl.chan )
+				//{
 
 //						ADM0 = 0x30 | pc->ctrl.chan;		// enable ADC + 4buffer + select mode + input channel X
 //						_ADCE = 1;							// start conversione
 						return(numChan);					// fine dell'opera
 						//break;
 
-			}
+			//}
 
 				break;
 			}
@@ -672,8 +675,8 @@ ADChan *pc = &adcSet[0];
 			continue;
 		}
 
-		switch( pc->ctrl.chan )
-		{
+		//switch( pc->ctrl.chan )
+		//{
 			numConv++;						// un sample in + per il canale
 
 //				ADM0 = 0x30 | pc->ctrl.chan;		// enable ADC + 4buffer + select mode + input channel X
@@ -683,7 +686,7 @@ ADChan *pc = &adcSet[0];
                 pc->value = wVal;				// aggiorna
                 adc_eval(pc);					// fa valutare un attimo...
 				break;
-		}
+		//}
 	}
 }
 
@@ -743,7 +746,7 @@ void adc_eval(ADChan *pc)
 */
 void adc_filter(ADCFilt *pf, long value)
 {
-long sub;
+long sub = 0;
 
     if( pf->idxMem >= pf->max )       		// se e` troppo avanti
         pf->idxMem = 0;                 	// reset indice

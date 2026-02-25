@@ -46,8 +46,14 @@
 
 /**This define should be enabled in application that needs to calculate the frequency
 In VetSmart we don't use it. In Flexiper is foreseen**/
-#undef UF_FREQUENCY_CALC
-#undef PS_FREQUENCY_CALC
+// RJ added ifdefs 
+#ifdef UF_FREQUENCY_CALC
+  #undef UF_FREQUENCY_CALC
+#endif
+
+#ifdef PS_FREQUENCY_CALC
+  #undef PS_FREQUENCY_CALC
+#endif 
 
 /**********************************************************
 **     TYPEDEF SECTION

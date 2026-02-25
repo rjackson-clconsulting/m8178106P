@@ -55,30 +55,16 @@ Common symbol       size              file
 g_timSec            0x8               obj\Release\Src\loader\swtimer.o
 g_appFirmwareStatus
                     0xc               obj\Release\Src\loader\COMPROTO_LOADER.o
-debugVar_CharTxToController
-                    0x4               obj\Release\Src\loader\COMPROTO_LOADER.o
-g_JumpingCodeMemLocation
-                    0x4               obj\Release\Src\loader\COMPROTO_LOADER.o
 g_timCent           0x8               obj\Release\Src\loader\swtimer.o
 g_fpCheckOpcode     0x4               obj\Release\Src\loader\COMPROTO.o
 g_aUart3_pTxBuf     0x200             obj\Release\Src\loader\UART_FM3.o
-pollerWaiter        0x8               obj\Release\Src\loader\COMPROTO_LOADER.o
 g_fpCommandHadler   0x4               obj\Release\Src\loader\COMPROTO.o
-g_loaderFlashEndAdd
-                    0x4               obj\Release\Src\loader\COMPROTO_LOADER.o
 g_fpJumpToLoader    0x4               obj\Release\Src\loader\COMPROTO_LOADER.o
-debugVar_UnExpectedBranch
-                    0x4               obj\Release\Src\loader\COMPROTO_LOADER.o
-debugVar_CharRxFromController
-                    0x4               obj\Release\Src\loader\COMPROTO_LOADER.o
-g_responsePacketData
-                    0xc8              obj\Release\Src\loader\COMPROTO_LOADER.o
 g_ComProtoUartSemaphore
                     0x1               obj\Release\Src\externVar.o
 g_fpJumpToApplication
                     0x4               obj\Release\Src\loader\loader_crc.o
 g_loaderStatus      0xdc              obj\Release\Src\loader\loader_crc.o
-g_receivedData      0x4b0             obj\Release\Src\loader\COMPROTO_LOADER.o
 g_fpErrorsHandlers  0x38              obj\Release\Src\loader\COMPROTO.o
 progressiv          0x2               obj\Release\Src\loader\UART_FM3.o
 g_uart3             0x48              obj\Release\Src\loader\UART_FM3.o
@@ -108,8 +94,8 @@ Discarded input sections
  .data          0x00000000        0x0 obj\Release\Src\Application\Cd_PRE.o
  .group         0x00000000        0x8 obj\Release\Src\Application\DECODE.o
  .group         0x00000000        0x8 obj\Release\Src\Application\DECODE.o
- .text          0x00000000     0x2308 obj\Release\Src\Application\DECODE.o
- .data          0x00000000        0x0 obj\Release\Src\Application\DECODE.o
+ .text          0x00000000     0x2660 obj\Release\Src\Application\DECODE.o
+ .data          0x00000000        0x1 obj\Release\Src\Application\DECODE.o
  .text._ZN5Timer7getMsecEv
                 0x00000000       0x18 obj\Release\Src\Application\DECODE.o
  .text._ZN8DecTimer6PresetEm
@@ -170,19 +156,19 @@ Discarded input sections
  .text          0x00000000        0x0 obj\Release\Src\loader\swtimer.o
  .data          0x00000000        0x0 obj\Release\Src\loader\swtimer.o
  .bss           0x00000000        0x1 obj\Release\Src\loader\swtimer.o
- .ramcode       0x00000000      0x174 obj\Release\Src\loader\swtimer.o
- .debug_info    0x00000000      0x258 obj\Release\Src\loader\swtimer.o
- .debug_abbrev  0x00000000       0xbd obj\Release\Src\loader\swtimer.o
- .debug_loc     0x00000000       0x9c obj\Release\Src\loader\swtimer.o
+ .ramcode       0x00000000       0xe8 obj\Release\Src\loader\swtimer.o
+ .debug_info    0x00000000      0x24a obj\Release\Src\loader\swtimer.o
+ .debug_abbrev  0x00000000       0xbb obj\Release\Src\loader\swtimer.o
+ .debug_loc     0x00000000       0x90 obj\Release\Src\loader\swtimer.o
  .debug_aranges
                 0x00000000       0x30 obj\Release\Src\loader\swtimer.o
  .debug_ranges  0x00000000       0x20 obj\Release\Src\loader\swtimer.o
- .debug_line    0x00000000      0x15d obj\Release\Src\loader\swtimer.o
- .debug_str     0x00000000      0x20b obj\Release\Src\loader\swtimer.o
+ .debug_line    0x00000000      0x11b obj\Release\Src\loader\swtimer.o
+ .debug_str     0x00000000      0x20c obj\Release\Src\loader\swtimer.o
  .comment       0x00000000       0x71 obj\Release\Src\loader\swtimer.o
  .ARM.attributes
                 0x00000000       0x33 obj\Release\Src\loader\swtimer.o
- .debug_frame   0x00000000       0x68 obj\Release\Src\loader\swtimer.o
+ .debug_frame   0x00000000       0x5c obj\Release\Src\loader\swtimer.o
  COMMON         0x00000000       0x10 obj\Release\Src\loader\swtimer.o
  .text          0x00000000      0x380 obj\Release\Src\loader\system_mb9bf50x.o
  .data          0x00000000        0x4 obj\Release\Src\loader\system_mb9bf50x.o
@@ -192,8 +178,8 @@ Discarded input sections
  .debug_loc     0x00000000       0x9c obj\Release\Src\loader\system_mb9bf50x.o
  .debug_aranges
                 0x00000000       0x20 obj\Release\Src\loader\system_mb9bf50x.o
- .debug_line    0x00000000      0x1be obj\Release\Src\loader\system_mb9bf50x.o
- .debug_str     0x00000000      0x42d obj\Release\Src\loader\system_mb9bf50x.o
+ .debug_line    0x00000000      0x1bf obj\Release\Src\loader\system_mb9bf50x.o
+ .debug_str     0x00000000      0x42f obj\Release\Src\loader\system_mb9bf50x.o
  .comment       0x00000000       0x71 obj\Release\Src\loader\system_mb9bf50x.o
  .ARM.attributes
                 0x00000000       0x33 obj\Release\Src\loader\system_mb9bf50x.o
@@ -212,8 +198,8 @@ Discarded input sections
  .debug_loc     0x00000000       0xa8 obj\Release\Src\os\ports\common\ARMCMx\nvic.o
  .debug_aranges
                 0x00000000       0x20 obj\Release\Src\os\ports\common\ARMCMx\nvic.o
- .debug_line    0x00000000      0x140 obj\Release\Src\os\ports\common\ARMCMx\nvic.o
- .debug_str     0x00000000      0x269 obj\Release\Src\os\ports\common\ARMCMx\nvic.o
+ .debug_line    0x00000000      0x141 obj\Release\Src\os\ports\common\ARMCMx\nvic.o
+ .debug_str     0x00000000      0x26b obj\Release\Src\os\ports\common\ARMCMx\nvic.o
  .comment       0x00000000       0x71 obj\Release\Src\os\ports\common\ARMCMx\nvic.o
  .ARM.attributes
                 0x00000000       0x33 obj\Release\Src\os\ports\common\ARMCMx\nvic.o
@@ -226,8 +212,8 @@ Discarded input sections
  .debug_loc     0x00000000       0x2c obj\Release\Src\os\ports\GCC\ARMCMx\chcore.o
  .debug_aranges
                 0x00000000       0x20 obj\Release\Src\os\ports\GCC\ARMCMx\chcore.o
- .debug_line    0x00000000       0x88 obj\Release\Src\os\ports\GCC\ARMCMx\chcore.o
- .debug_str     0x00000000      0x16a obj\Release\Src\os\ports\GCC\ARMCMx\chcore.o
+ .debug_line    0x00000000       0x89 obj\Release\Src\os\ports\GCC\ARMCMx\chcore.o
+ .debug_str     0x00000000      0x16c obj\Release\Src\os\ports\GCC\ARMCMx\chcore.o
  .comment       0x00000000       0x71 obj\Release\Src\os\ports\GCC\ARMCMx\chcore.o
  .ARM.attributes
                 0x00000000       0x33 obj\Release\Src\os\ports\GCC\ARMCMx\chcore.o
@@ -454,7 +440,7 @@ destructors     0x00020424        0x4
  *(SORT(.fini_array.*))
                 0x00020428                PROVIDE (__fini_array_end, .)
 
-.text           0x00020430    0x17fd4
+.text           0x00020430    0x17fe4
  *(.text.startup.*)
  .text.startup.register_fini
                 0x00020430       0x14 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-__call_atexit.o)
@@ -497,7 +483,7 @@ destructors     0x00020424        0x4
                 0x000230c8                GesXfr_P()
                 0x00023b8c                IniXfr_P()
  *fill*         0x00023cec        0x4 00
- .text          0x00023cf0     0x1858 obj\Release\Src\Application\globalApplication.o
+ .text          0x00023cf0     0x17f8 obj\Release\Src\Application\globalApplication.o
                 0x00023d08                global_var_init()
                 0x00023d8c                hwAppInit()
                 0x00023e38                mainAppInit()
@@ -509,330 +495,328 @@ destructors     0x00020424        0x4
                 0x00024550                Ges_key()
                 0x000245a8                Ges_ala_pmp()
                 0x000247f8                Ges_cmd()
-                0x00024d7c                WriteCalPressione(CalPoint*, CalPoint*, unsigned char)
-                0x00024edc                WriteCalBilancia(CalPoint*, unsigned char, CalPoint*, unsigned char)
-                0x0002509c                WriteDati()
-                0x000250f0                SetupDati()
-                0x000251a8                Treat_Time_Ges()
-                0x000252a4                Offset_Pressioni()
-                0x00025368                Reset_Offset_Pressioni()
-                0x0002540c                loaderInit()
-                0x00025444                protocol_init()
-                0x0002547c                uartRxFromControllerIrq()
- *fill*         0x00025548        0x8 00
- .text          0x00025550      0xdb0 obj\Release\Src\board\board.o
-                0x000256d8                __early_init
-                0x00025834                __late_init
-                0x00025878                boardInit
-                0x000259a4                pin_port0_Set()
-                0x00025aa8                pin_port1_Set()
-                0x00025b40                pin_port2_Set()
-                0x00025bc8                pin_port3_Set()
-                0x00025c60                pin_port4_Set()
-                0x00025d14                pin_port5_Set()
-                0x00025d9c                pin_port6_Set()
-                0x00025e14                pin_port7_Set()
-                0x00025e8c                pin_SpecAde_Set()
-                0x00025ff4                setEPFR02Reg()
-                0x00026060                setEPFR07Reg()
-                0x000260f4                setEPFR08Reg()
-                0x000261e4                nvic_init()
-                0x000262d8                irqSelect()
- .text          0x00026300      0x5bc obj\Release\Src\board\irqManager.o
-                0x00026318                SysTickVector
-                0x000263d8                NMIVector
-                0x000263fc                HardFaultVector
-                0x00026420                MemManageVector
-                0x00026444                BusFaultVector
-                0x00026468                UsageFaultVector
-                0x0002648c                Vector1C
-                0x000264a4                Vector20
-                0x000264bc                Vector24
-                0x000264d4                Vector28
-                0x000264ec                Vector34
-                0x00026504                Vector40
-                0x0002651c                Vector44
-                0x00026534                Vector48
-                0x0002654c                Vector4c
-                0x00026564                Vector50
-                0x0002657c                Vector54
-                0x00026594                Vector58
-                0x000265ac                Vector5c
-                0x000265c4                Vector6c
-                0x000265dc                Vector70
-                0x000265f4                Vector74
-                0x0002661c                Vector7c
-                0x00026634                Vector84
-                0x0002664c                Vector88
-                0x00026664                Vector8c
-                0x0002667c                Vector90
-                0x00026694                Vector9c
-                0x000266ac                VectorA0
-                0x000266c4                VectorA4
-                0x000266dc                VectorA8
-                0x000266f4                VectorAc
-                0x0002670c                VectorBc
-                0x00026724                VectorC0
-                0x0002673c                VectorC4
-                0x00026754                VectorC8
-                0x0002676c                VectorCc
-                0x00026784                VectorD0
-                0x0002679c                VectorD4
-                0x000267b4                VectorD8
-                0x000267cc                VectorDc
-                0x000267e4                VectorE0
-                0x000267fc                VectorE4
-                0x00026814                VectorE8
-                0x0002682c                VectorEc
-                0x00026844                VectorF0
-                0x0002685c                VectorF4
-                0x00026874                VectorF8
-                0x0002688c                VectorFc
-                0x000268a4                Vector100
- *fill*         0x000268bc        0x4 00
- .text          0x000268c0      0x5ec obj\Release\Src\libfm3\fm3_sysclk.o
-                0x000268c0                fm3_sysclock_init
-                0x00026d90                fm3_HSCR_setPrescalerHSCRcnt
-                0x00026dbc                fm3_HSCR_writePrescalerHSCRcnt
- *fill*         0x00026eac        0x4 00
- .text          0x00026eb0     0x2f18 obj\Release\Src\libfm3\multiFunctionTimer.o
-                0x00026ec8                mftUnit::mftUnit(unsigned char)
-                0x00026ec8                mftUnit::mftUnit(unsigned char)
-                0x00027010                mftUnit::getID()
-                0x0002702c                mftUnit::setFrtCycleRatio(frtChannel, cycleRatio)
-                0x000270b8                mftUnit::setFrtInitRequest(frtChannel, frtInitRequest)
-                0x00027108                mftUnit::setFrtCounterMode(frtChannel, frtCounterMode)
-                0x00027194                mftUnit::setFrtOperMode(frtChannel, frtOperMode)
-                0x000271e4                mftUnit::setFrtBufferFunction(frtChannel, frtBufferFunction)
-                0x00027270                mftUnit::clearFRTIRQZF(frtChannel)
-                0x000272e4                mftUnit::readFRTIRQZF(frtChannel)
-                0x0002732c                mftUnit::clearFRTICLR(frtChannel)
-                0x000273a8                mftUnit::readFRTICLR(frtChannel)
-                0x000273f0                mftUnit::setFrtIntOnMatch(frtChannel, frtEnableIntOnMatch)
-                0x0002747c                mftUnit::isFrtPeakInterruptEnabled(frtChannel)
-                0x000274cc                mftUnit::setFrtIntOnMatch_Z(frtChannel, frtEnableIntOnMatch)
-                0x00027558                mftUnit::isFrtZeroInterruptEnabled(frtChannel)
-                0x000275a8                mftUnit::setFrtClock(frtChannel, frtClock)
-                0x00027634                mftUnit::setTSCARegister(frtChannel, cycleRatio, frtInitRequest, frtCounterMode, frtOperMode, frtBufferFunction, frtEnableIntOnMatch, frtEnableIntOnMatch, frtClock)
-                0x000276d4                mftUnit::setOcuChannelOper(ocuUnit, ocuChannel, ocuOperation)
-                0x00027748                mftUnit::setOcuRegister(ocuUnit, ocuChannel, ocuOperation, ocuBufferState, ocuGenerateInt, ocuBufferTransfer, ocuRTOutputLevel)
-                0x000277ec                mftUnit::setOcuOutputLevel(ocuUnit, ocuChannel, ocuRTOutputLevel)
-                0x000278c8                mftUnit::getOcuOutputLevel(ocuUnit, ocuChannel)
-                0x00027938                mftUnit::setOCSCModeRegister(unsigned char, unsigned char)
-                0x00027a3c                mftUnit::setOcuOCCP(ocuUnit, ocuChannel, unsigned short)
-                0x00027a94                mftUnit::getOcuOCCP(ocuUnit, ocuChannel)
-                0x00027aec                mftUnit::setOcuModeUse(ocuUnit, ocuChannel, ocuModeUse)
-                0x00027ca4                mftUnit::setOcuAdmittedModeUse(ocuUnit, ocuChannel, ocuAdmittedMode)
-                0x00027e08                mftUnit::setOcuChannelBufferState(ocuUnit, ocuChannel, ocuBufferState)
-                0x00027f34                mftUnit::setOcuChannelGenerateInt(ocuUnit, ocuChannel, ocuGenerateInt)
-                0x00027fa8                mftUnit::setOcuBufferTransfer(ocuUnit, ocuChannel, ocuBufferTransfer)
-                0x00028020                mftUnit::setOcuModeRegister(ocuUnit, ocuChannel, clearedRegister, clearedRegister)
-                0x000280a4                mftUnit::clearOCUIOP(ocuUnit, ocuChannel)
-                0x0002810c                mftUnit::readOCUIOP(ocuUnit, ocuChannel)
-                0x00028178                mftUnit::startsFrtCounting(frtChannel)
-                0x000281e8                mftUnit::stopsFrtCounting(frtChannel)
-                0x00028278                mftUnit::clearFrtCounting(frtChannel)
-                0x00028328                mftUnit::getFrtCounterOutput(frtChannel)
-                0x00028374                mftUnit::getFrtCounterMode(frtChannel)
-                0x000283c4                mftUnit::setFrtADCTrigger(frtChannel, frtADCTrigger, frtADCOutput)
-                0x00028450                mftUnit::isFrtADCTriggered(frtChannel, frtADCOutput)
-                0x000284dc                mftUnit::setFrtPeakRegister(frtChannel, unsigned short)
-                0x0002851c                mftUnit::getFrtPeakRegister(frtChannel)
-                0x00028558                mftUnit::assignFRTtoOCU(ocuIcuConnectFrt, ocuUnit, ocuChannel)
-                0x00028604                mftUnit::whichFRTisAssignedToOCU(ocuUnit, ocuChannel)
-                0x00028670                mftUnit::initFRTRegister()
-                0x000288b8                mftUnit::initOCURegsiter()
-                0x00028a54                mftUnit::initWFGRegister()
-                0x00028b44                mftUnit::initICURegister()
-                0x00028d2c                mftUnit::setWfgCycleRatio(wfgUnit, wfgChannel, cycleRatio)
-                0x00028e6c                mftUnit::setWfgModeSetting(wfgUnit, wfgChannel, wfgOperationMode)
-                0x00028ee8                mftUnit::setWfgChGateMode(wfgUnit, wfgChannel, chGateCode)
-                0x00028f4c                mftUnit::setWfgPPGtoGateMode(wfgUnit, wfgChannel, ppcToGateMode)
-                0x00028fb0                mftUnit::setWfgPPGReflectWfg(wfgUnit, wfgChannel, chPPGOnWFGoutput)
-                0x0002902c                mftUnit::setWfgOutputPolarity(wfgUnit, wfgChannel, wfgOutputPolarity)
-                0x000290a8                mftUnit::setWfgTimerRegister(wfgUnit, unsigned short)
-                0x00029100                mftUnit::getWfgTimerRegister(wfgUnit)
-                0x0002914c                mftUnit::isDTIFgenerated(wfgUnit)
-                0x000291b0                mftUnit::clearDTIF(wfgUnit)
-                0x000291fc                mftUnit::assignRTPin()
-                0x00029434                mftUnit::findConfiguredOutputPin(char*, ocuUnit&, ocuChannel&)
-                0x0002958c                mftUnit::setIcuChannelGenerateInt(icuUnit, icuChannel, icuGenerateInt)
-                0x00029604                mftUnit::setIcuRegister(icuUnit, icuChannel, icuOperation, icuGenerateInt)
-                0x00029664                mftUnit::clearICUICP(icuUnit, icuChannel)
-                0x00029760                mftUnit::readICUICP(icuUnit, icuChannel)
-                0x000297d0                mftUnit::setIcuChannelSelectFrontEnable(icuUnit, icuChannel, icuOperation)
-                0x00029848                mftUnit::assignFRTtoICU(ocuIcuConnectFrt, icuUnit, icuChannel)
-                0x000298f8                mftUnit::whichFRTisAssignedToICU(icuUnit, icuChannel)
-                0x00029968                mftUnit::getIcuLastFront(icuUnit, icuChannel)
-                0x000299d8                mftUnit::getIcuICCP(icuUnit, icuChannel)
-                0x00029a88                mftUnit::attachFrtCallback(void (*)(frtChannel), frtChannel)
-                0x00029ad8                mftUnit::attachFrtNrzCallback(void (*)(frtChannel), frtChannel)
-                0x00029b18                mftUnit::attachICUCallback(void (*)(), icuUnit, icuChannel)
-                0x00029b74                VectorB0
-                0x00029c84                VectorB4
-                0x00029d84                VectorB8
-                0x00029d90                mftUnit::~mftUnit()
-                0x00029d90                mftUnit::~mftUnit()
- *fill*         0x00029dc8        0x8 00
- .text          0x00029dd0     0x3448 obj\Release\Src\libfm3\SIOFM3.o
-                0x00029eb0                sio_init()
-                0x00029ed8                sio_poll()
-                0x00029f50                sio_changeUartSettings(SIOChan, SIORate, SIODataBits, SIOStopBits, SIOParityBits)
-                0x0002a110                sio_cfgChan(SIOChan, CBufHandle, SIOMode, SIORate, SIODataBits, SIOStopBits, SIOParityBits, SIODirBits, SIOClkMode, SIOXfrMode, IRQPriority)
-                0x0002caf0                Vector60
-                0x0002cb48                Vector5C
-                0x0002cc38                Vector68
-                0x0002cc84                Vector64
-                0x0002cd90                Vector78
-                0x0002cde8                Vector7C
-                0x0002ceac                Vector80
-                0x0002d0c0                Vector98
-                0x0002d118                Vector94
- *fill*         0x0002d218        0x8 00
- .text          0x0002d220      0x37c obj\Release\Src\libfm3\SwTim.o
-                0x0002d220                Timer::Timer()
-                0x0002d220                Timer::Timer()
-                0x0002d248                IncTimer::getTime()
-                0x0002d2c8                IncTimer::getMsec()
-                0x0002d32c                DecTimer::match()
-                0x0002d3d4                DecTimerUsec::match()
-                0x0002d480                uSecMeasTimer::getTime()
-                0x0002d4f0                uSecMeasTimer::getUsec()
- *fill*         0x0002d59c        0x4 00
- .text          0x0002d5a0      0xaa8 obj\Release\Src\libPeriphDriver\sevenSegDrv.o
-                0x0002d5a0                writeZERO
-                0x0002d61c                writeONE
-                0x0002d698                writeTWO
-                0x0002d714                writeTHREE
-                0x0002d790                writeFOUR
-                0x0002d80c                writeFIVE
-                0x0002d888                writeSIX
-                0x0002d904                writeSEVEN
-                0x0002d980                writeEIGHT
-                0x0002d9fc                writeNINE
-                0x0002da78                writeA
-                0x0002daf4                writeC
-                0x0002db70                writeE
-                0x0002dbec                writeF
-                0x0002dc68                writeH
-                0x0002dce4                writeI
-                0x0002dd60                writeL
-                0x0002dddc                writeO
-                0x0002de58                writeP
-                0x0002ded4                writeS
-                0x0002df50                writeU
-                0x0002dfcc                writeJ
- *fill*         0x0002e048        0x8 00
- .text          0x0002e050       0x34 obj\Release\Src\loader\COMPROTO_LOADER.o
- *fill*         0x0002e084        0xc 00
- .text          0x0002e090     0x3c88 obj\Release\Src\loader\fm3_baseTimer.o
-                0x0002e090                fm3_BT_init
-                0x0002e1c8                fm3_BT_setEnable
-                0x0002e234                fm3_BT_start
-                0x0002e284                fm3_BT_setTimerFunction
-                0x0002e2f4                fm3_BT_setOperationMode
-                0x0002e364                fm3_BT_setOutputPolarity
-                0x0002e408                fm3_BT_setTriggerRestart
-                0x0002e4ac                fm3_BT_setCountClockCnt
-                0x0002e578                fm3_BT_setPrescalerCnt
-                0x0002e5e0                fm3_BT_setCountClock
-                0x0002e6bc                fm3_BT_setPrescaler
-                0x0002e720                fm3_BT_set_PCSR_PDUT
-                0x0002e7c4                fm3_BT_set_PRLL_PRLH
-                0x0002e840                fm3_BT_setPulseMask
-                0x0002e8c4                fm3_BT_setTriggerInputEdges
-                0x0002e94c                fm3_BT_setMeasureEdges
-                0x0002e9d4                fm3_BT_setPWMinterrupts
-                0x0002eacc                fm3_BT_setPPGinterrupts
-                0x0002eba8                fm3_BT_setRTinterrupts
-                0x0002eca0                fm3_BT_setPWCinterrupts
-                0x0002ed98                fm3_BT_set_IRQ_BT_under_over_flow_callback
-                0x0002edf0                fm3_BT_set_IRQ_dutyMatch_callback
-                0x0002ee48                fm3_BT_set_IRQ_TrigIn_MeasureComplete_callback
-                0x0002eea0                fm3_BT_set_PWM_frq_duty
-                0x0002f25c                fm3_BT_set_PWM_duty
-                0x0002f55c                fm3_BT_set_PPG_Ton_Toff
-                0x0002faf4                fm3_BT_set_RT_frq
-                0x0002fc58                fm3_BT_set_PWC_T
-                0x0002fe0c                VectorBC
-                0x00030504                fm3_BT_writeEnable
-                0x0003057c                fm3_BT_writeTimerFunction
-                0x000308f4                fm3_BT_writeOperationMode
-                0x00030974                fm3_BT_writeOutputPolarity
-                0x000309f4                fm3_BT_writePulseMask
-                0x00030a6c                fm3_BT_writeTriggerRestart
-                0x00030ae4                fm3_BT_writeCountClock
-                0x000310f4                fm3_BT_write_PCSR
-                0x00031198                fm3_BT_write_PDUT
-                0x000311e8                fm3_BT_write_PRLL_PRLH
-                0x00031250                fm3_BT_writeTriggerInputEdges
-                0x000313b0                fm3_BT_writeMeasureEdges
-                0x00031564                fm3_BT_writePWMinterrupts
-                0x0003168c                fm3_BT_writePPGinterrupts
-                0x00031760                fm3_BT_writeRTinterrupts
-                0x00031834                fm3_BT_writePWCinterrupts
-                0x00031908                calculate_prescaler_cnt_uint16
-                0x00031aac                calculate_prescaler_cnt_uint32
-                0x00031b90                calculate_prescaler
-                0x00031c28                prescaler2CCS
-                0x00031ca0                CCS2perscaler
- *fill*         0x00031d18        0x8 00
- .text          0x00031d20      0x6ac obj\Release\Src\loader\loader_crc.o
-                0x00031d20                loader_status_init
-                0x0003204c                loader_status_checksumVerify
- *fill*         0x000323cc        0x4 00
- .text          0x000323d0      0x124 obj\Release\Src\main.o
-                0x000323e8                main
- *fill*         0x000324f4        0xc 00
- .text          0x00032500      0x4cc obj\Release\Src\newlib\alloc.o
-                0x00032500                mem_init
-                0x00032580                mem_count
-                0x000325b0                mem_left
-                0x000325ec                mem_alloc
-                0x00032790                mem_free
-                0x000328e4                malloc
-                0x00032918                calloc
-                0x00032964                _calloc_r
-                0x000329b4                free
- *fill*         0x000329cc        0x4 00
- .text          0x000329d0       0xc8 obj\Release\Src\newlib\new.o
-                0x000329d0                operator new(unsigned int)
-                0x00032a10                operator new[](unsigned int)
-                0x00032a50                operator delete(void*)
-                0x00032a74                operator delete[](void*)
- *fill*         0x00032a98        0x8 00
- .text          0x00032aa0       0x4c obj\Release\Src\os\ports\GCC\ARMCMx\crt0.o
-                0x00032ab8                _default_exit
- *fill*         0x00032aec        0x4 00
- .text          0x00032af0        0x4 obj\Release\Src\os\ports\GCC\ARMCMx\MB9BF5xx\vectors.o
-                0x00032af0                Vector9C
-                0x00032af0                VectorAC
-                0x00032af0                Vector8C
-                0x00032af0                VectorDC
-                0x00032af0                VectorEC
-                0x00032af0                DebugMonitorVector
-                0x00032af0                PendSVVector
-                0x00032af0                VectorCC
-                0x00032af0                SVCallVector
-                0x00032af0                Vector6C
-                0x00032af0                Vector4C
-                0x00032af0                _unhandled_exception
-                0x00032af0                VectorFC
- *fill*         0x00032af4        0xc 00
- .text          0x00032b00     0x11b4 obj\Release\Src\periph\ADC.o
-                0x00032b00                adc_init
-                0x00032d48                adc_setupChannel
-                0x00032e58                adc_getBufValue
-                0x00032f18                adc_scale
-                0x00032f98                adc_scaleBySegment
-                0x00033350                adc_valueBySegment
-                0x000336a4                adc_scan
-                0x00033880                adc_scan_group
-                0x000339d4                adc_read
+                0x00024d20                WriteCalPressione(CalPoint*, CalPoint*, unsigned char)
+                0x00024e80                WriteCalBilancia(CalPoint*, unsigned char, CalPoint*, unsigned char)
+                0x00025040                WriteDati()
+                0x00025094                SetupDati()
+                0x0002514c                Treat_Time_Ges()
+                0x00025248                Offset_Pressioni()
+                0x0002530c                Reset_Offset_Pressioni()
+                0x000253b0                loaderInit()
+                0x000253e8                protocol_init()
+                0x00025420                uartRxFromControllerIrq()
+ *fill*         0x000254e8        0x8 00
+ .text          0x000254f0      0xdb0 obj\Release\Src\board\board.o
+                0x00025678                __early_init
+                0x000257d4                __late_init
+                0x00025818                boardInit
+                0x00025944                pin_port0_Set()
+                0x00025a48                pin_port1_Set()
+                0x00025ae0                pin_port2_Set()
+                0x00025b68                pin_port3_Set()
+                0x00025c00                pin_port4_Set()
+                0x00025cb4                pin_port5_Set()
+                0x00025d3c                pin_port6_Set()
+                0x00025db4                pin_port7_Set()
+                0x00025e2c                pin_SpecAde_Set()
+                0x00025f94                setEPFR02Reg()
+                0x00026000                setEPFR07Reg()
+                0x00026094                setEPFR08Reg()
+                0x00026184                nvic_init()
+                0x00026278                irqSelect()
+ .text          0x000262a0      0x5d4 obj\Release\Src\board\irqManager.o
+                0x000262b8                SysTickVector
+                0x00026390                NMIVector
+                0x000263b4                HardFaultVector
+                0x000263d8                MemManageVector
+                0x000263fc                BusFaultVector
+                0x00026420                UsageFaultVector
+                0x00026444                Vector1C
+                0x0002645c                Vector20
+                0x00026474                Vector24
+                0x0002648c                Vector28
+                0x000264a4                Vector34
+                0x000264bc                Vector40
+                0x000264d4                Vector44
+                0x000264ec                Vector48
+                0x00026504                Vector4c
+                0x0002651c                Vector50
+                0x00026534                Vector54
+                0x0002654c                Vector58
+                0x00026564                Vector5c
+                0x0002657c                Vector6c
+                0x00026594                Vector70
+                0x000265ac                Vector74
+                0x000265d4                Vector7c
+                0x000265ec                Vector84
+                0x00026604                Vector88
+                0x0002661c                Vector8c
+                0x00026634                Vector90
+                0x0002664c                Vector9c
+                0x00026664                VectorA0
+                0x0002667c                VectorA4
+                0x00026694                VectorA8
+                0x000266ac                VectorAc
+                0x000266c4                VectorBc
+                0x000266dc                VectorC0
+                0x000266f4                VectorC4
+                0x0002670c                VectorC8
+                0x00026724                VectorCc
+                0x0002673c                VectorD0
+                0x00026754                VectorD4
+                0x0002676c                VectorD8
+                0x00026784                VectorDc
+                0x0002679c                VectorE0
+                0x000267b4                VectorE4
+                0x000267cc                VectorE8
+                0x000267e4                VectorEc
+                0x000267fc                VectorF0
+                0x00026814                VectorF4
+                0x0002682c                VectorF8
+                0x00026844                VectorFc
+                0x0002685c                Vector100
+ *fill*         0x00026874        0xc 00
+ .text          0x00026880      0x5ec obj\Release\Src\libfm3\fm3_sysclk.o
+                0x00026880                fm3_sysclock_init
+                0x00026d50                fm3_HSCR_setPrescalerHSCRcnt
+                0x00026d7c                fm3_HSCR_writePrescalerHSCRcnt
+ *fill*         0x00026e6c        0x4 00
+ .text          0x00026e70     0x2f88 obj\Release\Src\libfm3\multiFunctionTimer.o
+                0x00026e88                mftUnit::mftUnit(unsigned char)
+                0x00026e88                mftUnit::mftUnit(unsigned char)
+                0x00026fd0                mftUnit::getID()
+                0x00026fec                mftUnit::setFrtCycleRatio(frtChannel, cycleRatio)
+                0x00027078                mftUnit::setFrtInitRequest(frtChannel, frtInitRequest)
+                0x000270c8                mftUnit::setFrtCounterMode(frtChannel, frtCounterMode)
+                0x00027154                mftUnit::setFrtOperMode(frtChannel, frtOperMode)
+                0x000271a4                mftUnit::setFrtBufferFunction(frtChannel, frtBufferFunction)
+                0x00027230                mftUnit::clearFRTIRQZF(frtChannel)
+                0x000272a4                mftUnit::readFRTIRQZF(frtChannel)
+                0x000272ec                mftUnit::clearFRTICLR(frtChannel)
+                0x00027368                mftUnit::readFRTICLR(frtChannel)
+                0x000273b0                mftUnit::setFrtIntOnMatch(frtChannel, frtEnableIntOnMatch)
+                0x0002743c                mftUnit::isFrtPeakInterruptEnabled(frtChannel)
+                0x0002748c                mftUnit::setFrtIntOnMatch_Z(frtChannel, frtEnableIntOnMatch)
+                0x00027518                mftUnit::isFrtZeroInterruptEnabled(frtChannel)
+                0x00027568                mftUnit::setFrtClock(frtChannel, frtClock)
+                0x000275f4                mftUnit::setTSCARegister(frtChannel, cycleRatio, frtInitRequest, frtCounterMode, frtOperMode, frtBufferFunction, frtEnableIntOnMatch, frtEnableIntOnMatch, frtClock)
+                0x000276f0                mftUnit::setOcuChannelOper(ocuUnit, ocuChannel, ocuOperation)
+                0x00027764                mftUnit::setOcuRegister(ocuUnit, ocuChannel, ocuOperation, ocuBufferState, ocuGenerateInt, ocuBufferTransfer, ocuRTOutputLevel)
+                0x00027808                mftUnit::setOcuOutputLevel(ocuUnit, ocuChannel, ocuRTOutputLevel)
+                0x000278e4                mftUnit::getOcuOutputLevel(ocuUnit, ocuChannel)
+                0x00027954                mftUnit::setOCSCModeRegister(unsigned char, unsigned char)
+                0x00027a6c                mftUnit::setOcuOCCP(ocuUnit, ocuChannel, unsigned short)
+                0x00027ac4                mftUnit::getOcuOCCP(ocuUnit, ocuChannel)
+                0x00027b1c                mftUnit::setOcuModeUse(ocuUnit, ocuChannel, ocuModeUse)
+                0x00027cd4                mftUnit::setOcuAdmittedModeUse(ocuUnit, ocuChannel, ocuAdmittedMode)
+                0x00027e38                mftUnit::setOcuChannelBufferState(ocuUnit, ocuChannel, ocuBufferState)
+                0x00027f64                mftUnit::setOcuChannelGenerateInt(ocuUnit, ocuChannel, ocuGenerateInt)
+                0x00027fd8                mftUnit::setOcuBufferTransfer(ocuUnit, ocuChannel, ocuBufferTransfer)
+                0x00028050                mftUnit::setOcuModeRegister(ocuUnit, ocuChannel, clearedRegister, clearedRegister)
+                0x000280d4                mftUnit::clearOCUIOP(ocuUnit, ocuChannel)
+                0x0002813c                mftUnit::readOCUIOP(ocuUnit, ocuChannel)
+                0x000281a8                mftUnit::startsFrtCounting(frtChannel)
+                0x00028218                mftUnit::stopsFrtCounting(frtChannel)
+                0x000282a8                mftUnit::clearFrtCounting(frtChannel)
+                0x00028358                mftUnit::getFrtCounterOutput(frtChannel)
+                0x000283a4                mftUnit::getFrtCounterMode(frtChannel)
+                0x000283f4                mftUnit::setFrtADCTrigger(frtChannel, frtADCTrigger, frtADCOutput)
+                0x00028480                mftUnit::isFrtADCTriggered(frtChannel, frtADCOutput)
+                0x0002850c                mftUnit::setFrtPeakRegister(frtChannel, unsigned short)
+                0x0002854c                mftUnit::getFrtPeakRegister(frtChannel)
+                0x00028588                mftUnit::assignFRTtoOCU(ocuIcuConnectFrt, ocuUnit, ocuChannel)
+                0x00028634                mftUnit::whichFRTisAssignedToOCU(ocuUnit, ocuChannel)
+                0x000286a0                mftUnit::initFRTRegister()
+                0x000288ec                mftUnit::initOCURegsiter()
+                0x00028a88                mftUnit::initWFGRegister()
+                0x00028b78                mftUnit::initICURegister()
+                0x00028d60                mftUnit::setWfgCycleRatio(wfgUnit, wfgChannel, cycleRatio)
+                0x00028e9c                mftUnit::setWfgModeSetting(wfgUnit, wfgChannel, wfgOperationMode)
+                0x00028f18                mftUnit::setWfgChGateMode(wfgUnit, wfgChannel, chGateCode)
+                0x00028f7c                mftUnit::setWfgPPGtoGateMode(wfgUnit, wfgChannel, ppcToGateMode)
+                0x00028fe0                mftUnit::setWfgPPGReflectWfg(wfgUnit, wfgChannel, chPPGOnWFGoutput)
+                0x0002905c                mftUnit::setWfgOutputPolarity(wfgUnit, wfgChannel, wfgOutputPolarity)
+                0x000290d8                mftUnit::setWfgTimerRegister(wfgUnit, unsigned short)
+                0x00029130                mftUnit::getWfgTimerRegister(wfgUnit)
+                0x0002917c                mftUnit::isDTIFgenerated(wfgUnit)
+                0x000291e0                mftUnit::clearDTIF(wfgUnit)
+                0x0002922c                mftUnit::assignRTPin()
+                0x00029464                mftUnit::findConfiguredOutputPin(char*, ocuUnit&, ocuChannel&)
+                0x000295bc                mftUnit::setIcuChannelGenerateInt(icuUnit, icuChannel, icuGenerateInt)
+                0x00029634                mftUnit::setIcuRegister(icuUnit, icuChannel, icuOperation, icuGenerateInt)
+                0x00029694                mftUnit::clearICUICP(icuUnit, icuChannel)
+                0x00029790                mftUnit::readICUICP(icuUnit, icuChannel)
+                0x00029800                mftUnit::setIcuChannelSelectFrontEnable(icuUnit, icuChannel, icuOperation)
+                0x00029878                mftUnit::assignFRTtoICU(ocuIcuConnectFrt, icuUnit, icuChannel)
+                0x00029928                mftUnit::whichFRTisAssignedToICU(icuUnit, icuChannel)
+                0x00029998                mftUnit::getIcuLastFront(icuUnit, icuChannel)
+                0x00029a08                mftUnit::getIcuICCP(icuUnit, icuChannel)
+                0x00029ab8                mftUnit::attachFrtCallback(void (*)(frtChannel), frtChannel)
+                0x00029b08                mftUnit::attachFrtNrzCallback(void (*)(frtChannel), frtChannel)
+                0x00029b48                mftUnit::attachICUCallback(void (*)(), icuUnit, icuChannel)
+                0x00029ba4                VectorB0
+                0x00029cb4                VectorB4
+                0x00029db4                VectorB8
+                0x00029dc0                mftUnit::~mftUnit()
+                0x00029dc0                mftUnit::~mftUnit()
+ *fill*         0x00029df8        0x8 00
+ .text          0x00029e00     0x3398 obj\Release\Src\libfm3\SIOFM3.o
+                0x00029ee0                sio_init()
+                0x00029f08                sio_poll()
+                0x00029f80                sio_changeUartSettings(SIOChan, SIORate, SIODataBits, SIOStopBits, SIOParityBits)
+                0x0002a140                sio_cfgChan(SIOChan, CBufHandle, SIOMode, SIORate, SIODataBits, SIOStopBits, SIOParityBits, SIODirBits, SIOClkMode, SIOXfrMode, IRQPriority)
+                0x0002ca70                Vector60
+                0x0002cac8                Vector5C
+                0x0002cbb8                Vector68
+                0x0002cc04                Vector64
+                0x0002cd10                Vector78
+                0x0002cd68                Vector7C
+                0x0002ce2c                Vector80
+                0x0002d040                Vector98
+                0x0002d098                Vector94
+ *fill*         0x0002d198        0x8 00
+ .text          0x0002d1a0      0x37c obj\Release\Src\libfm3\SwTim.o
+                0x0002d1a0                Timer::Timer()
+                0x0002d1a0                Timer::Timer()
+                0x0002d1c8                IncTimer::getTime()
+                0x0002d248                IncTimer::getMsec()
+                0x0002d2ac                DecTimer::match()
+                0x0002d354                DecTimerUsec::match()
+                0x0002d400                uSecMeasTimer::getTime()
+                0x0002d470                uSecMeasTimer::getUsec()
+ *fill*         0x0002d51c        0x4 00
+ .text          0x0002d520      0xaa8 obj\Release\Src\libPeriphDriver\sevenSegDrv.o
+                0x0002d520                writeZERO
+                0x0002d59c                writeONE
+                0x0002d618                writeTWO
+                0x0002d694                writeTHREE
+                0x0002d710                writeFOUR
+                0x0002d78c                writeFIVE
+                0x0002d808                writeSIX
+                0x0002d884                writeSEVEN
+                0x0002d900                writeEIGHT
+                0x0002d97c                writeNINE
+                0x0002d9f8                writeA
+                0x0002da74                writeC
+                0x0002daf0                writeE
+                0x0002db6c                writeF
+                0x0002dbe8                writeH
+                0x0002dc64                writeI
+                0x0002dce0                writeL
+                0x0002dd5c                writeO
+                0x0002ddd8                writeP
+                0x0002de54                writeS
+                0x0002ded0                writeU
+                0x0002df4c                writeJ
+ *fill*         0x0002dfc8        0x8 00
+ .text          0x0002dfd0       0x34 obj\Release\Src\loader\COMPROTO_LOADER.o
+ *fill*         0x0002e004        0xc 00
+ .text          0x0002e010     0x3c88 obj\Release\Src\loader\fm3_baseTimer.o
+                0x0002e010                fm3_BT_init
+                0x0002e148                fm3_BT_setEnable
+                0x0002e1b4                fm3_BT_start
+                0x0002e204                fm3_BT_setTimerFunction
+                0x0002e274                fm3_BT_setOperationMode
+                0x0002e2e4                fm3_BT_setOutputPolarity
+                0x0002e388                fm3_BT_setTriggerRestart
+                0x0002e42c                fm3_BT_setCountClockCnt
+                0x0002e4f8                fm3_BT_setPrescalerCnt
+                0x0002e560                fm3_BT_setCountClock
+                0x0002e63c                fm3_BT_setPrescaler
+                0x0002e6a0                fm3_BT_set_PCSR_PDUT
+                0x0002e744                fm3_BT_set_PRLL_PRLH
+                0x0002e7c0                fm3_BT_setPulseMask
+                0x0002e844                fm3_BT_setTriggerInputEdges
+                0x0002e8cc                fm3_BT_setMeasureEdges
+                0x0002e954                fm3_BT_setPWMinterrupts
+                0x0002ea4c                fm3_BT_setPPGinterrupts
+                0x0002eb28                fm3_BT_setRTinterrupts
+                0x0002ec20                fm3_BT_setPWCinterrupts
+                0x0002ed18                fm3_BT_set_IRQ_BT_under_over_flow_callback
+                0x0002ed70                fm3_BT_set_IRQ_dutyMatch_callback
+                0x0002edc8                fm3_BT_set_IRQ_TrigIn_MeasureComplete_callback
+                0x0002ee20                fm3_BT_set_PWM_frq_duty
+                0x0002f1dc                fm3_BT_set_PWM_duty
+                0x0002f4dc                fm3_BT_set_PPG_Ton_Toff
+                0x0002fa74                fm3_BT_set_RT_frq
+                0x0002fbd8                fm3_BT_set_PWC_T
+                0x0002fd8c                VectorBC
+                0x00030484                fm3_BT_writeEnable
+                0x000304fc                fm3_BT_writeTimerFunction
+                0x00030874                fm3_BT_writeOperationMode
+                0x000308f4                fm3_BT_writeOutputPolarity
+                0x00030974                fm3_BT_writePulseMask
+                0x000309ec                fm3_BT_writeTriggerRestart
+                0x00030a64                fm3_BT_writeCountClock
+                0x00031074                fm3_BT_write_PCSR
+                0x00031118                fm3_BT_write_PDUT
+                0x00031168                fm3_BT_write_PRLL_PRLH
+                0x000311d0                fm3_BT_writeTriggerInputEdges
+                0x00031330                fm3_BT_writeMeasureEdges
+                0x000314e4                fm3_BT_writePWMinterrupts
+                0x0003160c                fm3_BT_writePPGinterrupts
+                0x000316e0                fm3_BT_writeRTinterrupts
+                0x000317b4                fm3_BT_writePWCinterrupts
+                0x00031888                calculate_prescaler_cnt_uint16
+                0x00031a2c                calculate_prescaler_cnt_uint32
+                0x00031b10                calculate_prescaler
+                0x00031ba8                prescaler2CCS
+                0x00031c20                CCS2perscaler
+ *fill*         0x00031c98        0x8 00
+ .text          0x00031ca0      0x6ac obj\Release\Src\loader\loader_crc.o
+                0x00031ca0                loader_status_init
+                0x00031fcc                loader_status_checksumVerify
+ *fill*         0x0003234c        0x4 00
+ .text          0x00032350      0x124 obj\Release\Src\main.o
+                0x00032368                main
+ *fill*         0x00032474        0xc 00
+ .text          0x00032480      0x4f0 obj\Release\Src\newlib\alloc.o
+                0x00032480                mem_init
+                0x00032500                mem_count
+                0x00032530                mem_left
+                0x0003256c                mem_alloc
+                0x0003271c                mem_free
+                0x00032870                malloc
+                0x000328a4                calloc
+                0x00032908                _calloc_r
+                0x00032958                free
+ .text          0x00032970       0xc0 obj\Release\Src\newlib\new.o
+                0x00032970                operator new(unsigned int)
+                0x0003299c                operator new[](unsigned int)
+                0x000329e8                operator delete(void*)
+                0x00032a0c                operator delete[](void*)
+ .text          0x00032a30       0x4c obj\Release\Src\os\ports\GCC\ARMCMx\crt0.o
+                0x00032a48                _default_exit
+ *fill*         0x00032a7c        0x4 00
+ .text          0x00032a80        0x4 obj\Release\Src\os\ports\GCC\ARMCMx\MB9BF5xx\vectors.o
+                0x00032a80                Vector9C
+                0x00032a80                VectorAC
+                0x00032a80                Vector8C
+                0x00032a80                VectorDC
+                0x00032a80                VectorEC
+                0x00032a80                DebugMonitorVector
+                0x00032a80                PendSVVector
+                0x00032a80                VectorCC
+                0x00032a80                SVCallVector
+                0x00032a80                Vector6C
+                0x00032a80                Vector4C
+                0x00032a80                _unhandled_exception
+                0x00032a80                VectorFC
+ *fill*         0x00032a84        0xc 00
+ .text          0x00032a90     0x122c obj\Release\Src\periph\ADC.o
+                0x00032a90                adc_init
+                0x00032cd8                adc_setupChannel
+                0x00032de8                adc_getBufValue
+                0x00032ea8                adc_scale
+                0x00032f28                adc_scaleBySegment
+                0x000332e0                adc_valueBySegment
+                0x00033634                adc_scan
+                0x00033814                adc_scan_group
+                0x000339b4                adc_read
                 0x00033a2c                adc_getConvResult
                 0x00033a48                adc_eval
                 0x00033ab0                adc_filter
- *fill*         0x00033cb4        0xc 00
+ *fill*         0x00033cbc        0x4 00
  .text          0x00033cc0      0x8fc obj\Release\Src\periph\COMBUF.o
                 0x00033cc0                combuf_init()
                 0x00033ce8                combuf_create(unsigned short, unsigned short, unsigned short, unsigned short)
@@ -875,7 +859,7 @@ destructors     0x00020424        0x4
                 0x00034d40                csi_isEmpty(CSIHandle)
                 0x00034da8                csi_chipSel(CSIHandle, int)
  *fill*         0x00034e5c        0x4 00
- .text          0x00034e60      0xb08 obj\Release\Src\periph\EEPROM.o
+ .text          0x00034e60      0xb18 obj\Release\Src\periph\EEPROM.o
                 0x00034e60                eep_init
                 0x00034eac                eep_errors
                 0x00034edc                eep_setDeviceAddress
@@ -892,240 +876,240 @@ destructors     0x00020424        0x4
                 0x0003563c                eep_setupMem
                 0x00035728                eep_readMem
                 0x000357d0                eep_writeMem
-                0x000358cc                eep_spi_putc
- *fill*         0x00035968        0x8 00
- .text          0x00035970      0x720 obj\Release\Src\periph\KEY.o
-                0x00035970                key_init
-                0x000359b4                keypres
-                0x000359d8                ungetk
-                0x00035a3c                ungetks
-                0x00035a80                getk
-                0x00035ad4                key_scan_selector
-                0x00035c8c                key_scan
- .text          0x00036090      0x600 obj\Release\Src\periph\UART.o
-                0x00036090                uart_init()
-                0x000360f0                uart_status(UARTHandle, UARTState*)
-                0x00036134                uart_create(CBufHandle, void (*)(int))
-                0x00036208                uart_open(UARTHandle)
-                0x00036274                uart_close(UARTHandle)
-                0x000362dc                uart_flush(UARTHandle)
-                0x00036320                uart_putc(UARTHandle, unsigned char)
-                0x0003636c                uart_getc(UARTHandle, unsigned char*)
-                0x000363b4                uart_read(UARTHandle, void*, unsigned short)
-                0x00036408                uart_write(UARTHandle, void*, unsigned short)
-                0x0003645c                uart_puts(UARTHandle, char*)
-                0x000364b4                uart_getRxCount(UARTHandle)
-                0x00036518                uart_getTxCount(UARTHandle)
-                0x0003656c                uart_getFreeTxCount(UARTHandle)
-                0x000365c0                uart_isTxEmpty(UARTHandle)
- .text          0x00036690      0x13c obj\Release\Src\utility\util.o
-                0x00036690                struct_memclr(unsigned char*, unsigned long)
-                0x000366d0                extractBit(unsigned long)
-                0x00036704                extratcIndexFromBitMask
- *fill*         0x000367cc        0x4 00
- .text          0x000367d0      0x370 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_arm_addsubdf3.o)
-                0x000367d0                __aeabi_drsub
-                0x000367d8                __aeabi_dsub
-                0x000367d8                __subdf3
-                0x000367dc                __aeabi_dadd
-                0x000367dc                __adddf3
-                0x00036a54                __floatunsidf
-                0x00036a54                __aeabi_ui2d
-                0x00036a74                __floatsidf
-                0x00036a74                __aeabi_i2d
-                0x00036a98                __aeabi_f2d
-                0x00036a98                __extendsfdf2
-                0x00036ad4                __floatundidf
-                0x00036ad4                __aeabi_ul2d
-                0x00036ae4                __floatdidf
-                0x00036ae4                __aeabi_l2d
- .text          0x00036b40      0x424 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_arm_muldivdf3.o)
-                0x00036b40                __aeabi_dmul
-                0x00036b40                __muldf3
-                0x00036d94                __divdf3
-                0x00036d94                __aeabi_ddiv
- *fill*         0x00036f64        0xc 00
- .text          0x00036f70      0x110 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_arm_cmpdf2.o)
-                0x00036f70                __gtdf2
-                0x00036f70                __gedf2
-                0x00036f78                __ltdf2
-                0x00036f78                __ledf2
-                0x00036f80                __nedf2
-                0x00036f80                __eqdf2
-                0x00036f80                __cmpdf2
-                0x00036ffc                __aeabi_cdrcmple
-                0x0003700c                __aeabi_cdcmpeq
-                0x0003700c                __aeabi_cdcmple
-                0x0003701c                __aeabi_dcmpeq
-                0x00037030                __aeabi_dcmplt
-                0x00037044                __aeabi_dcmple
-                0x00037058                __aeabi_dcmpge
-                0x0003706c                __aeabi_dcmpgt
- .text          0x00037080       0x50 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_arm_fixdfsi.o)
-                0x00037080                __aeabi_d2iz
-                0x00037080                __fixdfsi
- .text          0x000370d0       0x40 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_arm_fixunsdfsi.o)
-                0x000370d0                __aeabi_d2uiz
-                0x000370d0                __fixunsdfsi
- .text          0x00037110       0xa0 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_arm_truncdfsf2.o)
-                0x00037110                __truncdfsf2
-                0x00037110                __aeabi_d2f
- .text          0x000371b0      0x21c c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_arm_addsubsf3.o)
-                0x000371b0                __aeabi_frsub
-                0x000371b8                __subsf3
-                0x000371b8                __aeabi_fsub
-                0x000371bc                __aeabi_fadd
-                0x000371bc                __addsf3
-                0x0003731c                __aeabi_ui2f
-                0x0003731c                __floatunsisf
-                0x00037324                __aeabi_i2f
-                0x00037324                __floatsisf
-                0x00037340                __aeabi_ul2f
-                0x00037340                __floatundisf
-                0x00037350                __aeabi_l2f
-                0x00037350                __floatdisf
- *fill*         0x000373cc        0x4 00
- .text          0x000373d0      0x2a0 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_arm_muldivsf3.o)
-                0x000373d0                __mulsf3
-                0x000373d0                __aeabi_fmul
-                0x00037538                __aeabi_fdiv
-                0x00037538                __divsf3
- .text          0x00037670       0xec c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_arm_cmpsf2.o)
-                0x00037670                __gesf2
-                0x00037670                __gtsf2
-                0x00037678                __lesf2
-                0x00037678                __ltsf2
-                0x00037680                __nesf2
-                0x00037680                __eqsf2
-                0x00037680                __cmpsf2
-                0x000376e0                __aeabi_cfrcmple
-                0x000376e8                __aeabi_cfcmpeq
-                0x000376e8                __aeabi_cfcmple
-                0x000376f8                __aeabi_fcmpeq
-                0x0003770c                __aeabi_fcmplt
-                0x00037720                __aeabi_fcmple
-                0x00037734                __aeabi_fcmpge
-                0x00037748                __aeabi_fcmpgt
- *fill*         0x0003775c        0x4 00
- .text          0x00037760       0x4c c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_arm_fixsfsi.o)
-                0x00037760                __aeabi_f2iz
-                0x00037760                __fixsfsi
- *fill*         0x000377ac        0x4 00
- .text          0x000377b0       0x40 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_arm_fixunssfsi.o)
-                0x000377b0                __fixunssfsi
-                0x000377b0                __aeabi_f2uiz
+                0x000358dc                eep_spi_putc
+ *fill*         0x00035978        0x8 00
+ .text          0x00035980      0x720 obj\Release\Src\periph\KEY.o
+                0x00035980                key_init
+                0x000359c4                keypres
+                0x000359e8                ungetk
+                0x00035a4c                ungetks
+                0x00035a90                getk
+                0x00035ae4                key_scan_selector
+                0x00035c9c                key_scan
+ .text          0x000360a0      0x600 obj\Release\Src\periph\UART.o
+                0x000360a0                uart_init()
+                0x00036100                uart_status(UARTHandle, UARTState*)
+                0x00036144                uart_create(CBufHandle, void (*)(int))
+                0x00036218                uart_open(UARTHandle)
+                0x00036284                uart_close(UARTHandle)
+                0x000362ec                uart_flush(UARTHandle)
+                0x00036330                uart_putc(UARTHandle, unsigned char)
+                0x0003637c                uart_getc(UARTHandle, unsigned char*)
+                0x000363c4                uart_read(UARTHandle, void*, unsigned short)
+                0x00036418                uart_write(UARTHandle, void*, unsigned short)
+                0x0003646c                uart_puts(UARTHandle, char*)
+                0x000364c4                uart_getRxCount(UARTHandle)
+                0x00036528                uart_getTxCount(UARTHandle)
+                0x0003657c                uart_getFreeTxCount(UARTHandle)
+                0x000365d0                uart_isTxEmpty(UARTHandle)
+ .text          0x000366a0      0x13c obj\Release\Src\utility\util.o
+                0x000366a0                struct_memclr(unsigned char*, unsigned long)
+                0x000366e0                extractBit(unsigned long)
+                0x00036714                extratcIndexFromBitMask
+ *fill*         0x000367dc        0x4 00
+ .text          0x000367e0      0x370 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_arm_addsubdf3.o)
+                0x000367e0                __aeabi_drsub
+                0x000367e8                __aeabi_dsub
+                0x000367e8                __subdf3
+                0x000367ec                __aeabi_dadd
+                0x000367ec                __adddf3
+                0x00036a64                __floatunsidf
+                0x00036a64                __aeabi_ui2d
+                0x00036a84                __floatsidf
+                0x00036a84                __aeabi_i2d
+                0x00036aa8                __aeabi_f2d
+                0x00036aa8                __extendsfdf2
+                0x00036ae4                __floatundidf
+                0x00036ae4                __aeabi_ul2d
+                0x00036af4                __floatdidf
+                0x00036af4                __aeabi_l2d
+ .text          0x00036b50      0x424 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_arm_muldivdf3.o)
+                0x00036b50                __aeabi_dmul
+                0x00036b50                __muldf3
+                0x00036da4                __divdf3
+                0x00036da4                __aeabi_ddiv
+ *fill*         0x00036f74        0xc 00
+ .text          0x00036f80      0x110 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_arm_cmpdf2.o)
+                0x00036f80                __gtdf2
+                0x00036f80                __gedf2
+                0x00036f88                __ltdf2
+                0x00036f88                __ledf2
+                0x00036f90                __nedf2
+                0x00036f90                __eqdf2
+                0x00036f90                __cmpdf2
+                0x0003700c                __aeabi_cdrcmple
+                0x0003701c                __aeabi_cdcmpeq
+                0x0003701c                __aeabi_cdcmple
+                0x0003702c                __aeabi_dcmpeq
+                0x00037040                __aeabi_dcmplt
+                0x00037054                __aeabi_dcmple
+                0x00037068                __aeabi_dcmpge
+                0x0003707c                __aeabi_dcmpgt
+ .text          0x00037090       0x50 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_arm_fixdfsi.o)
+                0x00037090                __aeabi_d2iz
+                0x00037090                __fixdfsi
+ .text          0x000370e0       0x40 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_arm_fixunsdfsi.o)
+                0x000370e0                __aeabi_d2uiz
+                0x000370e0                __fixunsdfsi
+ .text          0x00037120       0xa0 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_arm_truncdfsf2.o)
+                0x00037120                __truncdfsf2
+                0x00037120                __aeabi_d2f
+ .text          0x000371c0      0x21c c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_arm_addsubsf3.o)
+                0x000371c0                __aeabi_frsub
+                0x000371c8                __subsf3
+                0x000371c8                __aeabi_fsub
+                0x000371cc                __aeabi_fadd
+                0x000371cc                __addsf3
+                0x0003732c                __aeabi_ui2f
+                0x0003732c                __floatunsisf
+                0x00037334                __aeabi_i2f
+                0x00037334                __floatsisf
+                0x00037350                __aeabi_ul2f
+                0x00037350                __floatundisf
+                0x00037360                __aeabi_l2f
+                0x00037360                __floatdisf
+ *fill*         0x000373dc        0x4 00
+ .text          0x000373e0      0x2a0 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_arm_muldivsf3.o)
+                0x000373e0                __mulsf3
+                0x000373e0                __aeabi_fmul
+                0x00037548                __aeabi_fdiv
+                0x00037548                __divsf3
+ .text          0x00037680       0xec c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_arm_cmpsf2.o)
+                0x00037680                __gesf2
+                0x00037680                __gtsf2
+                0x00037688                __lesf2
+                0x00037688                __ltsf2
+                0x00037690                __nesf2
+                0x00037690                __eqsf2
+                0x00037690                __cmpsf2
+                0x000376f0                __aeabi_cfrcmple
+                0x000376f8                __aeabi_cfcmpeq
+                0x000376f8                __aeabi_cfcmple
+                0x00037708                __aeabi_fcmpeq
+                0x0003771c                __aeabi_fcmplt
+                0x00037730                __aeabi_fcmple
+                0x00037744                __aeabi_fcmpge
+                0x00037758                __aeabi_fcmpgt
+ *fill*         0x0003776c        0x4 00
+ .text          0x00037770       0x4c c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_arm_fixsfsi.o)
+                0x00037770                __aeabi_f2iz
+                0x00037770                __fixsfsi
+ *fill*         0x000377bc        0x4 00
+ .text          0x000377c0       0x40 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_arm_fixunssfsi.o)
+                0x000377c0                __fixunssfsi
+                0x000377c0                __aeabi_f2uiz
  *(.text.*)
  .text._ZN5Timer7getMsecEv
-                0x000377f0       0x18 obj\Release\Src\Application\Cd_ALA.o
-                0x000377f0                Timer::getMsec()
- *fill*         0x00037808        0x8 00
+                0x00037800       0x18 obj\Release\Src\Application\Cd_ALA.o
+                0x00037800                Timer::getMsec()
+ *fill*         0x00037818        0x8 00
  .text._ZN8DecTimer6PresetEm
-                0x00037810       0x38 obj\Release\Src\Application\Cd_ALA.o
-                0x00037810                DecTimer::Preset(unsigned long)
- *fill*         0x00037848        0x8 00
+                0x00037820       0x38 obj\Release\Src\Application\Cd_ALA.o
+                0x00037820                DecTimer::Preset(unsigned long)
+ *fill*         0x00037858        0x8 00
  .text._ZN8DecTimer5MatchEv
-                0x00037850       0x1c obj\Release\Src\Application\Cd_ALA.o
-                0x00037850                DecTimer::Match()
- *fill*         0x0003786c        0x4 00
+                0x00037860       0x1c obj\Release\Src\Application\Cd_ALA.o
+                0x00037860                DecTimer::Match()
+ *fill*         0x0003787c        0x4 00
  .text._ZN8DecTimerC2Ev
-                0x00037870       0x28 obj\Release\Src\Application\globalApplication.o
-                0x00037870                DecTimer::DecTimer()
-                0x00037870                DecTimer::DecTimer()
- *fill*         0x00037898        0x8 00
+                0x00037880       0x28 obj\Release\Src\Application\globalApplication.o
+                0x00037880                DecTimer::DecTimer()
+                0x00037880                DecTimer::DecTimer()
+ *fill*         0x000378a8        0x8 00
  .text._ZN8DecTimer5StartEv
-                0x000378a0       0x1c obj\Release\Src\Application\globalApplication.o
-                0x000378a0                DecTimer::Start()
- *fill*         0x000378bc        0x4 00
+                0x000378b0       0x1c obj\Release\Src\Application\globalApplication.o
+                0x000378b0                DecTimer::Start()
+ *fill*         0x000378cc        0x4 00
  .text._ZN5Timer9clockTickEmt
-                0x000378c0       0x2c obj\Release\Src\board\irqManager.o
-                0x000378c0                Timer::clockTick(unsigned long, unsigned short)
- *fill*         0x000378ec        0x4 00
+                0x000378d0       0x2c obj\Release\Src\board\irqManager.o
+                0x000378d0                Timer::clockTick(unsigned long, unsigned short)
+ *fill*         0x000378fc        0x4 00
  .text.__register_exitproc
-                0x000378f0       0xac c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-__atexit.o)
-                0x000378f0                __register_exitproc
- *fill*         0x0003799c        0x4 00
+                0x00037900       0xac c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-__atexit.o)
+                0x00037900                __register_exitproc
+ *fill*         0x000379ac        0x4 00
  .text.__libc_fini_array
-                0x000379a0       0x50 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-fini.o)
-                0x000379a0                __libc_fini_array
- .text.memcmp   0x000379f0       0xb8 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-memcmp.o)
-                0x000379f0                memcmp
- *fill*         0x00037aa8        0x8 00
- .text.memcpy   0x00037ab0      0x15c c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-memcpy.o)
-                0x00037ab0                memcpy
- *fill*         0x00037c0c        0x4 00
- .text.memset   0x00037c10      0x12c c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-memset.o)
-                0x00037c10                memset
- *fill*         0x00037d3c        0x4 00
- .text.stpncpy  0x00037d40      0x104 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-stpncpy.o)
-                0x00037d40                stpncpy
- *fill*         0x00037e44        0xc 00
- .text.strlen   0x00037e50       0x60 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-strlen.o)
-                0x00037e50                strlen
- .text.strncmp  0x00037eb0      0x120 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-strncmp.o)
-                0x00037eb0                strncmp
- .text.atexit   0x00037fd0        0xc c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-atexit.o)
-                0x00037fd0                atexit
- *fill*         0x00037fdc        0x4 00
+                0x000379b0       0x50 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-fini.o)
+                0x000379b0                __libc_fini_array
+ .text.memcmp   0x00037a00       0xb8 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-memcmp.o)
+                0x00037a00                memcmp
+ *fill*         0x00037ab8        0x8 00
+ .text.memcpy   0x00037ac0      0x15c c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-memcpy.o)
+                0x00037ac0                memcpy
+ *fill*         0x00037c1c        0x4 00
+ .text.memset   0x00037c20      0x12c c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-memset.o)
+                0x00037c20                memset
+ *fill*         0x00037d4c        0x4 00
+ .text.stpncpy  0x00037d50      0x104 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-stpncpy.o)
+                0x00037d50                stpncpy
+ *fill*         0x00037e54        0xc 00
+ .text.strlen   0x00037e60       0x60 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-strlen.o)
+                0x00037e60                strlen
+ .text.strncmp  0x00037ec0      0x120 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-strncmp.o)
+                0x00037ec0                strncmp
+ .text.atexit   0x00037fe0        0xc c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-atexit.o)
+                0x00037fe0                atexit
+ *fill*         0x00037fec        0x4 00
  .text.atexit.stub
-                0x00037fe0       0x40 linker stubs
+                0x00037ff0       0x40 linker stubs
  *(.rodata)
- *fill*         0x00038020        0x0 00
- .rodata        0x00038020       0xe0 obj\Release\Src\Application\AppMiddleWare\adcMapFlexiP.o
- .rodata        0x00038100       0x20 obj\Release\Src\Application\globalApplication.o
- .rodata        0x00038120       0x64 obj\Release\Src\libfm3\multiFunctionTimer.o
- *fill*         0x00038184        0xc 00
- .rodata        0x00038190      0x21c obj\Release\Src\libfm3\SIOFM3.o
- *fill*         0x000383ac        0x4 00
- .rodata        0x000383b0       0x20 obj\Release\Src\loader\fm3_baseTimer.o
- .rodata        0x000383d0       0x20 obj\Release\Src\periph\ADC.o
+ *fill*         0x00038030        0x0 00
+ .rodata        0x00038030       0xe0 obj\Release\Src\Application\AppMiddleWare\adcMapFlexiP.o
+ .rodata        0x00038110       0x20 obj\Release\Src\Application\globalApplication.o
+ .rodata        0x00038130       0x64 obj\Release\Src\libfm3\multiFunctionTimer.o
+ *fill*         0x00038194        0xc 00
+ .rodata        0x000381a0      0x21c obj\Release\Src\libfm3\SIOFM3.o
+ *fill*         0x000383bc        0x4 00
+ .rodata        0x000383c0       0x20 obj\Release\Src\loader\fm3_baseTimer.o
+ .rodata        0x000383e0       0x20 obj\Release\Src\periph\ADC.o
  *(.rodata.*)
  .rodata.str1.4
-                0x000383f0        0x4 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-impure.o)
- *fill*         0x000383f4        0xc 00
- .rodata._global_impure_ptr
                 0x00038400        0x4 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-impure.o)
-                0x00038400                _global_impure_ptr
+ *fill*         0x00038404        0xc 00
+ .rodata._global_impure_ptr
+                0x00038410        0x4 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-impure.o)
+                0x00038410                _global_impure_ptr
  *(.glue_7t)
  .glue_7t       0x00000000        0x0 linker stubs
  *(.glue_7)
  .glue_7        0x00000000        0x0 linker stubs
  *(.gcc*)
 
-.vfp11_veneer   0x00038404        0x0
+.vfp11_veneer   0x00038414        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
 
-.v4_bx          0x00038404        0x0
+.v4_bx          0x00038414        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.fini           0x00038404        0x4
- .fini          0x00038404        0x4 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m/crti.o
-                0x00038404                _fini
+.fini           0x00038414        0x4
+ .fini          0x00038414        0x4 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m/crti.o
+                0x00038414                _fini
 
-.iplt           0x00038408        0x0
+.iplt           0x00038418        0x0
  .iplt          0x00000000        0x0 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m/crtbegin.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
 
-.ARM.exidx      0x00038408        0x0
-                0x00038408                PROVIDE (__exidx_start, .)
+.ARM.exidx      0x00038418        0x0
+                0x00038418                PROVIDE (__exidx_start, .)
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x00038408                PROVIDE (__exidx_end, .)
+                0x00038418                PROVIDE (__exidx_end, .)
 
 .eh_frame_hdr
  *(.eh_frame_hdr)
 
-.eh_frame       0x00038408        0x0
+.eh_frame       0x00038418        0x0
  *(.eh_frame)
- .eh_frame      0x00038408        0x0 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m/crtbegin.o
+ .eh_frame      0x00038418        0x0 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m/crtbegin.o
 
-.textalign      0x00038408        0x0
-                0x00038408                . = ALIGN (0x8)
-                0x00038408                _textdata = .
+.textalign      0x00038418        0x0
+                0x00038418                . = ALIGN (0x8)
+                0x00038418                _textdata = .
                 0x00000488                datasize = (_edata - _data)
-                0x00038890                _textramcode = (. + datasize)
-                0x00003e20                ramcodesize = (_ramcode_end - _ramcode_start)
-                0x0003c6b0                _etext = (_textramcode + ramcodesize)
+                0x000388a0                _textramcode = (. + datasize)
+                0x00003e78                ramcodesize = (_ramcode_end - _ramcode_start)
+                0x0003c718                _etext = (_textramcode + ramcodesize)
                 0x1fff8000                . = __ram_start__
 
 .stacks         0x1fff8000     0x1000
@@ -1143,7 +1127,7 @@ destructors     0x00020424        0x4
                 0x1fff9000                __process_stack_end__ = .
                 0x1fff9000                __main_thread_stack_end__ = .
 
-.data           0x1fff9000      0x488 load address 0x00038408
+.data           0x1fff9000      0x488 load address 0x00038418
                 0x1fff9000                . = ALIGN (0x4)
                 0x1fff9000                PROVIDE (_data, .)
  *(.data)
@@ -1176,13 +1160,13 @@ destructors     0x00020424        0x4
                 0x1fff9488                . = ALIGN (0x4)
                 0x1fff9488                PROVIDE (_edata, .)
 
-.jcr            0x1fff9488        0x0 load address 0x00038890
+.jcr            0x1fff9488        0x0 load address 0x000388a0
  .jcr           0x1fff9488        0x0 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m/crtbegin.o
 
-.igot.plt       0x1fff9488        0x0 load address 0x00038890
+.igot.plt       0x1fff9488        0x0 load address 0x000388a0
  .igot.plt      0x00000000        0x0 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m/crtbegin.o
 
-.bss            0x1fff9488     0x431c load address 0x00038890
+.bss            0x1fff9488     0x4318 load address 0x000388a0
                 0x1fff9488                . = ALIGN (0x4)
                 0x1fff9488                PROVIDE (_bss_start, .)
  *(.bss)
@@ -1217,7 +1201,7 @@ destructors     0x00020424        0x4
                 0x1fff97f6                ven_lim_sta
                 0x1fff97f8                ven_lim_tim
                 0x1fff97fc                pre
- .bss           0x1fff9814       0x68 obj\Release\Src\Application\DECODE.o
+ .bss           0x1fff9814       0x64 obj\Release\Src\Application\DECODE.o
                 0x1fff9814                lung_rx
                 0x1fff9816                tot_rx
                 0x1fff9818                lung_tx
@@ -1230,123 +1214,121 @@ destructors     0x00020424        0x4
                 0x1fff9825                stato_rx
                 0x1fff9826                err_ges
                 0x1fff9828                SysStatus
-                0x1fff9850                statoProto
-                0x1fff9854                fpstart
-                0x1fff9858                fpjump
-                0x1fff985c                chk_sum
-                0x1fff985e                tx_prec
-                0x1fff985f                rx_prec
-                0x1fff9860                tx_buffer
-                0x1fff9864                rx_buffer
- .bss           0x1fff987c       0xe8 obj\Release\Src\Application\gesXfr_p.o
-                0x1fff987c                hBufCsiA
-                0x1fff9880                hCsiDevA
-                0x1fff9884                pak_nul
-                0x1fff9888                chkBlock
-                0x1fff98e0                bigBlock
-                0x1fff9960                setDataTest
-                0x1fff9961                reset_csi
- .bss           0x1fff9964      0x580 obj\Release\Src\Application\globalApplication.o
-                0x1fff9964                timLoad
-                0x1fff9970                timForceCsi
-                0x1fff997c                timOveVen
-                0x1fff9988                timTestAdc
-                0x1fff9994                timTestVcc
-                0x1fff99a0                timVel_Blo_Max
-                0x1fff99ac                timVel_Blo_Min
-                0x1fff99b8                timVel_Uf_Max
-                0x1fff99c4                timVel_Uf_Min
-                0x1fff99d0                timGesCal
-                0x1fff99dc                timStartComm
-                0x1fff99e8                oveVen
-                0x1fff99ec                Dat
-                0x1fff9a0c                g_time_sec
-                0x1fff9a10                g_PSMainCounter
-                0x1fff9a14                g_UFMainCounter
-                0x1fff9a18                g_UFFreqCounter
-                0x1fff9a1c                g_PSFreqCounter
-                0x1fff9a54                g_StartController
-                0x1fff9a58                rall_calop
-                0x1fff9a59                rdurata_tratt
-                0x1fff9a5a                fail_dat
-                0x1fff9a5c                g_protoLoader
-                0x1fff9ac8                g_aLoaderProtoDataBuf
- .bss           0x1fff9ee4        0xc obj\Release\Src\board\board.o
-                0x1fff9ee4                workingCPU
-                0x1fff9ee8                g_SwType
- .bss           0x1fff9ef0       0x20 obj\Release\Src\board\irqManager.o
-                0x1fff9ef0                g_cntNmi
-                0x1fff9ef4                g_cntHardFault
-                0x1fff9ef8                g_cntMemManage
-                0x1fff9efc                g_cntBusFault
-                0x1fff9f00                g_cntUsageFault
-                0x1fff9f04                g_globalTick
-                0x1fff9f08                g_time_msec
- .bss           0x1fff9f10        0x2 obj\Release\Src\libfm3\fm3_sysclk.o
- *fill*         0x1fff9f12        0x2 00
- .bss           0x1fff9f14       0x7c obj\Release\Src\libfm3\multiFunctionTimer.o
-                0x1fff9f14                mftInstalled
- .bss           0x1fff9f90      0x114 obj\Release\Src\libfm3\SIOFM3.o
-                0x1fff9f90                provaPollCounter_Get
-                0x1fff9f94                provaPollCounter_Put
-                0x1fff9f98                provaTestFlagNotRcv
-                0x1fff9f9c                provaTestTxNotEnabled
- .bss           0x1fffa0a4        0x8 obj\Release\Src\libfm3\SwTim.o
-                0x1fffa0a4                g_globalTimer
- .bss           0x1fffa0ac        0x4 obj\Release\Src\loader\COMPROTO_LOADER.o
- .bss           0x1fffa0b0      0x1e0 obj\Release\Src\loader\fm3_baseTimer.o
- .bss           0x1fffa290       0x14 obj\Release\Src\newlib\alloc.o
- .bss           0x1fffa2a4       0x80 obj\Release\Src\newlib\new.o
- .bss           0x1fffa324     0x204c obj\Release\Src\periph\ADC.o
-                0x1fffa324                adcSet
-                0x1fffc324                resolCount
-                0x1fffc328                adcFifoBuf
- .bss           0x1fffc370      0x164 obj\Release\Src\periph\COMBUF.o
- .bss           0x1fffc4d4       0x64 obj\Release\Src\periph\CSI.o
- .bss           0x1fffc538       0x44 obj\Release\Src\periph\EEPROM.o
-                0x1fffc540                readBuf
- .bss           0x1fffc57c       0xe0 obj\Release\Src\periph\KEY.o
-                0x1fffc57c                cntEncSelector
-                0x1fffc580                precEncSelector
- .bss           0x1fffc65c       0x34 obj\Release\Src\periph\UART.o
-                0x1fffc690                . = ALIGN (0x4)
+                0x1fff9850                fpstart
+                0x1fff9854                fpjump
+                0x1fff9858                chk_sum
+                0x1fff985a                tx_prec
+                0x1fff985b                rx_prec
+                0x1fff985c                tx_buffer
+                0x1fff9860                rx_buffer
+ .bss           0x1fff9878       0xe8 obj\Release\Src\Application\gesXfr_p.o
+                0x1fff9878                hBufCsiA
+                0x1fff987c                hCsiDevA
+                0x1fff9880                pak_nul
+                0x1fff9884                chkBlock
+                0x1fff98dc                bigBlock
+                0x1fff995c                setDataTest
+                0x1fff995d                reset_csi
+ .bss           0x1fff9960      0x580 obj\Release\Src\Application\globalApplication.o
+                0x1fff9960                timLoad
+                0x1fff996c                timForceCsi
+                0x1fff9978                timOveVen
+                0x1fff9984                timTestAdc
+                0x1fff9990                timTestVcc
+                0x1fff999c                timVel_Blo_Max
+                0x1fff99a8                timVel_Blo_Min
+                0x1fff99b4                timVel_Uf_Max
+                0x1fff99c0                timVel_Uf_Min
+                0x1fff99cc                timGesCal
+                0x1fff99d8                timStartComm
+                0x1fff99e4                oveVen
+                0x1fff99e8                Dat
+                0x1fff9a08                g_time_sec
+                0x1fff9a0c                g_PSMainCounter
+                0x1fff9a10                g_UFMainCounter
+                0x1fff9a14                g_UFFreqCounter
+                0x1fff9a18                g_PSFreqCounter
+                0x1fff9a50                g_StartController
+                0x1fff9a54                rall_calop
+                0x1fff9a55                rdurata_tratt
+                0x1fff9a58                g_protoLoader
+                0x1fff9ac4                g_aLoaderProtoDataBuf
+ .bss           0x1fff9ee0        0xc obj\Release\Src\board\board.o
+                0x1fff9ee0                workingCPU
+                0x1fff9ee4                g_SwType
+ .bss           0x1fff9eec       0x20 obj\Release\Src\board\irqManager.o
+                0x1fff9eec                g_cntNmi
+                0x1fff9ef0                g_cntHardFault
+                0x1fff9ef4                g_cntMemManage
+                0x1fff9ef8                g_cntBusFault
+                0x1fff9efc                g_cntUsageFault
+                0x1fff9f00                g_globalTick
+                0x1fff9f04                g_time_msec
+ .bss           0x1fff9f0c        0x2 obj\Release\Src\libfm3\fm3_sysclk.o
+ *fill*         0x1fff9f0e        0x2 00
+ .bss           0x1fff9f10       0x7c obj\Release\Src\libfm3\multiFunctionTimer.o
+                0x1fff9f10                mftInstalled
+ .bss           0x1fff9f8c      0x114 obj\Release\Src\libfm3\SIOFM3.o
+                0x1fff9f8c                provaPollCounter_Get
+                0x1fff9f90                provaPollCounter_Put
+                0x1fff9f94                provaTestFlagNotRcv
+                0x1fff9f98                provaTestTxNotEnabled
+ .bss           0x1fffa0a0        0x8 obj\Release\Src\libfm3\SwTim.o
+                0x1fffa0a0                g_globalTimer
+ .bss           0x1fffa0a8      0x598 obj\Release\Src\loader\COMPROTO_LOADER.o
+                0x1fffa0a8                debugVar_CharRxFromController
+                0x1fffa0ac                debugVar_UnExpectedBranch
+                0x1fffa0b0                debugVar_CharTxToController
+                0x1fffa0b4                g_responsePacketData
+                0x1fffa17c                g_receivedData
+                0x1fffa62c                g_loaderFlashEndAdd
+                0x1fffa630                g_JumpingCodeMemLocation
+                0x1fffa634                pollerWaiter
+ .bss           0x1fffa640      0x1e0 obj\Release\Src\loader\fm3_baseTimer.o
+ .bss           0x1fffa820       0x14 obj\Release\Src\newlib\alloc.o
+ .bss           0x1fffa834       0x80 obj\Release\Src\newlib\new.o
+ .bss           0x1fffa8b4     0x204c obj\Release\Src\periph\ADC.o
+                0x1fffa8b4                adcSet
+                0x1fffc8b4                resolCount
+                0x1fffc8b8                adcFifoBuf
+ .bss           0x1fffc900      0x164 obj\Release\Src\periph\COMBUF.o
+ .bss           0x1fffca64       0x64 obj\Release\Src\periph\CSI.o
+ .bss           0x1fffcac8       0x44 obj\Release\Src\periph\EEPROM.o
+                0x1fffcad0                readBuf
+ .bss           0x1fffcb0c       0xe0 obj\Release\Src\periph\KEY.o
+                0x1fffcb0c                cntEncSelector
+                0x1fffcb10                precEncSelector
+ .bss           0x1fffcbec       0x34 obj\Release\Src\periph\UART.o
+                0x1fffcc20                . = ALIGN (0x4)
  *(.bss.*)
-                0x1fffc690                . = ALIGN (0x4)
+                0x1fffcc20                . = ALIGN (0x4)
  *(COMMON)
- COMMON         0x1fffc690        0x1 obj\Release\Src\externVar.o
-                0x1fffc690                g_ComProtoUartSemaphore
- *fill*         0x1fffc691        0x3 00
- COMMON         0x1fffc694       0x40 obj\Release\Src\loader\COMPROTO.o
-                0x1fffc694                g_fpCheckOpcode
-                0x1fffc698                g_fpCommandHadler
-                0x1fffc69c                g_fpErrorsHandlers
- COMMON         0x1fffc6d4      0x5a4 obj\Release\Src\loader\COMPROTO_LOADER.o
-                0x1fffc6d4                g_appFirmwareStatus
-                0x1fffc6e0                debugVar_CharTxToController
-                0x1fffc6e4                g_JumpingCodeMemLocation
-                0x1fffc6e8                pollerWaiter
-                0x1fffc6f0                g_loaderFlashEndAdd
-                0x1fffc6f4                g_fpJumpToLoader
-                0x1fffc6f8                debugVar_UnExpectedBranch
-                0x1fffc6fc                debugVar_CharRxFromController
-                0x1fffc700                g_responsePacketData
-                0x1fffc7c8                g_receivedData
- COMMON         0x1fffcc78       0xe0 obj\Release\Src\loader\loader_crc.o
-                0x1fffcc78                g_fpJumpToApplication
-                0x1fffcc7c                g_loaderStatus
- COMMON         0x1fffcd58      0xa4c obj\Release\Src\loader\UART_FM3.o
-                0x1fffcd58                g_aUart3_pTxBuf
-                0x1fffcf58                progressiv
-                0x1fffcf5c                g_uart3
-                0x1fffcfa4                g_aUart3_pRxBuf
-                0x1fffd7a4                . = ALIGN (0x4)
-                0x1fffd7a4                PROVIDE (_bss_end, .)
-                0x1fffd7a4                PROVIDE (end, .)
-                0x1fffd7a4                _end = .
-                0x1fffd7a4                __heap_base__ = _end
+ COMMON         0x1fffcc20        0x1 obj\Release\Src\externVar.o
+                0x1fffcc20                g_ComProtoUartSemaphore
+ *fill*         0x1fffcc21        0x3 00
+ COMMON         0x1fffcc24       0x40 obj\Release\Src\loader\COMPROTO.o
+                0x1fffcc24                g_fpCheckOpcode
+                0x1fffcc28                g_fpCommandHadler
+                0x1fffcc2c                g_fpErrorsHandlers
+ COMMON         0x1fffcc64       0x10 obj\Release\Src\loader\COMPROTO_LOADER.o
+                0x1fffcc64                g_appFirmwareStatus
+                0x1fffcc70                g_fpJumpToLoader
+ COMMON         0x1fffcc74       0xe0 obj\Release\Src\loader\loader_crc.o
+                0x1fffcc74                g_fpJumpToApplication
+                0x1fffcc78                g_loaderStatus
+ COMMON         0x1fffcd54      0xa4c obj\Release\Src\loader\UART_FM3.o
+                0x1fffcd54                g_aUart3_pTxBuf
+                0x1fffcf54                progressiv
+                0x1fffcf58                g_uart3
+                0x1fffcfa0                g_aUart3_pRxBuf
+                0x1fffd7a0                . = ALIGN (0x4)
+                0x1fffd7a0                PROVIDE (_bss_end, .)
+                0x1fffd7a0                PROVIDE (end, .)
+                0x1fffd7a0                _end = .
+                0x1fffd7a0                __heap_base__ = _end
                 0x20000000                __heap_end__ = __ram_end__
 
-.ramcode        0x20000000     0x3e20 load address 0x00038890
+.ramcode        0x20000000     0x3e78 load address 0x000388a0
                 0x20000000                PROVIDE (_ramcode_start, .)
                 0x20000000                . = ALIGN (0x4)
  *(.ramcode)
@@ -1365,82 +1347,82 @@ destructors     0x00020424        0x4
                 0x200008b4                comproto_setDecodeMaxWhileCycles
                 0x20000920                comproto_setMessageType
                 0x20000944                comproto_decode
- .ramcode       0x200011e4     0x1364 obj\Release\Src\loader\COMPROTO_LOADER.o
+ .ramcode       0x200011e4     0x1390 obj\Release\Src\loader\COMPROTO_LOADER.o
                 0x200011e4                loader_proto_init
-                0x20001280                loader_proto_static_init
-                0x20001458                callback_commandHadler
-                0x20001764                callback_checkOpcode
-                0x200017e4                call_back_errorHandler_uartHw
-                0x200017f8                call_back_errorHandler_protocol
-                0x200022ac                loader_proto_query
-                0x200024c8                loader_proto_irqFromController
- .ramcode       0x20002548      0x700 obj\Release\Src\loader\FlashAlgoFncs.o
-                0x20002548                FlashInit
-                0x200025ac                FlashUnInit
-                0x200025e4                FlashEraseChip
-                0x200026f8                FlashEraseSector
-                0x20002a64                FlashProgramPage
-                0x20002ba4                FlashVerify
-                0x20002bf8                FlashBlankCheck
- .ramcode       0x20002c48      0x9f0 obj\Release\Src\loader\ringbuf.o
-                0x20002c48                ringBuffer_init
-                0x20002c68                ringBuffer_static_init
-                0x20002c98                ringBuffer_resize
-                0x20002cd8                ringBuffer_read
-                0x20002dec                ringBuffer_read_isr
-                0x20002f00                ringBuffer_write
-                0x20003040                ringBuffer_write_isr
-                0x20003180                ringBuffer_get
-                0x200031e0                ringBuffer_put
-                0x20003240                ringBuffer_get_isr
-                0x200032a0                ringBuffer_put_isr
-                0x20003300                ringBuffer_used
-                0x20003350                ringBuffer_used_isr
-                0x200033a0                ringBuffer_size
-                0x200033b8                ringBuffer_valid
-                0x200033dc                ringBuffer_isEmpty
-                0x20003414                ringBuffer_isEmpty_isr
-                0x2000344c                ringBuffer_isfull
-                0x20003474                ringBuffer_isfull_isr
-                0x2000349c                ringBuffer_isvalid
-                0x200034c0                ringBuffer_clear
-                0x200034fc                ringBuffer_clear_isr
-                0x20003600                my_memcpy
- .ramcode       0x20003638      0x7b8 obj\Release\Src\loader\UART_FM3.o
-                0x20003638                uart3_init
-                0x2000368c                uart_initBuf
-                0x200036d0                uart_putc
-                0x20003730                uart_puts
-                0x20003780                uart_getc
-                0x200037c8                uart_startTx
-                0x20003820                uart_resetRxBuf
-                0x2000383c                uart_getRxCount
-                0x20003860                uart_resetTxBuf
-                0x2000387c                uart_getTxCount
-                0x200038a0                uart_getFreeTxCount
-                0x200038d8                uart_isTxEmpty
-                0x200038fc                uart_getHwError
-                0x20003918                uart_init_regs
-                0x20003a24                uart_changeBaudRate_115200
-                0x20003a40                uart_changeBaudRate_57600
-                0x20003a5c                uart_changeBaudRate_38400
-                0x20003a78                uart_changeBaudRate_9600
-                0x20003a94                uart_changeBaudRate_debug
-                0x20003aa8                uart_changeBaudRate
-                0x20003ad8                uart_getBrg
-                0x20003b04                uart_turnOn
-                0x20003b40                uart_turnOff
-                0x20003b7c                uart_write_Tx_reg
-                0x20003b9c                uart_Tx_reg_empty
-                0x20003bc8                uart_read_Rx_reg
-                0x20003bf8                uart_Rx_reg_full
-                0x20003c24                uart_poller
-                0x20003d74                uart_emptyTxBuf
- .ramcode.stub  0x20003df0       0x30 linker stubs
-                0x20003e20                . = ALIGN (0x4)
-                0x20003e20                PROVIDE (_ramcode_end, .)
+                0x20001288                loader_proto_static_init
+                0x20001464                callback_commandHadler
+                0x20001770                callback_checkOpcode
+                0x200017f0                call_back_errorHandler_uartHw
+                0x20001804                call_back_errorHandler_protocol
+                0x200022d4                loader_proto_query
+                0x200024f4                loader_proto_irqFromController
+ .ramcode       0x20002574      0x72c obj\Release\Src\loader\FlashAlgoFncs.o
+                0x20002574                FlashInit
+                0x200025dc                FlashUnInit
+                0x20002614                FlashEraseChip
+                0x20002734                FlashEraseSector
+                0x20002abc                FlashProgramPage
+                0x20002bfc                FlashVerify
+                0x20002c50                FlashBlankCheck
+ .ramcode       0x20002ca0      0x9f0 obj\Release\Src\loader\ringbuf.o
+                0x20002ca0                ringBuffer_init
+                0x20002cc0                ringBuffer_static_init
+                0x20002cf0                ringBuffer_resize
+                0x20002d30                ringBuffer_read
+                0x20002e44                ringBuffer_read_isr
+                0x20002f58                ringBuffer_write
+                0x20003098                ringBuffer_write_isr
+                0x200031d8                ringBuffer_get
+                0x20003238                ringBuffer_put
+                0x20003298                ringBuffer_get_isr
+                0x200032f8                ringBuffer_put_isr
+                0x20003358                ringBuffer_used
+                0x200033a8                ringBuffer_used_isr
+                0x200033f8                ringBuffer_size
+                0x20003410                ringBuffer_valid
+                0x20003434                ringBuffer_isEmpty
+                0x2000346c                ringBuffer_isEmpty_isr
+                0x200034a4                ringBuffer_isfull
+                0x200034cc                ringBuffer_isfull_isr
+                0x200034f4                ringBuffer_isvalid
+                0x20003518                ringBuffer_clear
+                0x20003554                ringBuffer_clear_isr
+                0x20003658                my_memcpy
+ .ramcode       0x20003690      0x7b8 obj\Release\Src\loader\UART_FM3.o
+                0x20003690                uart3_init
+                0x200036e4                uart_initBuf
+                0x20003728                uart_putc
+                0x20003788                uart_puts
+                0x200037d8                uart_getc
+                0x20003820                uart_startTx
+                0x20003878                uart_resetRxBuf
+                0x20003894                uart_getRxCount
+                0x200038b8                uart_resetTxBuf
+                0x200038d4                uart_getTxCount
+                0x200038f8                uart_getFreeTxCount
+                0x20003930                uart_isTxEmpty
+                0x20003954                uart_getHwError
+                0x20003970                uart_init_regs
+                0x20003a7c                uart_changeBaudRate_115200
+                0x20003a98                uart_changeBaudRate_57600
+                0x20003ab4                uart_changeBaudRate_38400
+                0x20003ad0                uart_changeBaudRate_9600
+                0x20003aec                uart_changeBaudRate_debug
+                0x20003b00                uart_changeBaudRate
+                0x20003b30                uart_getBrg
+                0x20003b5c                uart_turnOn
+                0x20003b98                uart_turnOff
+                0x20003bd4                uart_write_Tx_reg
+                0x20003bf4                uart_Tx_reg_empty
+                0x20003c20                uart_read_Rx_reg
+                0x20003c50                uart_Rx_reg_full
+                0x20003c7c                uart_poller
+                0x20003dcc                uart_emptyTxBuf
+ .ramcode.stub  0x20003e48       0x30 linker stubs
+                0x20003e78                . = ALIGN (0x4)
+                0x20003e78                PROVIDE (_ramcode_end, .)
 
-.rel.dyn        0x20003e20        0x0 load address 0x0003c6b0
+.rel.dyn        0x20003e78        0x0 load address 0x0003c718
  .rel.iplt      0x00000000        0x0 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m/crtbegin.o
 
 .xram           0x60000000        0x0
@@ -1618,116 +1600,116 @@ OUTPUT(bin\Release\Vitasmart_PROT.elf elf32-littlearm)
  .comment       0x00000000       0x71 obj\Release\Src\periph\UART.o
  .comment       0x00000000       0x71 obj\Release\Src\utility\util.o
 
-.debug_info     0x00000000    0x44ed6
+.debug_info     0x00000000    0x450ec
  .debug_info    0x00000000     0x1e99 obj\Release\Src\Application\AppMiddleWare\adcMapFlexiP.o
  .debug_info    0x00001e99     0x9b8a obj\Release\Src\Application\AppMiddleWare\mftEncoderPSUF.o
  .debug_info    0x0000ba23     0x1a69 obj\Release\Src\Application\Cd_AIR.o
  .debug_info    0x0000d48c     0x2013 obj\Release\Src\Application\Cd_ALA.o
  .debug_info    0x0000f49f     0x1cd6 obj\Release\Src\Application\Cd_PRE.o
- .debug_info    0x00011175     0x18d1 obj\Release\Src\Application\DECODE.o
- .debug_info    0x00012a46     0x3275 obj\Release\Src\Application\gesXfr_p.o
- .debug_info    0x00015cbb     0x6e3f obj\Release\Src\Application\globalApplication.o
- .debug_info    0x0001cafa     0x3a80 obj\Release\Src\board\board.o
- .debug_info    0x0002057a     0x1d56 obj\Release\Src\board\irqManager.o
- .debug_info    0x000222d0       0x8f obj\Release\Src\externVar.o
- .debug_info    0x0002235f      0x5fb obj\Release\Src\libfm3\fm3_sysclk.o
- .debug_info    0x0002295a     0xb9da obj\Release\Src\libfm3\multiFunctionTimer.o
- .debug_info    0x0002e334     0x6f0a obj\Release\Src\libfm3\SIOFM3.o
- .debug_info    0x0003523e      0xa60 obj\Release\Src\libfm3\SwTim.o
- .debug_info    0x00035c9e      0x263 obj\Release\Src\libPeriphDriver\sevenSegDrv.o
- .debug_info    0x00035f01      0x31f obj\Release\Src\loader\app_info.o
- .debug_info    0x00036220      0xc73 obj\Release\Src\loader\COMPROTO.o
- .debug_info    0x00036e93     0x1c3f obj\Release\Src\loader\COMPROTO_LOADER.o
- .debug_info    0x00038ad2      0x40c obj\Release\Src\loader\FlashAlgoFncs.o
- .debug_info    0x00038ede     0x18f0 obj\Release\Src\loader\fm3_baseTimer.o
- .debug_info    0x0003a7ce      0x683 obj\Release\Src\loader\loader_crc.o
- .debug_info    0x0003ae51      0x861 obj\Release\Src\loader\ringbuf.o
- .debug_info    0x0003b6b2      0xf09 obj\Release\Src\loader\UART_FM3.o
- .debug_info    0x0003c5bb     0x1985 obj\Release\Src\main.o
- .debug_info    0x0003df40      0xce9 obj\Release\Src\newlib\alloc.o
- .debug_info    0x0003ec29      0x1a3 obj\Release\Src\newlib\new.o
- .debug_info    0x0003edcc      0x2ea obj\Release\Src\os\ports\GCC\ARMCMx\crt0.o
- .debug_info    0x0003f0b6       0xb9 obj\Release\Src\os\ports\GCC\ARMCMx\MB9BF5xx\vectors.o
- .debug_info    0x0003f16f     0x2bf0 obj\Release\Src\periph\ADC.o
- .debug_info    0x00041d5f      0x78f obj\Release\Src\periph\COMBUF.o
- .debug_info    0x000424ee      0xb17 obj\Release\Src\periph\CSI.o
- .debug_info    0x00043005     0x12bc obj\Release\Src\periph\EEPROM.o
- .debug_info    0x000442c1      0x28f obj\Release\Src\periph\KEY.o
- .debug_info    0x00044550      0x807 obj\Release\Src\periph\UART.o
- .debug_info    0x00044d57      0x17f obj\Release\Src\utility\util.o
+ .debug_info    0x00011175     0x1938 obj\Release\Src\Application\DECODE.o
+ .debug_info    0x00012aad     0x3275 obj\Release\Src\Application\gesXfr_p.o
+ .debug_info    0x00015d22     0x6e3f obj\Release\Src\Application\globalApplication.o
+ .debug_info    0x0001cb61     0x3a80 obj\Release\Src\board\board.o
+ .debug_info    0x000205e1     0x1d81 obj\Release\Src\board\irqManager.o
+ .debug_info    0x00022362       0x8f obj\Release\Src\externVar.o
+ .debug_info    0x000223f1      0x5fb obj\Release\Src\libfm3\fm3_sysclk.o
+ .debug_info    0x000229ec     0xb9f3 obj\Release\Src\libfm3\multiFunctionTimer.o
+ .debug_info    0x0002e3df     0x7034 obj\Release\Src\libfm3\SIOFM3.o
+ .debug_info    0x00035413      0xa60 obj\Release\Src\libfm3\SwTim.o
+ .debug_info    0x00035e73      0x263 obj\Release\Src\libPeriphDriver\sevenSegDrv.o
+ .debug_info    0x000360d6      0x32a obj\Release\Src\loader\app_info.o
+ .debug_info    0x00036400      0xc73 obj\Release\Src\loader\COMPROTO.o
+ .debug_info    0x00037073     0x1c4c obj\Release\Src\loader\COMPROTO_LOADER.o
+ .debug_info    0x00038cbf      0x40c obj\Release\Src\loader\FlashAlgoFncs.o
+ .debug_info    0x000390cb     0x18f0 obj\Release\Src\loader\fm3_baseTimer.o
+ .debug_info    0x0003a9bb      0x683 obj\Release\Src\loader\loader_crc.o
+ .debug_info    0x0003b03e      0x861 obj\Release\Src\loader\ringbuf.o
+ .debug_info    0x0003b89f      0xf1b obj\Release\Src\loader\UART_FM3.o
+ .debug_info    0x0003c7ba     0x1984 obj\Release\Src\main.o
+ .debug_info    0x0003e13e      0xcf8 obj\Release\Src\newlib\alloc.o
+ .debug_info    0x0003ee36      0x1a3 obj\Release\Src\newlib\new.o
+ .debug_info    0x0003efd9      0x2ea obj\Release\Src\os\ports\GCC\ARMCMx\crt0.o
+ .debug_info    0x0003f2c3       0xb9 obj\Release\Src\os\ports\GCC\ARMCMx\MB9BF5xx\vectors.o
+ .debug_info    0x0003f37c     0x2bf3 obj\Release\Src\periph\ADC.o
+ .debug_info    0x00041f6f      0x78f obj\Release\Src\periph\COMBUF.o
+ .debug_info    0x000426fe      0xb17 obj\Release\Src\periph\CSI.o
+ .debug_info    0x00043215     0x12c2 obj\Release\Src\periph\EEPROM.o
+ .debug_info    0x000444d7      0x28f obj\Release\Src\periph\KEY.o
+ .debug_info    0x00044766      0x807 obj\Release\Src\periph\UART.o
+ .debug_info    0x00044f6d      0x17f obj\Release\Src\utility\util.o
 
-.debug_abbrev   0x00000000     0x5519
+.debug_abbrev   0x00000000     0x5525
  .debug_abbrev  0x00000000      0x387 obj\Release\Src\Application\AppMiddleWare\adcMapFlexiP.o
  .debug_abbrev  0x00000387      0x421 obj\Release\Src\Application\AppMiddleWare\mftEncoderPSUF.o
  .debug_abbrev  0x000007a8      0x370 obj\Release\Src\Application\Cd_AIR.o
  .debug_abbrev  0x00000b18      0x404 obj\Release\Src\Application\Cd_ALA.o
  .debug_abbrev  0x00000f1c      0x376 obj\Release\Src\Application\Cd_PRE.o
- .debug_abbrev  0x00001292      0x320 obj\Release\Src\Application\DECODE.o
- .debug_abbrev  0x000015b2      0x424 obj\Release\Src\Application\gesXfr_p.o
- .debug_abbrev  0x000019d6      0x5ab obj\Release\Src\Application\globalApplication.o
- .debug_abbrev  0x00001f81      0x273 obj\Release\Src\board\board.o
- .debug_abbrev  0x000021f4      0x390 obj\Release\Src\board\irqManager.o
- .debug_abbrev  0x00002584       0x44 obj\Release\Src\externVar.o
- .debug_abbrev  0x000025c8      0x14c obj\Release\Src\libfm3\fm3_sysclk.o
- .debug_abbrev  0x00002714      0x4e7 obj\Release\Src\libfm3\multiFunctionTimer.o
- .debug_abbrev  0x00002bfb      0x2da obj\Release\Src\libfm3\SIOFM3.o
- .debug_abbrev  0x00002ed5      0x238 obj\Release\Src\libfm3\SwTim.o
- .debug_abbrev  0x0000310d       0x7b obj\Release\Src\libPeriphDriver\sevenSegDrv.o
- .debug_abbrev  0x00003188       0xa4 obj\Release\Src\loader\app_info.o
- .debug_abbrev  0x0000322c      0x261 obj\Release\Src\loader\COMPROTO.o
- .debug_abbrev  0x0000348d      0x313 obj\Release\Src\loader\COMPROTO_LOADER.o
- .debug_abbrev  0x000037a0      0x129 obj\Release\Src\loader\FlashAlgoFncs.o
- .debug_abbrev  0x000038c9      0x259 obj\Release\Src\loader\fm3_baseTimer.o
- .debug_abbrev  0x00003b22      0x182 obj\Release\Src\loader\loader_crc.o
- .debug_abbrev  0x00003ca4      0x1b9 obj\Release\Src\loader\ringbuf.o
- .debug_abbrev  0x00003e5d      0x2c0 obj\Release\Src\loader\UART_FM3.o
- .debug_abbrev  0x0000411d      0x343 obj\Release\Src\main.o
- .debug_abbrev  0x00004460      0x23a obj\Release\Src\newlib\alloc.o
- .debug_abbrev  0x0000469a       0xd6 obj\Release\Src\newlib\new.o
- .debug_abbrev  0x00004770      0x10b obj\Release\Src\os\ports\GCC\ARMCMx\crt0.o
- .debug_abbrev  0x0000487b       0x75 obj\Release\Src\os\ports\GCC\ARMCMx\MB9BF5xx\vectors.o
- .debug_abbrev  0x000048f0      0x2a8 obj\Release\Src\periph\ADC.o
- .debug_abbrev  0x00004b98      0x1cb obj\Release\Src\periph\COMBUF.o
- .debug_abbrev  0x00004d63      0x1be obj\Release\Src\periph\CSI.o
- .debug_abbrev  0x00004f21      0x261 obj\Release\Src\periph\EEPROM.o
- .debug_abbrev  0x00005182      0x129 obj\Release\Src\periph\KEY.o
- .debug_abbrev  0x000052ab      0x1b5 obj\Release\Src\periph\UART.o
- .debug_abbrev  0x00005460       0xb9 obj\Release\Src\utility\util.o
+ .debug_abbrev  0x00001292      0x2f2 obj\Release\Src\Application\DECODE.o
+ .debug_abbrev  0x00001584      0x424 obj\Release\Src\Application\gesXfr_p.o
+ .debug_abbrev  0x000019a8      0x5ab obj\Release\Src\Application\globalApplication.o
+ .debug_abbrev  0x00001f53      0x273 obj\Release\Src\board\board.o
+ .debug_abbrev  0x000021c6      0x39b obj\Release\Src\board\irqManager.o
+ .debug_abbrev  0x00002561       0x44 obj\Release\Src\externVar.o
+ .debug_abbrev  0x000025a5      0x14c obj\Release\Src\libfm3\fm3_sysclk.o
+ .debug_abbrev  0x000026f1      0x4e7 obj\Release\Src\libfm3\multiFunctionTimer.o
+ .debug_abbrev  0x00002bd8      0x305 obj\Release\Src\libfm3\SIOFM3.o
+ .debug_abbrev  0x00002edd      0x238 obj\Release\Src\libfm3\SwTim.o
+ .debug_abbrev  0x00003115       0x7b obj\Release\Src\libPeriphDriver\sevenSegDrv.o
+ .debug_abbrev  0x00003190       0xa4 obj\Release\Src\loader\app_info.o
+ .debug_abbrev  0x00003234      0x261 obj\Release\Src\loader\COMPROTO.o
+ .debug_abbrev  0x00003495      0x313 obj\Release\Src\loader\COMPROTO_LOADER.o
+ .debug_abbrev  0x000037a8      0x129 obj\Release\Src\loader\FlashAlgoFncs.o
+ .debug_abbrev  0x000038d1      0x259 obj\Release\Src\loader\fm3_baseTimer.o
+ .debug_abbrev  0x00003b2a      0x182 obj\Release\Src\loader\loader_crc.o
+ .debug_abbrev  0x00003cac      0x1b9 obj\Release\Src\loader\ringbuf.o
+ .debug_abbrev  0x00003e65      0x2c0 obj\Release\Src\loader\UART_FM3.o
+ .debug_abbrev  0x00004125      0x343 obj\Release\Src\main.o
+ .debug_abbrev  0x00004468      0x249 obj\Release\Src\newlib\alloc.o
+ .debug_abbrev  0x000046b1       0xd6 obj\Release\Src\newlib\new.o
+ .debug_abbrev  0x00004787      0x10b obj\Release\Src\os\ports\GCC\ARMCMx\crt0.o
+ .debug_abbrev  0x00004892       0x75 obj\Release\Src\os\ports\GCC\ARMCMx\MB9BF5xx\vectors.o
+ .debug_abbrev  0x00004907      0x2aa obj\Release\Src\periph\ADC.o
+ .debug_abbrev  0x00004bb1      0x1cb obj\Release\Src\periph\COMBUF.o
+ .debug_abbrev  0x00004d7c      0x1be obj\Release\Src\periph\CSI.o
+ .debug_abbrev  0x00004f3a      0x254 obj\Release\Src\periph\EEPROM.o
+ .debug_abbrev  0x0000518e      0x129 obj\Release\Src\periph\KEY.o
+ .debug_abbrev  0x000052b7      0x1b5 obj\Release\Src\periph\UART.o
+ .debug_abbrev  0x0000546c       0xb9 obj\Release\Src\utility\util.o
 
-.debug_loc      0x00000000     0x8ec9
+.debug_loc      0x00000000     0x8ee1
  .debug_loc     0x00000000       0xa8 obj\Release\Src\Application\AppMiddleWare\adcMapFlexiP.o
  .debug_loc     0x000000a8      0x1c1 obj\Release\Src\Application\AppMiddleWare\mftEncoderPSUF.o
  .debug_loc     0x00000269       0x90 obj\Release\Src\Application\Cd_AIR.o
  .debug_loc     0x000002f9      0x304 obj\Release\Src\Application\Cd_ALA.o
  .debug_loc     0x000005fd       0xe0 obj\Release\Src\Application\Cd_PRE.o
- .debug_loc     0x000006dd      0xec4 obj\Release\Src\Application\DECODE.o
- .debug_loc     0x000015a1      0x150 obj\Release\Src\Application\gesXfr_p.o
- .debug_loc     0x000016f1      0x5f8 obj\Release\Src\Application\globalApplication.o
- .debug_loc     0x00001ce9      0x43c obj\Release\Src\board\board.o
- .debug_loc     0x00002125      0x908 obj\Release\Src\board\irqManager.o
- .debug_loc     0x00002a2d       0xa8 obj\Release\Src\libfm3\fm3_sysclk.o
- .debug_loc     0x00002ad5     0x1094 obj\Release\Src\libfm3\multiFunctionTimer.o
- .debug_loc     0x00003b69     0x11e2 obj\Release\Src\libfm3\SIOFM3.o
- .debug_loc     0x00004d4b      0x224 obj\Release\Src\libfm3\SwTim.o
- .debug_loc     0x00004f6f      0x3c8 obj\Release\Src\libPeriphDriver\sevenSegDrv.o
- .debug_loc     0x00005337      0x380 obj\Release\Src\loader\COMPROTO.o
- .debug_loc     0x000056b7      0x640 obj\Release\Src\loader\COMPROTO_LOADER.o
- .debug_loc     0x00005cf7      0x188 obj\Release\Src\loader\FlashAlgoFncs.o
- .debug_loc     0x00005e7f      0xb20 obj\Release\Src\loader\fm3_baseTimer.o
- .debug_loc     0x0000699f       0x70 obj\Release\Src\loader\loader_crc.o
- .debug_loc     0x00006a0f      0x5e8 obj\Release\Src\loader\ringbuf.o
- .debug_loc     0x00006ff7      0x658 obj\Release\Src\loader\UART_FM3.o
- .debug_loc     0x0000764f       0x70 obj\Release\Src\main.o
- .debug_loc     0x000076bf      0x1ec obj\Release\Src\newlib\alloc.o
- .debug_loc     0x000078ab       0xe0 obj\Release\Src\newlib\new.o
- .debug_loc     0x0000798b       0x90 obj\Release\Src\os\ports\GCC\ARMCMx\crt0.o
- .debug_loc     0x00007a1b      0x2a0 obj\Release\Src\periph\ADC.o
- .debug_loc     0x00007cbb      0x3ac obj\Release\Src\periph\COMBUF.o
- .debug_loc     0x00008067      0x540 obj\Release\Src\periph\CSI.o
- .debug_loc     0x000085a7      0x3ae obj\Release\Src\periph\EEPROM.o
- .debug_loc     0x00008955      0x14c obj\Release\Src\periph\KEY.o
- .debug_loc     0x00008aa1      0x380 obj\Release\Src\periph\UART.o
- .debug_loc     0x00008e21       0xa8 obj\Release\Src\utility\util.o
+ .debug_loc     0x000006dd      0xed0 obj\Release\Src\Application\DECODE.o
+ .debug_loc     0x000015ad      0x150 obj\Release\Src\Application\gesXfr_p.o
+ .debug_loc     0x000016fd      0x5f8 obj\Release\Src\Application\globalApplication.o
+ .debug_loc     0x00001cf5      0x43c obj\Release\Src\board\board.o
+ .debug_loc     0x00002131      0x914 obj\Release\Src\board\irqManager.o
+ .debug_loc     0x00002a45       0xa8 obj\Release\Src\libfm3\fm3_sysclk.o
+ .debug_loc     0x00002aed     0x1094 obj\Release\Src\libfm3\multiFunctionTimer.o
+ .debug_loc     0x00003b81     0x11e2 obj\Release\Src\libfm3\SIOFM3.o
+ .debug_loc     0x00004d63      0x224 obj\Release\Src\libfm3\SwTim.o
+ .debug_loc     0x00004f87      0x3c8 obj\Release\Src\libPeriphDriver\sevenSegDrv.o
+ .debug_loc     0x0000534f      0x380 obj\Release\Src\loader\COMPROTO.o
+ .debug_loc     0x000056cf      0x640 obj\Release\Src\loader\COMPROTO_LOADER.o
+ .debug_loc     0x00005d0f      0x188 obj\Release\Src\loader\FlashAlgoFncs.o
+ .debug_loc     0x00005e97      0xb20 obj\Release\Src\loader\fm3_baseTimer.o
+ .debug_loc     0x000069b7       0x70 obj\Release\Src\loader\loader_crc.o
+ .debug_loc     0x00006a27      0x5e8 obj\Release\Src\loader\ringbuf.o
+ .debug_loc     0x0000700f      0x658 obj\Release\Src\loader\UART_FM3.o
+ .debug_loc     0x00007667       0x70 obj\Release\Src\main.o
+ .debug_loc     0x000076d7      0x1ec obj\Release\Src\newlib\alloc.o
+ .debug_loc     0x000078c3       0xe0 obj\Release\Src\newlib\new.o
+ .debug_loc     0x000079a3       0x90 obj\Release\Src\os\ports\GCC\ARMCMx\crt0.o
+ .debug_loc     0x00007a33      0x2a0 obj\Release\Src\periph\ADC.o
+ .debug_loc     0x00007cd3      0x3ac obj\Release\Src\periph\COMBUF.o
+ .debug_loc     0x0000807f      0x540 obj\Release\Src\periph\CSI.o
+ .debug_loc     0x000085bf      0x3ae obj\Release\Src\periph\EEPROM.o
+ .debug_loc     0x0000896d      0x14c obj\Release\Src\periph\KEY.o
+ .debug_loc     0x00008ab9      0x380 obj\Release\Src\periph\UART.o
+ .debug_loc     0x00008e39       0xa8 obj\Release\Src\utility\util.o
 
 .debug_aranges  0x00000000      0x830
  .debug_aranges
@@ -1803,163 +1785,163 @@ OUTPUT(bin\Release\Vitasmart_PROT.elf elf32-littlearm)
  .debug_aranges
                 0x00000810       0x20 obj\Release\Src\utility\util.o
 
-.debug_line     0x00000000     0x937e
- .debug_line    0x00000000      0x732 obj\Release\Src\Application\AppMiddleWare\adcMapFlexiP.o
- .debug_line    0x00000732      0x6a8 obj\Release\Src\Application\AppMiddleWare\mftEncoderPSUF.o
- .debug_line    0x00000dda      0x642 obj\Release\Src\Application\Cd_AIR.o
- .debug_line    0x0000141c      0x87e obj\Release\Src\Application\Cd_ALA.o
- .debug_line    0x00001c9a      0x676 obj\Release\Src\Application\Cd_PRE.o
- .debug_line    0x00002310      0x4f2 obj\Release\Src\Application\DECODE.o
- .debug_line    0x00002802      0x79f obj\Release\Src\Application\gesXfr_p.o
- .debug_line    0x00002fa1      0x9c3 obj\Release\Src\Application\globalApplication.o
- .debug_line    0x00003964      0x2ee obj\Release\Src\board\board.o
- .debug_line    0x00003c52      0x6fd obj\Release\Src\board\irqManager.o
- .debug_line    0x0000434f       0xe0 obj\Release\Src\externVar.o
- .debug_line    0x0000442f      0x209 obj\Release\Src\libfm3\fm3_sysclk.o
- .debug_line    0x00004638      0xc0e obj\Release\Src\libfm3\multiFunctionTimer.o
- .debug_line    0x00005246      0x71a obj\Release\Src\libfm3\SIOFM3.o
- .debug_line    0x00005960      0x22a obj\Release\Src\libfm3\SwTim.o
- .debug_line    0x00005b8a      0x213 obj\Release\Src\libPeriphDriver\sevenSegDrv.o
- .debug_line    0x00005d9d       0xf6 obj\Release\Src\loader\app_info.o
- .debug_line    0x00005e93      0x534 obj\Release\Src\loader\COMPROTO.o
- .debug_line    0x000063c7      0x457 obj\Release\Src\loader\COMPROTO_LOADER.o
- .debug_line    0x0000681e      0x2be obj\Release\Src\loader\FlashAlgoFncs.o
- .debug_line    0x00006adc      0x6cf obj\Release\Src\loader\fm3_baseTimer.o
- .debug_line    0x000071ab      0x2ad obj\Release\Src\loader\loader_crc.o
- .debug_line    0x00007458      0x26a obj\Release\Src\loader\ringbuf.o
- .debug_line    0x000076c2      0x273 obj\Release\Src\loader\UART_FM3.o
- .debug_line    0x00007935      0x60f obj\Release\Src\main.o
- .debug_line    0x00007f44      0x2a0 obj\Release\Src\newlib\alloc.o
- .debug_line    0x000081e4      0x103 obj\Release\Src\newlib\new.o
- .debug_line    0x000082e7      0x15d obj\Release\Src\os\ports\GCC\ARMCMx\crt0.o
- .debug_line    0x00008444       0x92 obj\Release\Src\os\ports\GCC\ARMCMx\MB9BF5xx\vectors.o
- .debug_line    0x000084d6      0x3d7 obj\Release\Src\periph\ADC.o
- .debug_line    0x000088ad      0x20f obj\Release\Src\periph\COMBUF.o
- .debug_line    0x00008abc      0x19a obj\Release\Src\periph\CSI.o
- .debug_line    0x00008c56      0x2f8 obj\Release\Src\periph\EEPROM.o
- .debug_line    0x00008f4e      0x1b3 obj\Release\Src\periph\KEY.o
- .debug_line    0x00009101      0x153 obj\Release\Src\periph\UART.o
- .debug_line    0x00009254      0x12a obj\Release\Src\utility\util.o
+.debug_line     0x00000000     0x9563
+ .debug_line    0x00000000      0x733 obj\Release\Src\Application\AppMiddleWare\adcMapFlexiP.o
+ .debug_line    0x00000733      0x6a9 obj\Release\Src\Application\AppMiddleWare\mftEncoderPSUF.o
+ .debug_line    0x00000ddc      0x643 obj\Release\Src\Application\Cd_AIR.o
+ .debug_line    0x0000141f      0x87f obj\Release\Src\Application\Cd_ALA.o
+ .debug_line    0x00001c9e      0x677 obj\Release\Src\Application\Cd_PRE.o
+ .debug_line    0x00002315      0x579 obj\Release\Src\Application\DECODE.o
+ .debug_line    0x0000288e      0x7a0 obj\Release\Src\Application\gesXfr_p.o
+ .debug_line    0x0000302e      0x9c0 obj\Release\Src\Application\globalApplication.o
+ .debug_line    0x000039ee      0x2ef obj\Release\Src\board\board.o
+ .debug_line    0x00003cdd      0x702 obj\Release\Src\board\irqManager.o
+ .debug_line    0x000043df       0xe1 obj\Release\Src\externVar.o
+ .debug_line    0x000044c0      0x20a obj\Release\Src\libfm3\fm3_sysclk.o
+ .debug_line    0x000046ca      0xc22 obj\Release\Src\libfm3\multiFunctionTimer.o
+ .debug_line    0x000052ec      0x818 obj\Release\Src\libfm3\SIOFM3.o
+ .debug_line    0x00005b04      0x22b obj\Release\Src\libfm3\SwTim.o
+ .debug_line    0x00005d2f      0x214 obj\Release\Src\libPeriphDriver\sevenSegDrv.o
+ .debug_line    0x00005f43       0xf7 obj\Release\Src\loader\app_info.o
+ .debug_line    0x0000603a      0x535 obj\Release\Src\loader\COMPROTO.o
+ .debug_line    0x0000656f      0x45f obj\Release\Src\loader\COMPROTO_LOADER.o
+ .debug_line    0x000069ce      0x2c8 obj\Release\Src\loader\FlashAlgoFncs.o
+ .debug_line    0x00006c96      0x6d0 obj\Release\Src\loader\fm3_baseTimer.o
+ .debug_line    0x00007366      0x2ae obj\Release\Src\loader\loader_crc.o
+ .debug_line    0x00007614      0x26b obj\Release\Src\loader\ringbuf.o
+ .debug_line    0x0000787f      0x274 obj\Release\Src\loader\UART_FM3.o
+ .debug_line    0x00007af3      0x610 obj\Release\Src\main.o
+ .debug_line    0x00008103      0x2ad obj\Release\Src\newlib\alloc.o
+ .debug_line    0x000083b0      0x104 obj\Release\Src\newlib\new.o
+ .debug_line    0x000084b4      0x15e obj\Release\Src\os\ports\GCC\ARMCMx\crt0.o
+ .debug_line    0x00008612       0x93 obj\Release\Src\os\ports\GCC\ARMCMx\MB9BF5xx\vectors.o
+ .debug_line    0x000086a5      0x3e4 obj\Release\Src\periph\ADC.o
+ .debug_line    0x00008a89      0x210 obj\Release\Src\periph\COMBUF.o
+ .debug_line    0x00008c99      0x19b obj\Release\Src\periph\CSI.o
+ .debug_line    0x00008e34      0x2fc obj\Release\Src\periph\EEPROM.o
+ .debug_line    0x00009130      0x1b4 obj\Release\Src\periph\KEY.o
+ .debug_line    0x000092e4      0x154 obj\Release\Src\periph\UART.o
+ .debug_line    0x00009438      0x12b obj\Release\Src\utility\util.o
 
-.debug_str      0x00000000    0x1065c
- .debug_str     0x00000000     0x133f obj\Release\Src\Application\AppMiddleWare\adcMapFlexiP.o
-                               0x1509 (size before relaxing)
- .debug_str     0x0000133f     0x3f34 obj\Release\Src\Application\AppMiddleWare\mftEncoderPSUF.o
-                               0x4f48 (size before relaxing)
- .debug_str     0x00005273       0xd2 obj\Release\Src\Application\Cd_AIR.o
-                               0x12f9 (size before relaxing)
- .debug_str     0x00005345      0x3c4 obj\Release\Src\Application\Cd_ALA.o
-                               0x15f3 (size before relaxing)
- .debug_str     0x00005709       0xaf obj\Release\Src\Application\Cd_PRE.o
-                               0x138b (size before relaxing)
- .debug_str     0x000057b8      0xe00 obj\Release\Src\Application\DECODE.o
-                               0x11a1 (size before relaxing)
- .debug_str     0x000065b8      0x8fa obj\Release\Src\Application\gesXfr_p.o
-                               0x2007 (size before relaxing)
- .debug_str     0x00006eb2     0x211b obj\Release\Src\Application\globalApplication.o
-                               0x3996 (size before relaxing)
- .debug_str     0x00008fcd      0xc22 obj\Release\Src\board\board.o
-                               0x1db7 (size before relaxing)
- .debug_str     0x00009bef      0x29c obj\Release\Src\board\irqManager.o
-                               0x1469 (size before relaxing)
- .debug_str     0x00009e8b       0x8b obj\Release\Src\externVar.o
-                                0x16f (size before relaxing)
- .debug_str     0x00009f16       0xe1 obj\Release\Src\libfm3\fm3_sysclk.o
-                                0x59d (size before relaxing)
- .debug_str     0x00009ff7      0x3ac obj\Release\Src\libfm3\multiFunctionTimer.o
-                               0x50c3 (size before relaxing)
- .debug_str     0x0000a3a3      0xfab obj\Release\Src\libfm3\SIOFM3.o
-                               0x2d94 (size before relaxing)
- .debug_str     0x0000b34e      0x3af obj\Release\Src\libfm3\SwTim.o
-                                0x73e (size before relaxing)
- .debug_str     0x0000b6fd      0x10c obj\Release\Src\libPeriphDriver\sevenSegDrv.o
-                                0x22b (size before relaxing)
- .debug_str     0x0000b809      0x39c obj\Release\Src\loader\app_info.o
-                                0x4bf (size before relaxing)
- .debug_str     0x0000bba5      0x69d obj\Release\Src\loader\COMPROTO.o
-                                0xc89 (size before relaxing)
- .debug_str     0x0000c242     0x1090 obj\Release\Src\loader\COMPROTO_LOADER.o
-                               0x219a (size before relaxing)
- .debug_str     0x0000d2d2      0x10a obj\Release\Src\loader\FlashAlgoFncs.o
-                                0x2c0 (size before relaxing)
- .debug_str     0x0000d3dc      0xd3b obj\Release\Src\loader\fm3_baseTimer.o
-                                0xf41 (size before relaxing)
- .debug_str     0x0000e117       0xc5 obj\Release\Src\loader\loader_crc.o
-                                0x6be (size before relaxing)
- .debug_str     0x0000e1dc      0x266 obj\Release\Src\loader\ringbuf.o
-                                0x3ff (size before relaxing)
- .debug_str     0x0000e442      0x2b7 obj\Release\Src\loader\UART_FM3.o
-                                0x7ed (size before relaxing)
- .debug_str     0x0000e6f9       0x60 obj\Release\Src\main.o
-                                0xe83 (size before relaxing)
- .debug_str     0x0000e759      0x185 obj\Release\Src\newlib\alloc.o
-                                0x6bc (size before relaxing)
- .debug_str     0x0000e8de       0xa8 obj\Release\Src\newlib\new.o
-                                0x1ce (size before relaxing)
- .debug_str     0x0000e986       0xf3 obj\Release\Src\os\ports\GCC\ARMCMx\crt0.o
-                                0x2c1 (size before relaxing)
- .debug_str     0x0000ea79       0x72 obj\Release\Src\os\ports\GCC\ARMCMx\MB9BF5xx\vectors.o
-                                0x188 (size before relaxing)
- .debug_str     0x0000eaeb      0xba0 obj\Release\Src\periph\ADC.o
-                                0xf92 (size before relaxing)
- .debug_str     0x0000f68b      0x409 obj\Release\Src\periph\COMBUF.o
-                                0x5c4 (size before relaxing)
- .debug_str     0x0000fa94      0x461 obj\Release\Src\periph\CSI.o
-                                0x66f (size before relaxing)
- .debug_str     0x0000fef5      0x2c7 obj\Release\Src\periph\EEPROM.o
-                                0x7be (size before relaxing)
- .debug_str     0x000101bc      0x110 obj\Release\Src\periph\KEY.o
-                                0x243 (size before relaxing)
- .debug_str     0x000102cc      0x2d0 obj\Release\Src\periph\UART.o
-                                0x561 (size before relaxing)
- .debug_str     0x0001059c       0xc0 obj\Release\Src\utility\util.o
-                                0x1f6 (size before relaxing)
+.debug_str      0x00000000    0x106cd
+ .debug_str     0x00000000     0x1341 obj\Release\Src\Application\AppMiddleWare\adcMapFlexiP.o
+                               0x150b (size before relaxing)
+ .debug_str     0x00001341     0x3f35 obj\Release\Src\Application\AppMiddleWare\mftEncoderPSUF.o
+                               0x4f4a (size before relaxing)
+ .debug_str     0x00005276       0xd3 obj\Release\Src\Application\Cd_AIR.o
+                               0x12fb (size before relaxing)
+ .debug_str     0x00005349      0x3c5 obj\Release\Src\Application\Cd_ALA.o
+                               0x15f5 (size before relaxing)
+ .debug_str     0x0000570e       0xb0 obj\Release\Src\Application\Cd_PRE.o
+                               0x138d (size before relaxing)
+ .debug_str     0x000057be      0xe13 obj\Release\Src\Application\DECODE.o
+                               0x11b5 (size before relaxing)
+ .debug_str     0x000065d1      0x8fb obj\Release\Src\Application\gesXfr_p.o
+                               0x2009 (size before relaxing)
+ .debug_str     0x00006ecc     0x2113 obj\Release\Src\Application\globalApplication.o
+                               0x398f (size before relaxing)
+ .debug_str     0x00008fdf      0xc23 obj\Release\Src\board\board.o
+                               0x1db9 (size before relaxing)
+ .debug_str     0x00009c02      0x2b6 obj\Release\Src\board\irqManager.o
+                               0x1484 (size before relaxing)
+ .debug_str     0x00009eb8       0x8c obj\Release\Src\externVar.o
+                                0x171 (size before relaxing)
+ .debug_str     0x00009f44       0xe2 obj\Release\Src\libfm3\fm3_sysclk.o
+                                0x59f (size before relaxing)
+ .debug_str     0x0000a026      0x3ad obj\Release\Src\libfm3\multiFunctionTimer.o
+                               0x50c5 (size before relaxing)
+ .debug_str     0x0000a3d3      0xfcc obj\Release\Src\libfm3\SIOFM3.o
+                               0x2dc2 (size before relaxing)
+ .debug_str     0x0000b39f      0x3b0 obj\Release\Src\libfm3\SwTim.o
+                                0x740 (size before relaxing)
+ .debug_str     0x0000b74f      0x10d obj\Release\Src\libPeriphDriver\sevenSegDrv.o
+                                0x22d (size before relaxing)
+ .debug_str     0x0000b85c      0x3a7 obj\Release\Src\loader\app_info.o
+                                0x4cb (size before relaxing)
+ .debug_str     0x0000bc03      0x69e obj\Release\Src\loader\COMPROTO.o
+                                0xc8b (size before relaxing)
+ .debug_str     0x0000c2a1     0x1091 obj\Release\Src\loader\COMPROTO_LOADER.o
+                               0x21a6 (size before relaxing)
+ .debug_str     0x0000d332      0x10b obj\Release\Src\loader\FlashAlgoFncs.o
+                                0x2c2 (size before relaxing)
+ .debug_str     0x0000d43d      0xd3c obj\Release\Src\loader\fm3_baseTimer.o
+                                0xf43 (size before relaxing)
+ .debug_str     0x0000e179       0xc6 obj\Release\Src\loader\loader_crc.o
+                                0x6c0 (size before relaxing)
+ .debug_str     0x0000e23f      0x267 obj\Release\Src\loader\ringbuf.o
+                                0x401 (size before relaxing)
+ .debug_str     0x0000e4a6      0x2b8 obj\Release\Src\loader\UART_FM3.o
+                                0x7ef (size before relaxing)
+ .debug_str     0x0000e75e       0x61 obj\Release\Src\main.o
+                                0xe85 (size before relaxing)
+ .debug_str     0x0000e7bf      0x186 obj\Release\Src\newlib\alloc.o
+                                0x6c8 (size before relaxing)
+ .debug_str     0x0000e945       0xa9 obj\Release\Src\newlib\new.o
+                                0x1d0 (size before relaxing)
+ .debug_str     0x0000e9ee       0xf4 obj\Release\Src\os\ports\GCC\ARMCMx\crt0.o
+                                0x2c3 (size before relaxing)
+ .debug_str     0x0000eae2       0x73 obj\Release\Src\os\ports\GCC\ARMCMx\MB9BF5xx\vectors.o
+                                0x18a (size before relaxing)
+ .debug_str     0x0000eb55      0xba1 obj\Release\Src\periph\ADC.o
+                                0xf94 (size before relaxing)
+ .debug_str     0x0000f6f6      0x40a obj\Release\Src\periph\COMBUF.o
+                                0x5c6 (size before relaxing)
+ .debug_str     0x0000fb00      0x462 obj\Release\Src\periph\CSI.o
+                                0x671 (size before relaxing)
+ .debug_str     0x0000ff62      0x2c8 obj\Release\Src\periph\EEPROM.o
+                                0x7c0 (size before relaxing)
+ .debug_str     0x0001022a      0x111 obj\Release\Src\periph\KEY.o
+                                0x245 (size before relaxing)
+ .debug_str     0x0001033b      0x2d1 obj\Release\Src\periph\UART.o
+                                0x563 (size before relaxing)
+ .debug_str     0x0001060c       0xc1 obj\Release\Src\utility\util.o
+                                0x1f8 (size before relaxing)
 
-.debug_frame    0x00000000     0x51cc
+.debug_frame    0x00000000     0x51dc
  .debug_frame   0x00000000       0x6c obj\Release\Src\Application\AppMiddleWare\adcMapFlexiP.o
  .debug_frame   0x0000006c      0x10c obj\Release\Src\Application\AppMiddleWare\mftEncoderPSUF.o
  .debug_frame   0x00000178       0x60 obj\Release\Src\Application\Cd_AIR.o
  .debug_frame   0x000001d8      0x1c0 obj\Release\Src\Application\Cd_ALA.o
  .debug_frame   0x00000398       0x8c obj\Release\Src\Application\Cd_PRE.o
- .debug_frame   0x00000424      0x848 obj\Release\Src\Application\DECODE.o
- .debug_frame   0x00000c6c       0xc8 obj\Release\Src\Application\gesXfr_p.o
- .debug_frame   0x00000d34      0x374 obj\Release\Src\Application\globalApplication.o
- .debug_frame   0x000010a8      0x268 obj\Release\Src\board\board.o
- .debug_frame   0x00001310      0x500 obj\Release\Src\board\irqManager.o
- .debug_frame   0x00001810       0x68 obj\Release\Src\libfm3\fm3_sysclk.o
- .debug_frame   0x00001878      0x89c obj\Release\Src\libfm3\multiFunctionTimer.o
- .debug_frame   0x00002114      0x990 obj\Release\Src\libfm3\SIOFM3.o
- .debug_frame   0x00002aa4      0x13c obj\Release\Src\libfm3\SwTim.o
- .debug_frame   0x00002be0      0x220 obj\Release\Src\libPeriphDriver\sevenSegDrv.o
- .debug_frame   0x00002e00      0x1ec obj\Release\Src\loader\COMPROTO.o
- .debug_frame   0x00002fec      0x398 obj\Release\Src\loader\COMPROTO_LOADER.o
- .debug_frame   0x00003384       0xd8 obj\Release\Src\loader\FlashAlgoFncs.o
- .debug_frame   0x0000345c      0x618 obj\Release\Src\loader\fm3_baseTimer.o
- .debug_frame   0x00003a74       0x48 obj\Release\Src\loader\loader_crc.o
- .debug_frame   0x00003abc      0x354 obj\Release\Src\loader\ringbuf.o
- .debug_frame   0x00003e10      0x378 obj\Release\Src\loader\UART_FM3.o
- .debug_frame   0x00004188       0x4c obj\Release\Src\main.o
- .debug_frame   0x000041d4      0x118 obj\Release\Src\newlib\alloc.o
- .debug_frame   0x000042ec       0x90 obj\Release\Src\newlib\new.o
- .debug_frame   0x0000437c       0x7c obj\Release\Src\os\ports\GCC\ARMCMx\crt0.o
- .debug_frame   0x000043f8       0x20 obj\Release\Src\os\ports\GCC\ARMCMx\MB9BF5xx\vectors.o
- .debug_frame   0x00004418      0x180 obj\Release\Src\periph\ADC.o
- .debug_frame   0x00004598      0x214 obj\Release\Src\periph\COMBUF.o
- .debug_frame   0x000047ac      0x304 obj\Release\Src\periph\CSI.o
- .debug_frame   0x00004ab0      0x220 obj\Release\Src\periph\EEPROM.o
- .debug_frame   0x00004cd0       0xc8 obj\Release\Src\periph\KEY.o
- .debug_frame   0x00004d98      0x204 obj\Release\Src\periph\UART.o
- .debug_frame   0x00004f9c       0x68 obj\Release\Src\utility\util.o
- .debug_frame   0x00005004       0x34 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-__atexit.o)
- .debug_frame   0x00005038       0x2c c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-fini.o)
- .debug_frame   0x00005064       0x2c c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-memcmp.o)
- .debug_frame   0x00005090       0x30 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-memcpy.o)
- .debug_frame   0x000050c0       0x2c c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-memset.o)
- .debug_frame   0x000050ec       0x2c c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-stpncpy.o)
- .debug_frame   0x00005118       0x20 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-strlen.o)
- .debug_frame   0x00005138       0x2c c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-strncmp.o)
- .debug_frame   0x00005164       0x48 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-__call_atexit.o)
- .debug_frame   0x000051ac       0x20 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-atexit.o)
+ .debug_frame   0x00000424      0x84c obj\Release\Src\Application\DECODE.o
+ .debug_frame   0x00000c70       0xc8 obj\Release\Src\Application\gesXfr_p.o
+ .debug_frame   0x00000d38      0x374 obj\Release\Src\Application\globalApplication.o
+ .debug_frame   0x000010ac      0x268 obj\Release\Src\board\board.o
+ .debug_frame   0x00001314      0x504 obj\Release\Src\board\irqManager.o
+ .debug_frame   0x00001818       0x68 obj\Release\Src\libfm3\fm3_sysclk.o
+ .debug_frame   0x00001880      0x89c obj\Release\Src\libfm3\multiFunctionTimer.o
+ .debug_frame   0x0000211c      0x990 obj\Release\Src\libfm3\SIOFM3.o
+ .debug_frame   0x00002aac      0x13c obj\Release\Src\libfm3\SwTim.o
+ .debug_frame   0x00002be8      0x220 obj\Release\Src\libPeriphDriver\sevenSegDrv.o
+ .debug_frame   0x00002e08      0x1ec obj\Release\Src\loader\COMPROTO.o
+ .debug_frame   0x00002ff4      0x398 obj\Release\Src\loader\COMPROTO_LOADER.o
+ .debug_frame   0x0000338c       0xd8 obj\Release\Src\loader\FlashAlgoFncs.o
+ .debug_frame   0x00003464      0x618 obj\Release\Src\loader\fm3_baseTimer.o
+ .debug_frame   0x00003a7c       0x48 obj\Release\Src\loader\loader_crc.o
+ .debug_frame   0x00003ac4      0x354 obj\Release\Src\loader\ringbuf.o
+ .debug_frame   0x00003e18      0x378 obj\Release\Src\loader\UART_FM3.o
+ .debug_frame   0x00004190       0x4c obj\Release\Src\main.o
+ .debug_frame   0x000041dc      0x118 obj\Release\Src\newlib\alloc.o
+ .debug_frame   0x000042f4       0x90 obj\Release\Src\newlib\new.o
+ .debug_frame   0x00004384       0x7c obj\Release\Src\os\ports\GCC\ARMCMx\crt0.o
+ .debug_frame   0x00004400       0x20 obj\Release\Src\os\ports\GCC\ARMCMx\MB9BF5xx\vectors.o
+ .debug_frame   0x00004420      0x188 obj\Release\Src\periph\ADC.o
+ .debug_frame   0x000045a8      0x214 obj\Release\Src\periph\COMBUF.o
+ .debug_frame   0x000047bc      0x304 obj\Release\Src\periph\CSI.o
+ .debug_frame   0x00004ac0      0x220 obj\Release\Src\periph\EEPROM.o
+ .debug_frame   0x00004ce0       0xc8 obj\Release\Src\periph\KEY.o
+ .debug_frame   0x00004da8      0x204 obj\Release\Src\periph\UART.o
+ .debug_frame   0x00004fac       0x68 obj\Release\Src\utility\util.o
+ .debug_frame   0x00005014       0x34 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-__atexit.o)
+ .debug_frame   0x00005048       0x2c c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-fini.o)
+ .debug_frame   0x00005074       0x2c c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-memcmp.o)
+ .debug_frame   0x000050a0       0x30 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-memcpy.o)
+ .debug_frame   0x000050d0       0x2c c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-memset.o)
+ .debug_frame   0x000050fc       0x2c c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-stpncpy.o)
+ .debug_frame   0x00005128       0x20 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-strlen.o)
+ .debug_frame   0x00005148       0x2c c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-strncmp.o)
+ .debug_frame   0x00005174       0x48 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-__call_atexit.o)
+ .debug_frame   0x000051bc       0x20 c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-atexit.o)
 
 .debug_ranges   0x00000000      0x490
  .debug_ranges  0x00000000       0x28 obj\Release\Src\Application\Cd_ALA.o
@@ -2586,7 +2568,6 @@ eep_setDeviceAddress                              obj\Release\Src\periph\EEPROM.
 eep_setupMem                                      obj\Release\Src\periph\EEPROM.o
 eep_spi_putc                                      obj\Release\Src\periph\EEPROM.o
 eep_writeMem                                      obj\Release\Src\periph\EEPROM.o
-                                                  obj\Release\Src\Application\globalApplication.o
 eep_writeParam                                    obj\Release\Src\periph\EEPROM.o
                                                   obj\Release\Src\Application\globalApplication.o
                                                   obj\Release\Src\Application\AppMiddleWare\adcMapFlexiP.o
@@ -2602,7 +2583,6 @@ extractBit(unsigned long)                         obj\Release\Src\utility\util.o
 extratcIndexFromBitMask                           obj\Release\Src\utility\util.o
 fPSBasePeriod                                     obj\Release\Src\Application\AppMiddleWare\mftEncoderPSUF.o
 fUFBasePeriod                                     obj\Release\Src\Application\AppMiddleWare\mftEncoderPSUF.o
-fail_dat                                          obj\Release\Src\Application\globalApplication.o
 fm3_BT_init                                       obj\Release\Src\loader\fm3_baseTimer.o
 fm3_BT_setCountClock                              obj\Release\Src\loader\fm3_baseTimer.o
 fm3_BT_setCountClockCnt                           obj\Release\Src\loader\fm3_baseTimer.o
@@ -2658,8 +2638,8 @@ free                                              obj\Release\Src\newlib\alloc.o
                                                   c:/program files (x86)/emide/emide v2.20/arm/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-__call_atexit.o)
 g_ComProtoUartSemaphore                           obj\Release\Src\externVar.o
                                                   obj\Release\Src\board\irqManager.o
-g_JumpingCodeMemLocation                          obj\Release\Src\loader\loader_crc.o
-                                                  obj\Release\Src\loader\COMPROTO_LOADER.o
+g_JumpingCodeMemLocation                          obj\Release\Src\loader\COMPROTO_LOADER.o
+                                                  obj\Release\Src\loader\loader_crc.o
 g_PSFreqCounter                                   obj\Release\Src\Application\globalApplication.o
                                                   obj\Release\Src\Application\gesXfr_p.o
                                                   obj\Release\Src\Application\AppMiddleWare\mftEncoderPSUF.o

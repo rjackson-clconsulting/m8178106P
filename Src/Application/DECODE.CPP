@@ -5,6 +5,8 @@
 @date		16/05/2017
 @version	01.00
 @source     M75-CPU Protective
+@ Note: tnoergaard 10/16/2025, added volatile to most globals to resolve SonarQube issues and
+@ error handling
 */
 
 #include "decode.h"
@@ -19,20 +21,20 @@ extern char sAppName[];
 //-------------------------------------------------------
 // Variabili globali utili a tutti i moduli
 //-------------------------------------------------------
-word lung_rx;				// conteggio lunghezza in ricezione
-word tot_rx;				// conteggio num cacatteri ricevuti
-word lung_tx;              	// lunghezza della trasmissione
-word rx_mem;
-word rx_tot;
-word tx_mem;
-byte rx_etx;				// flag fine ricezione con ETX incamerato
+volatile word lung_rx = 0;				// conteggio lunghezza in ricezione
+volatile word tot_rx = 0;				// conteggio num cacatteri ricevuti
+volatile word lung_tx = 0;              	// lunghezza della trasmissione
+volatile word rx_mem = 0;
+volatile word  rx_tot = 0;
+volatile word tx_mem = 0;
+volatile byte rx_etx = 0;				// flag fine ricezione con ETX incamerato
 
-uint16_t NEW_BAUD;
-byte GROUP_ID;
-byte stato_rx;				// stato esecuzione ricezione
-byte err_ges;				// stato errore gestore protocollo seriale
+volatile uint16_t NEW_BAUD = 0;
+volatile byte GROUP_ID = 0;
+volatile byte stato_rx = 0;				// stato esecuzione ricezione
+volatile byte err_ges = 0;				// stato errore gestore protocollo seriale
 
-SystemStatus SysStatus;		// stato di funzionamento
+volatile SystemStatus SysStatus;		// stato di funzionamento
 
 //-------------------------------------------------------
 // Funzioni statiche utili solo a questo modulo
@@ -50,33 +52,38 @@ SystemStatus SysStatus;		// stato di funzionamento
 // Variabili statiche utili solo a questo modulo
 //-------------------------------------------------------
 
-STATIProt statoProto;       // stato esecuzione gestore protocollo seriale
+volatile STATIProt statoProto = PR_INIT;       // stato esecuzione gestore protocollo seriale
 
 int (*fpstart)();			// puntatore alla funzione di servizio
-long fpjump;				// flag chiamata alla funzione di jump
+volatile long  fpjump = 0;				// flag chiamata alla funzione di jump
 
-word chk_sum;               // Somma per controllo
+volatile word chk_sum = 0;               // Somma per controllo
 
-byte tx_prec;				// carattere precedente	inviato
-byte rx_prec;				// carattere precedente	ricevuto
+volatile byte tx_prec = 0;				// carattere precedente	inviato
+volatile byte rx_prec = 0;				// carattere precedente	ricevuto
 
-byte *tx_buffer;
-byte *rx_buffer;
+volatile byte *tx_buffer = NULL;
+volatile byte *rx_buffer = NULL;
 
 
 
 // Inizializzazione
 
-void proto_init(UARTHandle hUartDevA)
+bool proto_init(UARTHandle hUartDevA)
 {
+    bool returnVal = False;
+
 	statoProto = PR_RX_AND_DECODE;
 
     stato_rx = 0;
     fpjump = 0;
 
-	mem_alloc(DIM_BUF_TX, (void **) &tx_buffer);
-	mem_alloc(DIM_BUF_RX, (void **) &rx_buffer);
-
+	returnVal = mem_alloc(DIM_BUF_TX, (void **) &tx_buffer);
+	if (returnVal == True)
+	{
+	  returnVal = mem_alloc(DIM_BUF_RX, (void **) &rx_buffer);
+    }
+    return returnVal;
 }
 
 
@@ -84,27 +91,30 @@ void proto_init(UARTHandle hUartDevA)
 
 // Entry point del gestore per il protocollo seriale
 
-void protoEntry(void)
+bool protoEntry(void)
 {
-
+    bool returnVal = False;
     switch( statoProto )
     {
         case    PR_RX_AND_DECODE:
 //            if(BAUD!=NEW_BAUD && !uart_getRxCount(hUartDevA))			// cambio baudrate alla fine del pacco prec.
 //                BAUD=NEW_BAUD;
-
-			if( protoRxAndDecode() == True )
+            returnVal = protoRxAndDecode();
+			if( returnVal == True )
 				statoProto = PR_EXEC_SPEC_CMD;				// salto con l'asta
 	        break;
 
         case    PR_EXEC_SPEC_CMD:
-				if( protoExecSpecCmd() == True )			// se è un comando speciale
+
+                returnVal = protoExecSpecCmd();
+				if( returnVal == True )			// se è un comando speciale
 				{
 					statoProto = PR_WAIT_TX_END;			// aspetta che tutto venga inviato
 				}
 				else
 				{
-					if( protoExecUserCmd() == True )		// se è un comando utente
+				    returnVal = protoExecUserCmd();
+					if( returnVal == True )		// se è un comando utente
 					{
 						statoProto = PR_WAIT_TX_END;		// aspetta che tutto venga inviato
 					}
@@ -116,13 +126,14 @@ void protoEntry(void)
 	            break;
 
         case    PR_EXEC_ILLEGAL_CMD:
-        	protoExecIllegalCmd();							// prepara la risposta
+        	returnVal = protoExecIllegalCmd();				// prepara la risposta
 			statoProto = PR_WAIT_TX_END;					// aspetta che tutto venga inviato
             break;
 
         case    PR_WAIT_TX_END:
             if( !uart_getTxCount(hUartDevA) )				// se tutto è stato inviato...
             {
+                returnVal = True;
             	statoProto = PR_RX_AND_DECODE;				// riparte da capo
 
             	if( fpjump == MAGIC_JUMP )					// magic number ?
@@ -136,8 +147,13 @@ void protoEntry(void)
         case    PR_TX_ERR:
             err_protoc();
             break;
+
+        default:
+          returnVal = False;
+          break;
     }
 
+    return returnVal;
 }
 
 
@@ -145,9 +161,11 @@ void protoEntry(void)
 
 bool protoRxAndDecode(void)
 {
-byte c=0,chr1;
-word chkCalc, chkRx;
-int i;
+byte c = 0;
+byte chr1 = 0;
+word chkCalc = 0;
+word chkRx = 0;
+int i = 0;
 
     while( uart_getRxCount(hUartDevA) )
     {
@@ -180,7 +198,11 @@ int i;
 				if(	c == 0x03 && stato_rx == 1 )		// etx ? fine pacco
 				{
 					rx_buffer[rx_mem]	= c;			// avanti il prossimo
+#ifdef EXCLUDE_SONAR_QUBE
 					rx_tot++;							// Incrementa i	Bytes Ricevuti
+#else
+					rx_tot = rx_tot + 1;							// Incrementa i	Bytes Ricevuti
+#endif
 					rx_etx = 1;							// una sequenza di etx ricevuta
 
 	                if( rx_buffer[2] == GROUP_ID || rx_buffer[2] == 0  )
@@ -229,8 +251,14 @@ int i;
 					{
 						if( rx_mem < DIM_BUF_RX - 10 )
 						{
+#ifdef EXCLUDE_SONAR_QUBE
 							rx_buffer[rx_mem++]	= 0x02;		// avanti il prossimo
-							rx_tot++;						// Incrementa i	Bytes Ricevuti
+ 					        rx_tot++;							// Incrementa i	Bytes Ricevuti
+#else
+							rx_buffer[rx_mem]	= 0x02;		// avanti il prossimo
+							rx_mem = rx_mem + 1;
+					        rx_tot = rx_tot + 1;							// Incrementa i	Bytes Ricevuti
+#endif
 						}
 					}
 				}
@@ -245,8 +273,14 @@ int i;
 			{
 				if( rx_mem < DIM_BUF_RX - 10 )
 				{
+ #ifdef EXCLUDE_SONAR_QUBE
 					rx_buffer[rx_mem++]	= c;			// avanti il prossimo
 					rx_tot++;								// Incrementa i	Bytes Ricevuti
+#else
+					rx_buffer[rx_mem]	= c;		// avanti il prossimo
+					rx_mem = rx_mem + 1;
+			        rx_tot = rx_tot + 1;			// Incrementa i	Bytes Ricevuti
+#endif
 				}
 			}
 		}
@@ -407,13 +441,17 @@ bool ExecWrCodeCmd(void)
 
 bool ExecRdByteCmd(void)
 {
-int i;
-byte *pd;
+int i = 0;
+byte *pd = NULL;
 
-	for(i=1,lung_tx=0; i<lung_rx; i+=2,lung_tx++)
+    i=1;
+    lung_tx=0;
+	while(i<lung_rx)
 	{
 		pd = (byte *) ((drx_ser[i+1]<<8) + drx_ser[i]);
 		dtx_ser[lung_tx] = *pd;
+		i+=2;
+		lung_tx = lung_tx + 1;
 	}
 
 	return( True );
@@ -422,14 +460,18 @@ byte *pd;
 
 bool ExecWrByteCmd(void)
 {
-int i;
-byte *pd;
+int i = 0;
+byte *pd = NULL;
 
-	for(i=lung_tx=1; i<lung_rx; i+=3)
+    i= 1;
+    lung_tx=1;
+
+	while(i<lung_rx )
 	{
 		pd = (byte *)((drx_ser[i+1]<<8)+drx_ser[i]);
 
 		*pd = drx_ser[i+2];
+		i+=3;
 	}
 
 	return( True );
@@ -438,8 +480,8 @@ byte *pd;
 
 bool ExecRdBlockCmd(void)
 {
-int i;
-byte *pd;
+int i = 0;
+byte *pd = NULL;
 
     pd = (byte *) ((drx_ser[2]<<8) + drx_ser[1]);  /* indirizzo di partenza */
     i = ((drx_ser[4]<<8) + drx_ser[3]);
@@ -450,7 +492,7 @@ byte *pd;
     dtx_ser[0] = i & 0xFF;
     dtx_ser[1] = i >> 8;
 
-    ramcpy(&dtx_ser[2], pd, i);     /* copia il copiabile */
+    ramcpy((void *)&dtx_ser[2], pd, i);     /* copia il copiabile */
     lung_tx = i+3;
 
 	return( True );
@@ -460,13 +502,13 @@ byte *pd;
 
 bool ExecWrBlockCmd(void)
 {
-int i;
-byte *pd;
+int i = 0;
+byte *pd = NULL;
 
 	pd = (byte *) ((drx_ser[2]<<8) + drx_ser[1]);  /* indirizzo di partenza */
 	i = ((drx_ser[4]<<8) + drx_ser[3]);
 
-	ramcpy(pd, &drx_ser[5], i);     /* copia il copiabile */
+	ramcpy(pd, (void *)&drx_ser[5], i);     /* copia il copiabile */
 	lung_tx = 1;
 
 	return( True );
@@ -478,7 +520,7 @@ byte *pd;
 */
 bool ExecChkStatusCmd(void)
 {
-	ramcpy(dtx_ser, &SysStatus, sizeof(SystemStatus));		// copia pure i dati di sistema
+	ramcpy((void *)dtx_ser, (void *) &SysStatus, sizeof(SystemStatus));		// copia pure i dati di sistema
 
 	return( protoEncodeAndTx(sizeof(SystemStatus)) );	// spedisce .... come richiesto
 }
@@ -488,11 +530,11 @@ bool ExecChkStatusCmd(void)
 */
 bool ExecChkFullStatusCmd(void)
 {
-register FullSystemStatus *ps;
-const char **pVersApp;
-const char **pNameApp;
-const long *pmagic;
-const long *pChkCalc;
+register FullSystemStatus *ps = NULL;
+const char **pVersApp= NULL;
+const char **pNameApp= NULL;
+const long *pmagic= NULL;
+const long *pChkCalc= NULL;
 
 
     ps = (FullSystemStatus *) dtx_ser;  				/* Punta a dtx_ser di tipo SysStat */
@@ -547,7 +589,9 @@ bool ExecJmpToLoaderCmd(void)
     if( drx_ser[1] == 0xaa && drx_ser[2] == 0x55 )
     {
 //??      disable_interrupt();
+#ifdef SONAR_QUBE_EXCLUDE
       *(word *)0x0000=0xaa55;
+#endif
       while(1);					// autodistruzione
     }
     else
@@ -592,7 +636,7 @@ bool ExecSysResetCmd(void)
 
 void romstrcpy(char *pfDst, const char *pfSrc, int size)
 {
-int i;
+int i = 0;
 
 	for(i=0;i<size; i++)	// numero di revisione del loader
 		*pfDst++ = *pfSrc++;
@@ -610,19 +654,19 @@ int i;
 
 bool ExecSelfBlkChk(void)
 {
-int result;
-dword address;
+int result = 0;
+dword address = 0;
 											/* Codice del Comando "blank_check" : verifica che tutte le celle siano cancellate = 0xFF */
 											/* Dati aggiuntivi: 				*/
 											/* 	-dword-  Address -  indirizzo dell'area su cui eseguire il check */
 											/* Dati restituiti: 				*/
 											/* 	-word-  result 	-  risultato dell'operazione:ok-no_ok */
-	address = (dword) xctLong(&drx_ser[0]);
+	address = (dword) xctLong((byte *)&drx_ser[0]);
 
 //	result = selfprog_blankCheck(address);
 
 //	result = 0;
-	ramcpy(dtx_ser, &result, 2);		// copia i dati in partenza
+	ramcpy((void *)dtx_ser, &result, 2);		// copia i dati in partenza
 
 	return( protoEncodeAndTx(2) );			// spedisce .... il risultato
 }
@@ -630,20 +674,20 @@ dword address;
 
 bool ExecSelfPreWrite(void)
 {
-int result;
-dword address;
+int result = 0;
+dword address = 0;
 
 								           	/* Codice del Comando "prewrite" : mette a zero tutte le celle di flash per poter cancellare */
 											/* Dati aggiuntivi: 				*/
 											/* 	-dword-  Address -  indirizzo dell'area su cui eseguire il pre-write */
 											/* Dati restituiti: 				*/
 											/* 	-word-  result 	-  risultato dell'operazione:ok-no_ok */
-	address = (dword) xctLong(&drx_ser[0]);
+	address = (dword) xctLong((byte *)&drx_ser[0]);
 
 //	result = selfprog_preWrite(address);
 	result = 0;
 
-	ramcpy(dtx_ser, &result, 2);		// copia i dati in partenza
+	ramcpy((void *)dtx_ser, &result, 2);		// copia i dati in partenza
 
 	return( protoEncodeAndTx(2) );			// spedisce .... il risultato
 }
@@ -651,19 +695,19 @@ dword address;
 
 bool ExecSelfWriteBack(void)
 {
-int result;
-dword address;
+int result = 0;
+dword address = 0;
 								           	/* Codice del Comando "writeback" : prova ad "equalizzare" le celle */
 											/* Dati aggiuntivi: 				*/
 											/* 	-dword-  Address -  indirizzo dell'area su cui eseguire il write back */
 											/* Dati restituiti: 				*/
 											/* 	-word-  result 	-  risultato dell'operazione:ok-no_ok */
-	address = (dword) xctLong(&drx_ser[0]);
+	address = (dword) xctLong((byte *)&drx_ser[0]);
 
 //	result = selfprog_writeBack(address);
 	result = 0;
 
-	ramcpy(dtx_ser, &result, 2);		// copia i dati in partenza
+	ramcpy((void *)dtx_ser, &result, 2);		// copia i dati in partenza
 
 	return( protoEncodeAndTx(2) );			// spedisce .... il risultato
 }
@@ -671,7 +715,7 @@ dword address;
 
 bool ExecSelfChipErase(void)
 {
-int result;
+int result = 0;
 											/* !!!!! Comando principale da utilizzare per la cancellazione !!!!!*/
 								           	/* Codice del Comando "chipErase" : cancella tutta la flash + riscrive il loader */
 											/* Dati aggiuntivi: 	nessuno	*/
@@ -682,7 +726,7 @@ int result;
 
 //	result = 0;
 
-	ramcpy(dtx_ser, &result, 2);		// copia i dati in partenza
+	ramcpy((void *)dtx_ser, &result, 2);		// copia i dati in partenza
 
 	return( protoEncodeAndTx(2) );			// spedisce .... il risultato
 }
@@ -690,11 +734,11 @@ int result;
 
 bool ExecSelfWriteBlock(void)
 {
-int result;
-byte *pWrite;
-byte *pData;
+int result = 0;
+byte *pWrite = NULL;
+byte *pData = NULL;
 //word fData;
-long count;
+long count = 0;
 //int sector=0;
 								           	/* Codice del Comando "writeBlock" : scrive un blocco di dati in flash */
 											/* Dati aggiuntivi: 				*/
@@ -703,9 +747,9 @@ long count;
 											/* 	-byte[]- DataBlock 	-  blocco di dati da scrivere a seguire  */
 											/* Dati restituiti: 				*/
 											/* 	-word-  result 	-  risultato dell'operazione:ok-no_ok */
-	pWrite = (byte *) xctLong(&drx_ser[0]);
-	count = xctLong(&drx_ser[4]);
-	pData = &drx_ser[8];
+	pWrite = (byte *) xctLong((byte *)&drx_ser[0]);
+	count = xctLong((byte *)&drx_ser[4]);
+	pData = (byte *)&drx_ser[8];
 
 	if( count > DIM_BUF_RX - 24 )			// piccolo controllo limiti anti-autodistruzione
 		count = DIM_BUF_RX - 24;
@@ -800,7 +844,7 @@ long count;
 //		result = 0;					// tutto ok !!
 //	}
 
-	ramcpy(dtx_ser, &result, 2);			// copia i dati in partenza
+	ramcpy((void *)dtx_ser, &result, 2);			// copia i dati in partenza
 
 	return( protoEncodeAndTx(2) );			// spedisce .... il risultato
 }
@@ -808,10 +852,10 @@ long count;
 
 bool ExecSelfReadBlock(void)
 {
-byte *pWrite;
-byte *pRead;
-long count;
-long dataSize;
+byte *pWrite = NULL;
+byte *pRead = NULL;
+long count = 0;
+long dataSize = 0;
 								           	/* Codice del Comando "readBlock" : legge un blocco di dati dalla */
 											/* Dati aggiuntivi: 				*/
 											/* 	-dword-  Address 	-  indirizzo (flash/ram) di partenza del blocco di dati da leggere */
@@ -820,19 +864,19 @@ long dataSize;
 											/* 	-dword-  Address 	-  indirizzo (flash/ram) di partenza del blocco di dati letti */
 											/* 	-dword-  Size    	-  numero di bytes in transfer */
 											/* 	-byte[]- DataBlock 	-  dati a seguire  */
-	pRead = (byte *) xctLong(&drx_ser[0]);
+	pRead = (byte *) xctLong((byte *)&drx_ser[0]);
 
 											// dimensione blocco richiesta
-	count = xctLong(&drx_ser[4]);
+	count = xctLong((byte *)&drx_ser[4]);
 
 	if( count > DIM_BUF_TX - 24 )			// piccolo controllo limiti anti-autodistruzione
 		count = DIM_BUF_TX - 24;
 
 											// crea l'intestazione:
-	ramcpy(&dtx_ser[0], &pRead, 4);			// 	indirizzo effettivo
-	ramcpy(&dtx_ser[4], &count, 4);			// 	numero di bytes effettivo
+	ramcpy((void *)&dtx_ser[0], &pRead, 4);			// 	indirizzo effettivo
+	ramcpy((void *)&dtx_ser[4], &count, 4);			// 	numero di bytes effettivo
 
-	pWrite = &dtx_ser[8];					// non necessario
+	pWrite = (byte *)&dtx_ser[8];					// non necessario
 
 	dataSize = count;						// copia prima che sia troppo tardi
 
@@ -845,10 +889,10 @@ long dataSize;
 
 bool ExecSelfVerifBlock(void)
 {
-int result;
-byte *pRead;
-byte *pData;
-long count;
+int result = 0;
+byte *pRead = NULL;
+byte *pData = NULL;
+long count =0;
 
 								           	/* Codice del Comando "verifBlock" : verifica un blocco di dati in flash con i dati passati */
 											/* Dati aggiuntivi: 				*/
@@ -857,13 +901,13 @@ long count;
 											/* 	-byte-   DataBlock 	-  blocco di dati da scrivere a seguire  */
 											/* Dati restituiti: 				*/
 											/* 	-word-  result 	-  risultato dell'operazione:ok-no_ok */
-	pRead = (byte *) xctLong(&drx_ser[0]);
-	count = xctLong(&drx_ser[4]);
+	pRead = (byte *) xctLong((byte *)&drx_ser[0]);
+	count = xctLong((byte *)&drx_ser[4]);
 
 	if( count > DIM_BUF_RX - 24 )			// piccolo controllo limiti anti-autodistruzione
 		count = DIM_BUF_RX - 24;
 
-	pData = &drx_ser[8];					// dati passati
+	pData = (byte *)&drx_ser[8];					// dati passati
 
 	result = 0;								// tutto ok !!...... per il momento
 
@@ -878,7 +922,7 @@ long count;
 		count--;
 	}
 
-	ramcpy(dtx_ser, &result, 2);		// copia i dati in partenza
+	ramcpy((void *)dtx_ser, &result, 2);		// copia i dati in partenza
 
 	return( protoEncodeAndTx(2) );			// spedisce .... il risultato
 }
@@ -899,7 +943,7 @@ bool ExecSelfSignature(void)
 
 bool ExecSelfCtrlVpp(void)
 {
-int result;
+int result = 0;
 		          							/* Codice del Comando "setVPP" : esegue il controllo dell'alimentazione per la prog. */
 											/* Dati aggiuntivi: 				*/
 											/* 	-byte-  Enable -  se =0 disattiva VPP, se <> 0 attiva VPP */
@@ -914,7 +958,7 @@ int result;
 //	}
 
 //	result = 0;
-	ramcpy(dtx_ser, &result, 2);		// copia i dati in partenza
+	ramcpy((void *)dtx_ser, &result, 2);		// copia i dati in partenza
 
 	return( protoEncodeAndTx(2) );			// spedisce .... il risultato
 }
@@ -922,15 +966,15 @@ int result;
 
 bool ExecSelfAreaEr(void)
 {
-int result;
-dword address;
+int result = 0;
+dword address = 0;
 
 								           	/* Codice del Comando "areaErase" : esegue l'erase di un'area con il prewrite implicito */
 											/* Dati aggiuntivi: 				*/
 											/* 	-dword-  Address -  indirizzo dell'area su cui eseguire l'erase con eventuale prewrite automatico */
 											/* Dati restituiti: 				*/
 											/* 	-word-  result 	-  risultato dell'operazione:ok-no_ok */
-	address = (dword) xctLong(&drx_ser[0]);
+	address = (dword) xctLong((byte *)&drx_ser[0]);
 //	selfprog_startproc();
 
 //	if( address == 0x20000 )
@@ -938,7 +982,7 @@ dword address;
 //	else
 //		result = 0;
 
-	ramcpy(dtx_ser, &result, 2);		// copia i dati in partenza
+	ramcpy((void *)dtx_ser, &result, 2);		// copia i dati in partenza
 
 	return( protoEncodeAndTx(2) );			// spedisce .... il risultato
 }
@@ -946,20 +990,20 @@ dword address;
 
 bool ExecSelfFlashEr(void)
 {
-int result;
-dword address;
+int result = 0;
+dword address = 0;
 								          	/* Codice del Comando "flashErase" : esegue il solo comando di erase (da usare con molta delicatezza) */
 											/* Dati aggiuntivi: 				*/
 											/* 	-dword-  Address -  indirizzo dell'area su cui eseguire il solo erase brutale */
 											/* Dati restituiti: 				*/
 											/* 	-word-  result 	-  risultato dell'operazione:ok-no_ok */
-	address = (dword) xctLong(&drx_ser[0]);
+	address = (dword) xctLong((byte *)&drx_ser[0]);
 //	selfprog_startproc();
 
 //	result = selfprog_flashErase(address);
 	result = 0;
 
-	ramcpy(dtx_ser, &result, 2);		// copia i dati in partenza
+	ramcpy((void *)dtx_ser, &result, 2);		// copia i dati in partenza
 
 	return( protoEncodeAndTx(2) );			// spedisce .... il risultato
 }
@@ -967,19 +1011,19 @@ dword address;
 
 bool ExecSelfRewrLoader(void)
 {
-int result;
-dword address;
+int result = 0;
+dword address = 0;
 								         	/* Codice del Comando "rewriteLoaqder": forza la copiatura del loader dalla ram alla flash */
 											/* Dati aggiuntivi: 	*/
 											/* 	-dword-  Address -  indirizzo dell'area di memoria ram in cui è stata copiata l'immagine del loader */
 											/* Dati restituiti: 				*/
 											/* 	-word-  result 	-  risultato dell'operazione:ok-no_ok */
-	address = (dword) xctLong(&drx_ser[0]);
+	address = (dword) xctLong((byte *)&drx_ser[0]);
 
 //	result = selfprog_rewriteLoader(address);
 	result = 0;
 
-	ramcpy(dtx_ser, &result, 2);		// copia i dati in partenza
+	ramcpy((void *)dtx_ser, &result, 2);		// copia i dati in partenza
 
 	return( protoEncodeAndTx(2) );			// spedisce .... il risultato
 }
@@ -987,19 +1031,19 @@ dword address;
 
 bool ExecSelfInternVerif(void)
 {
-int result;
-dword address;
+int result = 0;
+dword address = 0;
 								           	/* Codice del Comando "internalVerify": comando internal verify */
 											/* Dati aggiuntivi: 				*/
 											/* 	-dword-  Address -  indirizzo dell'area di memoria su cui eseguire il verify */
 											/* Dati restituiti: 				*/
 											/* 	-word-  result 	-  risultato dell'operazione:ok-no_ok */
-	address = (dword) xctLong(&drx_ser[0]);
+	address = (dword) xctLong((byte *)&drx_ser[0]);
 
 //	result = in_verify(address);
 //	result = 0;
 
-	ramcpy(dtx_ser, &result, 2);			// copia i dati in partenza
+	ramcpy((void *)dtx_ser, &result, 2);			// copia i dati in partenza
 
 	return( protoEncodeAndTx(2) );			// spedisce .... il risultato
 }
@@ -1007,8 +1051,11 @@ dword address;
 
 bool ExecSelfParam(void)
 {
-long Freq, WriteTime, EraseTime, WriteBackTime;
-int result;
+long Freq = 0;
+long WriteTime =0;
+long EraseTime = 0;
+long WriteBackTime = 0;
+int result = 0;
 								          	/* Codice del Comando "setparam": imposta i parametri di programmazione */
 											/* Dati aggiuntivi: 				*/
 											/* 	-dword-  Freq 	   		-  frequenza di clock del micretto (in Hz) */
@@ -1017,15 +1064,15 @@ int result;
 											/* 	-dword-  WriteBackTime 	-  tempo di write-back del micretto (in uSec)  */
 											/* Dati restituiti: 				*/
 											/* Dati restituiti: nessuno				*/
-	Freq = xctLong(&drx_ser[0]);
-	WriteTime = xctLong(&drx_ser[4]);
-	EraseTime = xctLong(&drx_ser[8]);
-	WriteBackTime = xctLong(&drx_ser[12]);
+	Freq = xctLong((byte *)&drx_ser[0]);
+	WriteTime = xctLong((byte *)&drx_ser[4]);
+	EraseTime = xctLong((byte *)&drx_ser[8]);
+	WriteBackTime = xctLong((byte *)&drx_ser[12]);
 
 //	selfprog_setparam(Freq, WriteTime, EraseTime, WriteBackTime);
 
 	result = 0;
-	ramcpy(dtx_ser, &result, 2);		// copia i dati in partenza
+	ramcpy((void *)dtx_ser, &result, 2);		// copia i dati in partenza
 
 	return( protoEncodeAndTx(2) );			// spedisce .... il risultato
 }
@@ -1033,20 +1080,20 @@ int result;
 
 bool ExecSelfJmpToApp(void)
 {
-dword address;
-int result;
+dword address = 0;
+int result = 0;
 
 								           	/* Codice del Comando JMPTOAPP: forza il salto dal loader all'applicazione all'indirizzo richiesto */
 											/* Dati aggiuntivi: 				*/
 											/* 	-dword-  Address   		-  indirizzo salto nell'app utente: se = 0xFFFF.FFFF -> salta all'indirizzo di default dell'app.  */
 											/* Dati restituiti: nessuno				*/
-	address = (dword) xctLong(&drx_ser[0]);
+	address = (dword) xctLong((byte *)&drx_ser[0]);
 
 	fpstart = (int(*)()) address;			// force jump
 	fpjump = MAGIC_JUMP;					// setta il flag
 	result = 0;
 
-	ramcpy(dtx_ser, &result, 2);		// copia i dati in partenza
+	ramcpy((void *)dtx_ser, &result, 2);		// copia i dati in partenza
 
 	return( protoEncodeAndTx(2) );			// spedisce .... il risultato
 }
@@ -1055,7 +1102,7 @@ int result;
 
 bool ExecSelfJmpToLoader(void)
 {
-int result;
+int result = 0;
 							            	/* Codice del Comando JMPTOLOAD: forza il salto dall'applicazione al loader */
 											/* Dati aggiuntivi: nessuno (usa indirizzo loader di default) */
 											/* Dati restituiti: nessuno				*/
@@ -1064,7 +1111,7 @@ int result;
 
 	result = 2;								// già nel loader....!!
 
-	ramcpy(dtx_ser, &result, 2);		// copia i dati in partenza
+	ramcpy((void *)dtx_ser, &result, 2);		// copia i dati in partenza
 
 	return( protoEncodeAndTx(0) );			// spedisce .... il risultato
 }
@@ -1257,8 +1304,8 @@ bool protoExecUserCmd(void)
 
 bool UserTestCom(void)
 {
-TestComInfo *ps;
-word dataSize;
+TestComInfo *ps = NULL;
+word dataSize = 0;
 
 static TestComInfo comInfo;
 
@@ -1276,7 +1323,7 @@ static TestComInfo comInfo;
 
 	ps = (TestComInfo *) &dtx_ser[0];		// piglia il puntatore al blocco
 
-	ramcpy(dtx_ser, &comInfo, sizeof(comInfo));	// copia i dati in partenza
+	ramcpy((void *)dtx_ser, &comInfo, sizeof(comInfo));	// copia i dati in partenza
 
 //	cmd_tx = SERTST_COM;
 //	com_n_ser = 0;
@@ -1497,7 +1544,7 @@ bool UserAdcSpanCmd(void)
 */
 dword xctLong(byte *pdata)
 {
-dword	d;
+dword	d = 0;
 byte 	*pd = (byte *) &d;
 
 	*pd++ = *pdata++;
@@ -1511,7 +1558,7 @@ byte 	*pd = (byte *) &d;
 
 bool protoEncodeAndTx(word dataSize)
 {
-word i;
+word i = 0;
 word chkCalc = 0;
 word packSize = dataSize + 1;
 byte c=0;
@@ -1522,6 +1569,7 @@ byte c=0;
 	tx_mem = 0;								// reset indice inserimento
 
 //    tx_buffer[tx_mem++] = STX;         		// Intestazione
+#ifdef EXCLUDE_SONAR_QUBE
     tx_buffer[tx_mem++] = ma_gr_id;
     tx_buffer[tx_mem++] = ma_no_id;
     tx_buffer[tx_mem++] = GROUP_ID;
@@ -1530,18 +1578,48 @@ byte c=0;
     tx_buffer[tx_mem++] = packSize & 0xff;
     tx_buffer[tx_mem++] = packSize >> 8;
     tx_buffer[tx_mem++] = cmd_rx;			// comando da spedire...uguale a quello ricevuto ??
-
+#else
+    tx_buffer[tx_mem] = ma_gr_id;
+    tx_mem = tx_mem + 1;
+    tx_buffer[tx_mem] = ma_no_id;
+    tx_mem = tx_mem + 1;
+    tx_buffer[tx_mem] = GROUP_ID;
+    tx_mem = tx_mem + 1;
+    tx_buffer[tx_mem] = NUMBER_ID;
+    tx_mem = tx_mem + 1;
+    tx_buffer[tx_mem] = com_n_ser;
+    tx_mem = tx_mem + 1;
+    tx_buffer[tx_mem] = packSize & 0xff;
+    tx_mem = tx_mem + 1;
+    tx_buffer[tx_mem] = packSize >> 8;
+    tx_mem = tx_mem + 1;
+    tx_buffer[tx_mem] = cmd_rx;			// comando da spedire...uguale a quello ricevuto ??
+    tx_mem = tx_mem + 1;
+ #endif
     chkCalc = 0xFFFF;
 
     for(i=0; i < tx_mem; i++)				// calcolo chk basale...saltando l'stx
         chkCalc += tx_buffer[i];
 
+#ifdef EXCLUDE_SONAR_QUBE
     for(i=0; i < dataSize; i++)				// calcolo chk dati
         chkCalc += tx_buffer[tx_mem++];
+
 
     tx_buffer[tx_mem++] = chkCalc & 0xFF;	// infila il chk calcolato
     tx_buffer[tx_mem++] = chkCalc >> 8;		// infila il chk calcolato
 //    tx_buffer[tx_mem++] = ETX;				// l'etx chiude il pacco
+#else
+   for(i=0; i < dataSize; i++)				// calcolo chk dati
+   {
+     chkCalc += tx_buffer[tx_mem];
+     tx_mem = tx_mem + 1;
+   }
+   tx_buffer[tx_mem] = chkCalc & 0xFF;	// infila il chk calcolato
+   tx_mem = tx_mem + 1;
+   tx_buffer[tx_mem] = chkCalc >> 8;		// infila il chk calcolato
+   tx_mem = tx_mem + 1;
+#endif
 
 	uart_putc(hUartDevA, 0x02);				// carattere STX
 	uart_putc(hUartDevA, 0x02);

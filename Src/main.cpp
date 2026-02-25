@@ -1,3 +1,4 @@
+
 /**
 @file		main.cpp
 @brief		main file
@@ -12,6 +13,7 @@ Notes on version 01.00.01
 #include "main.h"
 
 extern FM3_GPIO_TypeDef *g_pFM3_GPIO;
+extern SystemStatus SysStatus;                 /* stato di funzionamento */
 #ifdef LOADER_ENGINE
 extern void (*g_fpJumpToLoader)(void);  //FERLOADER
 extern uint32_t *g_JumpingCodeMemLocation;

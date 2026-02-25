@@ -37,7 +37,7 @@ In the Flexiper TYPE0 s/w we use the follwing settings:
 */
 
 #include "siofm3.h"
-
+#include <cstring>
 
 //-------------------------------------------------------
 // Variabili globali utili a tutti i moduli
@@ -608,11 +608,13 @@ static void setupCh0(SIOMode reqMode, byte flagCSIM, byte flagCSIS, byte flagCSI
 							IRQPriority reqPrio, void (*pfIrqHandTx)(int v), void (*pfIrqHandRx)(int v) )
 {
 
+    uint8_t mask = (1 << 0) | (1 << 1) | (1 << 3)  | (1 << 7); //SONAR_QUBE
 	switch( reqMode )
 	{
 		case	SIO_UART:
             // Setting the Serial Control Register
-            pFM3_MFS0->SCR |=   BIT7;   // UART reset
+            pFM3_MFS0->SCR |=   mask;   // UART reset
+            //pFM3_MFS0->SCR |=   BIT7;   // UART reset
             // Setting the Serial Mode Register
             pFM3_MFS0->SMR &= ~(BIT5 + BIT6 + BIT7); 			// UART0 mode selected
             pFM3_MFS0->SMR &= ~(BIT4); 							// RESERVED
@@ -631,9 +633,7 @@ static void setupCh0(SIOMode reqMode, byte flagCSIM, byte flagCSIS, byte flagCSI
 
             pFM3_MFS0->SMR |=  (BIT0); 							// Enables a serial data output.
 
-            pFM3_MFS0->SCR_f.TXE = 1; 						//Enables data received + Enables the transmission
-            pFM3_MFS0->SCR_f.RXE = 1;
-            pFM3_MFS0->SCR_f.RIE = 1;                       // abilita irq da ricevitore
+
 			break;
         // We use this channel only in UART Mode
 		case	SIO_CSI_MASTER_FULL:
@@ -929,13 +929,13 @@ static void setupCh3(SIOMode reqMode, byte flagCSIM, byte flagCSIS, byte flagCSI
 							IRQPriority reqPrio, void (*pfIrqHandTx)(int v), void (*pfIrqHandRx)(int v) )
 {
 
+    uint8_t mask = (1 << 0) | (1 << 1) | (1 << 3)  | (1 << 7); //SONAR_QUBE
+
 	switch( reqMode )
 	{
 		case	SIO_UART:
             // Setting the Serial Control Register
-            pFM3_MFS1->SCR |=   BIT7;   						// UART reset
-
-            //pFM3_MFS1->SCR_f.UPCL = 1;    // Serve??
+            pFM3_MFS1->SCR |=   mask;   						// UART reset
 
             // Setting the Serial Mode Register
             pFM3_MFS1->SMR &= ~(BIT5 + BIT6 + BIT7); 			// UART0 mode selected
@@ -955,11 +955,9 @@ static void setupCh3(SIOMode reqMode, byte flagCSIM, byte flagCSIS, byte flagCSI
 
             pFM3_MFS1->SMR |=  (BIT0); 							// Enables a serial data output.
 
-            pFM3_MFS1->SCR_f.TXE = 1; 						//Enables data received + Enables the transmission
 
-            pFM3_MFS1->SCR_f.RXE = 1;
-            pFM3_MFS1->SCR_f.RIE = 1;                       // abilita irq da ricevitore
-			break;
+
+ 			break;
         // We use the channel 3 only in UART Mode
 		case	SIO_CSI_MASTER_FULL:
 		case	SIO_CSI_MASTER_RXONLY:
@@ -1043,11 +1041,13 @@ static void setupCh5(SIOMode reqMode, byte flagCSIM, byte flagCSIS, byte flagCSI
 							IRQPriority reqPrio, void (*pfIrqHandTx)(int v), void (*pfIrqHandRx)(int v) )
 {
 
+    uint8_t mask = (1 << 0) | (1 << 1) | (1 << 3)  | (1 << 7); //SONAR_QUBE
 	switch( reqMode )
 	{
 		case	SIO_UART:
             // Setting the Serial Control Register
-            pFM3_MFS3->SCR |=   BIT7;   						// UART reset
+            pFM3_MFS3->SCR |=   mask;   						// UART reset
+            //pFM3_MFS3->SCR |=   BIT7;   						// UART reset
             // Setting the Serial Mode Register
             pFM3_MFS3->SMR &= ~(BIT5 + BIT6 + BIT7); 			// UART0 mode selected
             pFM3_MFS3->SMR &= ~(BIT4); 							// RESERVED
@@ -1066,9 +1066,7 @@ static void setupCh5(SIOMode reqMode, byte flagCSIM, byte flagCSIS, byte flagCSI
 
             pFM3_MFS3->SMR |=  (BIT0); 							// Enables a serial data output.
 
-            pFM3_MFS3->SCR_f.TXE = 1; 						//Enables data received + Enables the transmission
-            pFM3_MFS3->SCR_f.RXE = 1;
-            pFM3_MFS3->SCR_f.RIE = 1;                       // abilita irq da ricevitore
+
 			break;
         // We use the channel 5 only in UART Mode
 		case	SIO_CSI_MASTER_FULL:
@@ -1116,11 +1114,15 @@ static void setupCh6(SIOMode reqMode, byte flagCSIM, byte flagCSIS, byte flagCSI
 							IRQPriority reqPrio, void (*pfIrqHandTx)(int v), void (*pfIrqHandRx)(int v) )
 {
 
+    uint8_t mask = (1 << 0) | (1 << 1) | (1 << 3)  | (1 << 7); //sonar cube
+
 	switch( reqMode )
 	{
 		case	SIO_UART:
             // Setting the Serial Control Register
-            pFM3_MFS7->SCR |=   BIT7;   						// UART reset
+
+            pFM3_MFS7->SCR |=   mask;   						// UART reset
+            //pFM3_MFS7->SCR |=   BIT7;   						// UART reset
             // Setting the Serial Mode Register
             pFM3_MFS7->SMR &= ~(BIT5 + BIT6 + BIT7); 			// UART0 mode selected
             pFM3_MFS7->SMR &= ~(BIT4); 							// RESERVED
@@ -1139,9 +1141,7 @@ static void setupCh6(SIOMode reqMode, byte flagCSIM, byte flagCSIS, byte flagCSI
 
             pFM3_MFS7->SMR |=  (BIT0); 							// Enables a serial data output.
 
-            pFM3_MFS7->SCR_f.TXE = 1; 						//Enables data received + Enables the transmission
-            pFM3_MFS7->SCR_f.RXE = 1;
-            pFM3_MFS7->SCR_f.RIE = 1;                       // abilita irq da ricevitore
+
 			break;
         // We use the channel 3 only in UART Mode
 		case	SIO_CSI_MASTER_FULL:

@@ -5,6 +5,7 @@
 @date		06/13/2018
 @version	01.23
 @source     FM3 Base TYPE 2
+@NOTE: tnoergaard 10/17/2025 sonar qube updates
 */
 /**
 This class has been built following the MFT programming instruction written in the chapter 6 of
@@ -78,7 +79,7 @@ mftUnit::mftUnit(uint8_t unit)
 uint8_t i = 0; //iterator
     mftID = MFT_WRONG_ID;
     //We can proceed
-    if ((unit > MAX_MFT_NUMBER-1) || (unit < 0))
+    if (unit > MAX_MFT_NUMBER-1)
         {
         //Validating parameter
         //Unit should be included 0 <= Unit <= MAX_MFT_NUMBER-1
@@ -441,16 +442,45 @@ uint8_t mftUnit::setTSCARegister(frtChannel_Type chan, cycleRatio_Type ratioToSe
                             frtCounterMode_Type counterMode, frtOperMode_Type operMode, frtBufferFunction_Type bufferEnable,
                             frtEnableIntOnMatch_Type peakInt, frtEnableIntOnMatch_Type zeroInt, frtClock_Type clockSource )
 {
-setFrtCycleRatio(chan,ratioToSet);
-setFrtInitRequest(chan,request);
-setFrtCounterMode(chan,counterMode);
-setFrtOperMode(chan,operMode);
-setFrtBufferFunction(chan,bufferEnable);
-setFrtIntOnMatch(chan,peakInt);
-setFrtIntOnMatch_Z(chan,zeroInt);
-setFrtClock(chan, clockSource);
-clearFRTICLR(chan);
-clearFRTIRQZF(chan);
+uint8_t retVal = 0xFF;         //Return value
+
+retVal = setFrtCycleRatio(chan,ratioToSet);
+
+if (retVal != 0xFF)
+{
+  retVal = setFrtInitRequest(chan,request);
+  if (retVal != 0xFF)
+  {
+    retVal = setFrtCounterMode(chan,counterMode);
+    if (retVal != 0xFF)
+    {
+      retVal = setFrtOperMode(chan,operMode);
+      if (retVal != 0xFF)
+      {
+        retVal = setFrtBufferFunction(chan,bufferEnable);
+        if (retVal != 0xFF)
+        {
+          retVal = setFrtIntOnMatch(chan,peakInt);
+          if (retVal != 0xFF)
+          {
+            retVal = setFrtIntOnMatch_Z(chan,zeroInt);
+            if (retVal != 0xFF)
+            {
+              retVal = setFrtClock(chan, clockSource);
+              if (retVal != 0xFF)
+              {
+                clearFRTICLR(chan);
+                clearFRTIRQZF(chan);
+               }
+             }
+           }
+         }
+       }
+     }
+   }
+}
+
+return retVal;
 }
 
 /**
@@ -560,24 +590,26 @@ Return:
 */
 uint8_t mftUnit::getOcuOutputLevel(ocuUnit_Type unit, ocuChannel_Type chan)
 {
-uint8_t retVal = 0xFF;         //Return value
-stc_mft_ocu_ocsb_field_t *ocsbSelected = NULL;
-ocsbSelected = mftBlock.ocsb_Register[unit];
-if (ocsbSelected == NULL){
-    retVal = 0xFF;
+    uint8_t retVal = 0xFF;         //Return value
+    stc_mft_ocu_ocsb_field_t *ocsbSelected = NULL;
+    ocsbSelected = mftBlock.ocsb_Register[unit];
+
+    if (ocsbSelected == NULL){
+      retVal = 0xFF;
     }
     else{
-        if (chan == OCU_CHANNEL_0){
-            retVal = ocsbSelected->OTD0;
-            }
-            else{//No else necessary
-            }
-        if (chan == OCU_CHANNEL_1){
-            retVal = ocsbSelected->OTD1;
-            }
-            else{//No else necessary
-            }
-        }
+      if (chan == OCU_CHANNEL_0){
+         retVal = ocsbSelected->OTD0;
+      }
+      else{//No else necessary
+      }
+
+      if (chan == OCU_CHANNEL_1){
+        retVal = ocsbSelected->OTD1;
+      }
+      else{//No else necessary
+      }
+    }
 return retVal;
 
 }
@@ -587,15 +619,22 @@ Return the setting requested or 0xFF if error
 */
 uint8_t mftUnit::setOCSCModeRegister(uint8_t position, uint8_t value)
 {
-uint8_t retVal = 0;         //Return value
-stc_mft_ocu_ocsc_field_t *ocscSelected = NULL;
-if ((position >= NUMBER_OF_OUTPUT_PIN) ||
-    ((value != 0) && (value != 1))){
-    retVal = 0xFF; //value not plausible
+    uint8_t retVal = 0;         //Return value
+    stc_mft_ocu_ocsc_field_t *ocscSelected = NULL;
+
+    ocscSelected = mftBlock.ocsc_Register;
+
+    if (ocscSelected == NULL){
+      retVal = 0xFF;
     }
-    else {
+    else{
+        if ((position >= NUMBER_OF_OUTPUT_PIN) ||
+        ((value != 0) && (value != 1))){
+            retVal = 0xFF; //value not plausible
+        }
+        else {
         //Value is plausibile
-        switch (position){
+          switch (position){
             case 0:
                 ocscSelected->MOD0 = value;
                 retVal = value;
@@ -623,8 +662,9 @@ if ((position >= NUMBER_OF_OUTPUT_PIN) ||
             default:
                 retVal = 0xFF;
                 break;
-                }
+          }
         }
+      }
 return retVal;
 }
 
@@ -1354,6 +1394,8 @@ for (i=0;i<MAX_FRT_CHANELL_FOR_UNIT;i++)
     mftBlock.IRQ_FRT_NRZ_callback_p[i] = NULL;
     }
 retVal = 0;
+return retVal;
+
 }
 
 /**
@@ -1521,24 +1563,30 @@ if ((wfsaSelected == NULL) || (wfirSelected == NULL)|| (ratioToSet > CYCLE_RATIO
             if (wfirSelected->stc_mft_bit_access_t.TMIE10 == WFG_TIMER_IN_OPERATION ){
                 wfirSelected->stc_mft_bit_access_t.TMIS10 = 1; //STOP the Timer
                 } //Else not needed
-            wfsaSelected->DCLOCK = ratioToSet;
-            retVal = wfsaSelected->DCLOCK;
+
+            if ((uint8_t)ratioToSet > 8)
+              wfsaSelected->DCLOCK = CYCLE_RATIO_128;
+
+            retVal = (uint8_t)wfsaSelected->DCLOCK;
             break;
         case WFG_UNIT_1:
         //Change the setting of these bits, while the WFG timer is stopping.
             if (wfirSelected->stc_mft_bit_access_t.TMIE32 == WFG_TIMER_IN_OPERATION ){
                 wfirSelected->stc_mft_bit_access_t.TMIS32 = 1; //STOP the Timer
                 } //Else not needed
-            wfsaSelected->DCLOCK = ratioToSet;
-            retVal = wfsaSelected->DCLOCK;
+
+            if ((uint8_t)ratioToSet > 8)
+              wfsaSelected->DCLOCK = CYCLE_RATIO_128;
+            retVal = (uint8_t)wfsaSelected->DCLOCK;
             break;
         case WFG_UNIT_2:
         //Change the setting of these bits, while the WFG timer is stopping.
             if (wfirSelected->stc_mft_bit_access_t.TMIE54 == WFG_TIMER_IN_OPERATION ){
                 wfirSelected->stc_mft_bit_access_t.TMIS54 = 1; //STOP the Timer
                 } //Else not needed
-            wfsaSelected->DCLOCK = ratioToSet;
-            retVal = wfsaSelected->DCLOCK;
+            if ((uint8_t)ratioToSet > 8)
+              wfsaSelected->DCLOCK = CYCLE_RATIO_128;
+            retVal = (uint8_t)wfsaSelected->DCLOCK;
             break;
         default:
             retVal = 0xFF;

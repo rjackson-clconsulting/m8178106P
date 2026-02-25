@@ -615,9 +615,9 @@ int cntRx;
 bool eep_writeMem(void *__data_buf, int __count, int __start_addr)
 {
 uint8_t *pBuf = (uint8_t *)__data_buf;
-int dummyRead;
-int cntWaitSpi;
-int cntTx;
+int dummyRead = 0;
+int cntWaitSpi = 0;
+int cntTx = 0;
 
 	if( __start_addr > EEP_LAST_ADDR || __start_addr + __count > EEP_LAST_ADDR )
 		return(False);
